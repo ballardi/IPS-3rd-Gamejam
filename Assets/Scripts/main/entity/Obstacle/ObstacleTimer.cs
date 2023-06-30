@@ -30,7 +30,7 @@ namespace ObstacleManagement
         /// The current spawn rate determining the amount of seconds on the timer.
         /// The spawn rate should be decreased after each generated obstacle.
         /// </summary>
-        private readonly float _spawnRate = INITIAL_SPAWN_RATE;
+        private float _spawnRate = INITIAL_SPAWN_RATE;
 
         /// <summary>
         /// The obstacle manager script, which is a MonoBehaviour.
@@ -66,6 +66,16 @@ namespace ObstacleManagement
         {
             Assert.IsNull(_clock, "Should not start a timer if it is already running!");
             _clock = _parent.StartCoroutine(Tick());
+        }
+
+        /// <summary>
+        /// Decreases the amount of seconds on the timer, therefore increasing the spawn rate.
+        /// If this would be less than the minimum spawn rate, the spawn rate will be set to the minimum.
+        /// </summary>
+        public void IncreaseSpawnRate()
+        {
+            _spawnRate -= SPAWN_RATE_DECREMENT;
+            Mathf.Clamp(_spawnRate, MINIMUM_SPAWN_RATE, INITIAL_SPAWN_RATE);
         }
 
         /// <summary>

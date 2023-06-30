@@ -32,11 +32,23 @@ namespace ObstacleManagement
             Log("Started the ObstacleTimer");
         }
 
+        /// <summary>
+        /// The ObstacleTimer calls this method when it has ended.
+        /// When notified, an obstacle is spawned using the ObstacleSpawnerScript,
+        /// the spawn rate is increased (if possible), and the timer is restarted.
+        /// </summary>
         public void NotifyOfObstacleTimerEnd()
         {
             Log("The ObstacleTimer has notified the ObstacleManager that the timer has ended");
 
-            // Spawn obstacle
+            ObstacleSpawnerScript.Instance.SpawnObstacle();
+            Log("Told the ObstacleSpawnerScript to spawn an obstacle");
+
+            _obstacleTimer.IncreaseSpawnRate();
+            Log("Increased the obstacle spawn rate, if possible");
+
+            _obstacleTimer.Start();
+            Log("Restarted the ObstacleTimer");
         }
     }
 }
