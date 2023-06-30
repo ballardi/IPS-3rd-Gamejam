@@ -1,11 +1,14 @@
 namespace ObstacleManagement
 {
+    /// <summary>
+    /// The ObstacleManager's single responsibility is managing the generation of obstacles.
+    /// It uses a custom timer as a generation interval.
+    /// </summary>
     public class ObstacleManager : LoggableMonoBehaviour
     {
         /// <summary>
         /// The instance of the manager's singleton
         /// </summary>
-        /// <value></value>
         public static ObstacleManager Instance { private set; get; }
 
         /// <summary>
