@@ -1,34 +1,44 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Assertions;
+namespace ObstacleManagement
+{
+    using UnityEngine;
+    using UnityEngine.Assertions;
 
-public class ObstacleSpawnerScript : MonoBehaviour {
+    public class ObstacleSpawnerScript : LoggableMonoBehaviour
+    {
+        /// <summary>
+        /// The instance of the spawner's singleton
+        /// </summary>
+        public static ObstacleSpawnerScript Instance { private set; get; }
 
-    public GameObject ObstacleAPrefab;
+        public GameObject ObstacleAPrefab;
 
-    public GameObject ObstacleASpawnPoint;
-    public float spawnCountdown = 1;
+        public GameObject ObstacleASpawnPoint;
 
-    private float spawnCountdownTimer;
+        /// <summary>
+        /// Sets up the spawner's singleton instance
+        /// </summary>
+        private void Awake()
+        {
+            Assert.IsNull(
+                Instance,
+                $"A singleton instance must be null. Is there another class in the scene? Type: {GetType()}"
+            );
+            Instance = this;
+            Log("Created the ObstacleManager singleton");
 
-    void Awake() {
-        Assert.IsNotNull(ObstacleAPrefab);
-        Assert.IsNotNull(ObstacleASpawnPoint);
-        spawnCountdownTimer = spawnCountdown;
-    }
-
-    void Update() {
-
-        spawnCountdownTimer += Time.deltaTime;
-        if (spawnCountdownTimer > spawnCountdown) {
-            SpawnObstacle();
-            spawnCountdownTimer = 0;
+            Assert.IsNotNull(ObstacleAPrefab);
+            Assert.IsNotNull(ObstacleASpawnPoint);
         }
-    }
 
-    private void SpawnObstacle() {
-        GameObject.Instantiate(ObstacleAPrefab, ObstacleASpawnPoint.transform.position, Quaternion.identity, transform);
+        public void SpawnObstacle()
+        {
+            // TODO: Pool game objects
+            Instantiate(
+                ObstacleAPrefab,
+                ObstacleASpawnPoint.transform.position,
+                Quaternion.identity,
+                transform
+            );
+        }
     }
 }
