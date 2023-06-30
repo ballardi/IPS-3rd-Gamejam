@@ -74,8 +74,11 @@ namespace ObstacleManagement
         /// </summary>
         public void IncreaseSpawnRate()
         {
-            _spawnRate -= SPAWN_RATE_DECREMENT;
-            Mathf.Clamp(_spawnRate, MINIMUM_SPAWN_RATE, INITIAL_SPAWN_RATE);
+            _spawnRate = Mathf.Clamp(
+                _spawnRate - SPAWN_RATE_DECREMENT,
+                MINIMUM_SPAWN_RATE,
+                INITIAL_SPAWN_RATE
+            );
         }
 
         /// <summary>
