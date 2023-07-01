@@ -15,17 +15,22 @@ public class FailureScript : MonoBehaviour
     }
 
     
-// Checks that an object touched the back collider.
-void Update() {
-    int countOfFailureCollisions = FailureCollider.OverlapCollider(contactFilter, failureColliderContactResults);
-        if (countOfFailureCollisions > 0) {
-            for(int i = 0; i<countOfFailureCollisions; i++) {
-                Debug.Log($"player failure collision with: {failureColliderContactResults[i].transform.name}");
+    // Checks that an object touched the back collider.
+    void Update() {
+        // don't check for collisions unless we're actively playing the game
+        if (GameStateManager.instance.CurrentState != GameStateManager.STATE.PLAYING)
+            return;
+
+        int countOfFailureCollisions = FailureCollider.OverlapCollider(contactFilter, failureColliderContactResults);
+            if (countOfFailureCollisions > 0) {
+                Collider2D firstCollisionInList = failureColliderContactResults[0];
+                Debug.Log($"player failure collision with: {firstCollisionInList.transform.name}");
                 // TODO: handle collision: lose the game, etc.
                 this.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-                failureColliderContactResults[i].gameObject.GetComponentInChildren<ObstacleAScript>().changeState(ObstacleAScript.STATE.PlayerFailed);
+                firstCollisionInList.gameObject.GetComponentInChildren<ObstacleAScript>().changeState(ObstacleAScript.STATE.PlayerFailed);
+                GameStateManager.instance.OnGameOver();
+                return; // return since it's already gameover and don't want to transition state to gameover multiple times
             }
-        }
-}
+    }
         
 }

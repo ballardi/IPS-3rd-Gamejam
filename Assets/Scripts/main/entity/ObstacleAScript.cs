@@ -20,13 +20,13 @@ public class ObstacleAScript : MonoBehaviour {
     }
 
     public void InitializeNewGame() {
-        currentSpeed = startSpeed;
+        currentSpeed = GameStateManager.instance.GetCurrentSpeed();
         currentState = STATE.Normal;
     }
 
     void Update() {
-        if(currentState == STATE.Normal || currentState == STATE.PlayerResolvedSuccessfully) {
-            // TODO: increase speed based on combination of deltaTime and some global game speed variable?
+        currentSpeed = GameStateManager.instance.GetCurrentSpeed();
+        if (currentState == STATE.Normal || currentState == STATE.PlayerResolvedSuccessfully) {
             Vector3 currentPos = transform.localPosition;
             transform.localPosition = new Vector3(currentPos.x - currentSpeed, currentPos.y, currentPos.z);
         }
