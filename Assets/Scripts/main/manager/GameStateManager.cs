@@ -69,6 +69,7 @@ public class GameStateManager : MonoBehaviour {
                 _CurrentScoreFloat = 0;
                 CurrentScore = 0;
                 PauseButtonScript.instance.Show(true);
+                // TODO: clear out any obstacles from previous playthrough
                 break;
             case STATE.PLAYING:  throw new System.Exception("should never happen");
             case STATE.PAUSED:
@@ -97,6 +98,7 @@ public class GameStateManager : MonoBehaviour {
             case STATE.TITLE_SCREEN: throw new System.Exception("should never happen");
             case STATE.PLAYING:
                 PauseButtonScript.instance.Show(false);
+                GameOverScreenScript.instance.Show(true); 
                 break;
             case STATE.PAUSED:       throw new System.Exception("should never happen");
             case STATE.GAMEOVER:     throw new System.Exception("should never happen");
