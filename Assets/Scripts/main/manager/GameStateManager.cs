@@ -57,7 +57,7 @@ public class GameStateManager : MonoBehaviour {
     }
 
     public void OnShowTitleScreen() {
-        TitleScreenScript.instance.Show(true); ;
+        TitleScreenScript.instance.Show(true);
         CurrentState = STATE.TITLE_SCREEN;
     }
 
@@ -68,9 +68,12 @@ public class GameStateManager : MonoBehaviour {
                 _CurrentSpeed = InitialSpeed;
                 _CurrentScoreFloat = 0;
                 CurrentScore = 0;
+                PauseButtonScript.instance.Show(true);
                 break;
             case STATE.PLAYING:  throw new System.Exception("should never happen");
-            case STATE.PAUSED:   break;
+            case STATE.PAUSED:
+                PauseButtonScript.instance.Show(true);
+                break;
             case STATE.GAMEOVER: throw new System.Exception("should never happen");
         }
         CurrentState = STATE.PLAYING;
@@ -80,6 +83,7 @@ public class GameStateManager : MonoBehaviour {
         switch (CurrentState) {
             case STATE.TITLE_SCREEN: throw new System.Exception("should never happen");
             case STATE.PLAYING:
+                PauseButtonScript.instance.Show(false);
                 PauseMenuScript.instance.Show(true);
                 break;
             case STATE.PAUSED:       throw new System.Exception("should never happen");
@@ -89,10 +93,11 @@ public class GameStateManager : MonoBehaviour {
     }
 
     public void OnGameOver() {
-        switch (CurrentState)
-        {
+        switch (CurrentState) {
             case STATE.TITLE_SCREEN: throw new System.Exception("should never happen");
-            case STATE.PLAYING:      break;
+            case STATE.PLAYING:
+                PauseButtonScript.instance.Show(false);
+                break;
             case STATE.PAUSED:       throw new System.Exception("should never happen");
             case STATE.GAMEOVER:     throw new System.Exception("should never happen");
         }
