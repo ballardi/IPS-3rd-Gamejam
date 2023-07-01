@@ -5,22 +5,17 @@ using UnityEngine.Assertions;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 
-// author : Rohaid 
+/// <author> Rohaid & Ben </author> 
 public class PlayerScript : MonoBehaviour {
 
     public BoxCollider2D SuccessCollider;
-
-    // for detecting failure collisions
-    public BoxCollider2D FailureCollider;
     public ContactFilter2D contactFilter;
-    private Collider2D[] failureColliderContactResults = new Collider2D[20];
     private Collider2D[] successColliderContactResults = new Collider2D[20];
 
-    // Input 
+    // Input Controller
     private PlayerInput input;
 
     void Awake() {
-        Assert.IsNotNull(FailureCollider);
         Assert.IsNotNull(SuccessCollider);
 
         input = new PlayerInput();
@@ -52,43 +47,31 @@ public class PlayerScript : MonoBehaviour {
     }
 
     void OnUP(){
-        Act();
+        Act(ActionEnum.UP);
     }
 
     void OnDOWN(){
-        Act();
+        Act(ActionEnum.DOWN);
     }
 
     void OnRIGHT(){
-        Act();
+        Act(ActionEnum.RIGHT);
     }
 
-    public void Act() {
-          // check for any success collisions
-            Debug.Log("Pressed Button");
-            int countOfSuccessCollisions = SuccessCollider.OverlapCollider(contactFilter, successColliderContactResults);
-            if (countOfSuccessCollisions > 0) {
-                for (int i = 0; i<countOfSuccessCollisions; i++) {
-                    Debug.Log($"player success collision with: {successColliderContactResults[i].transform.name}");
-                    // TODO: if the obstacle in the collision was the right one for the key pressed, trigger that obstacle to change states
-                    successColliderContactResults[i].gameObject.GetComponentInChildren<ObstacleAScript>().changeState(ObstacleAScript.STATE.PlayerResolvedSuccessfully);
+    ///<summary> Detects objects and if the current input was used </summary>
+    public void Act(ActionEnum dir) {
+        int countOfSuccessCollisions = SuccessCollider.OverlapCollider(contactFilter, successColliderContactResults);
+        if (countOfSuccessCollisions > 0) {
+        for (int i = 0; i<countOfSuccessCollisions; i++) {
+            Debug.Log($"player success collision with: {successColliderContactResults[i].transform.name}");
+            // TODO: if the obstacle in the collision was the right one for the key pressed, trigger that obstacle to change states
+            ObstacleAScript scrip = successColliderContactResults[i].gameObject.GetComponentInChildren<ObstacleAScript>();
+            if(scrip.getActionType().dir == dir){
+                scrip.changeState(ObstacleAScript.STATE.PlayerResolvedSuccessfully);
+            }
                 }
             }
     } 
 
 }
 
-// Checks that an object touched the back collider. Should be moved to an OnTrigger Enter script though instead
-// the update loop ?
-
-//  // check for any failure collisions
-
-//         int countOfFailureCollisions = FailureCollider.OverlapCollider(contactFilter, failureColliderContactResults);
-//         if (countOfFailureCollisions > 0) {
-//             for(int i = 0; i<countOfFailureCollisions; i++) {
-//                 Debug.Log($"player failure collision with: {failureColliderContactResults[i].transform.name}");
-//                 // TODO: handle collision: lose the game, etc.
-//                 this.GetComponentInChildren<SpriteRenderer>().color = Color.red;
-//                 failureColliderContactResults[i].gameObject.GetComponentInChildren<ObstacleAScript>().changeState(ObstacleAScript.STATE.PlayerFailed);
-//             }
-//         }

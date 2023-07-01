@@ -174,6 +174,7 @@ GameObject:
   - component: {fileID: 3626889260053928133}
   - component: {fileID: 483789948377309053}
   - component: {fileID: 2300044860185228068}
+  - component: {fileID: 5216141603381611596}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -211,17 +212,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SuccessCollider: {fileID: 8632470011260860351}
-  FailureCollider: {fileID: 3626889260053928133}
   contactFilter:
     useTriggers: 0
-    useLayerMask: 0
+    useLayerMask: 1
     useDepth: 0
     useOutsideDepth: 0
     useNormalAngle: 0
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 0
+      m_Bits: 8
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 0
@@ -328,3 +328,30 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5216141603381611596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6090843308928482692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e14b2c9dbfebe1d4fb044fc4e3ac42ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FailureCollider: {fileID: 3626889260053928133}
+  contactFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 8
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0

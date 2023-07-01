@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 434395779803676400}
   - component: {fileID: 426704429968042313}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.8829603, b: 0, a: 1}
+  m_Color: {r: 0.9734893, g: 1, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6160080431365531468}
   - component: {fileID: 3811716756239011205}
   - component: {fileID: 5754784824068700932}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ObstacleA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startSpeed: 1
+  ActionType: {fileID: 11400000, guid: 79471fa5fbad7b643b6f481d3b895b9a, type: 2}
 --- !u!61 &3811716756239011205
 BoxCollider2D:
   m_ObjectHideFlags: 0
