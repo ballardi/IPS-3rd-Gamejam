@@ -62,7 +62,7 @@ Transform:
   m_Children:
   - {fileID: 1863308342314372130}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4564753060631024708
 MonoBehaviour:
@@ -76,6 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d8739048f7fe454f950b8ce2847aaf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugMode: 0
   ObstacleAPrefab: {fileID: 7218871884808078095, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
   ObstacleASpawnPoint: {fileID: 160717224237765656}
-  spawnCountdown: 1

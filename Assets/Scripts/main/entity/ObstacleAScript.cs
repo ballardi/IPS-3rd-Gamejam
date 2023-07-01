@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class ObstacleAScript : MonoBehaviour {
 
@@ -10,8 +11,12 @@ public class ObstacleAScript : MonoBehaviour {
 
     public enum STATE { Normal, PlayerResolvedSuccessfully, PlayerFailed };
 
+    [SerializeField]
+    private ActionType ActionType;
+
     void Awake() {
         InitializeNewGame();
+        Assert.IsNotNull(ActionType);
     }
 
     public void InitializeNewGame() {
@@ -44,5 +49,8 @@ public class ObstacleAScript : MonoBehaviour {
         currentState = newState;
     }
 
-
+    public ActionType getActionType() {
+        //returning the scriptable obj instead of just the Enum in case future data is added.
+        return ActionType;
+    }
 }
