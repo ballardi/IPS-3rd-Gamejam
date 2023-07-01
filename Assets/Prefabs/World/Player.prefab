@@ -211,6 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e353bf55918ff248ae0fa5158bfa863, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugMode: 0
   SuccessCollider: {fileID: 8632470011260860351}
   contactFilter:
     useTriggers: 0
@@ -226,6 +227,8 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  COOLDOWN_SECONDS: 5
+  debugText: {fileID: 0}
 --- !u!61 &3626889260053928133
 BoxCollider2D:
   m_ObjectHideFlags: 0
