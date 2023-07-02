@@ -41,7 +41,7 @@ namespace ObstacleManagement
         {
             Log("The ObstacleTimer has notified the ObstacleManager that the timer has ended");
 
-            ObstacleSpawnerScript.Instance.SpawnObstacle();
+            ObstacleSpawner.Instance.SpawnObstacle();
             Log("Told the ObstacleSpawnerScript to spawn an obstacle");
 
             _obstacleTimer.IncreaseSpawnRate();
