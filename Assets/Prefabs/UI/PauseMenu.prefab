@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4984863748645274519}
   - component: {fileID: 1705376489709841798}
   - component: {fileID: 7974417609281667369}
+  - component: {fileID: 8493390627795768336}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -134,6 +135,32 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8493390627795768336}
+        m_TargetAssemblyTypeName: TriggerAudio, Assembly-CSharp
+        m_MethodName: PlayOneShot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8493390627795768336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795901379445319367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e001482fe02984d3d87c2d51a202e7aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/SFX Events/UI/UI_Scroll
+  PlayOnAwake: 0
 --- !u!1 &2508312921804191308
 GameObject:
   m_ObjectHideFlags: 0
@@ -146,6 +173,7 @@ GameObject:
   - component: {fileID: 8026141140138968097}
   - component: {fileID: 5829874308299805104}
   - component: {fileID: 7231983477097556673}
+  - component: {fileID: 4879028512997695880}
   m_Layer: 5
   m_Name: TitleScreenButton
   m_TagString: Untagged
@@ -268,6 +296,44 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4879028512997695880}
+        m_TargetAssemblyTypeName: TriggerAudio, Assembly-CSharp
+        m_MethodName: PlayOneShot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4879028512997695880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2508312921804191308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e001482fe02984d3d87c2d51a202e7aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: event:/SFX Events/UI/UI_Scroll
+  PlayOnAwake: 0
 --- !u!1 &3680407579864192946
 GameObject:
   m_ObjectHideFlags: 0
