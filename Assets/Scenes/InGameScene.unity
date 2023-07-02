@@ -359,6 +359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerupManager
       objectReference: {fileID: 0}
+    - target: {fileID: 239028985709852695, guid: 62c2ed6187cbe2b43a12f1993214afb6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7380993866572695555, guid: 62c2ed6187cbe2b43a12f1993214afb6, type: 3}
       propertyPath: m_RootOrder
       value: 17

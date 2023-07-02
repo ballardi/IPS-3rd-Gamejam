@@ -104,6 +104,7 @@
 	<object class="MixerBusEffectChain" id="{92456e82-2289-443d-a3d9-b23ad564875f}">
 		<relationship name="effects">
 			<destination>{4f360b4f-424c-421f-a7af-ee9b924729ea}</destination>
+			<destination>{e111f3e6-f496-4d9f-807e-2b80beb46e8e}</destination>
 			<destination>{46d0908b-53b9-49c7-a29d-6133dee9f3a6}</destination>
 		</relationship>
 	</object>
@@ -151,9 +152,26 @@
 	</object>
 	<object class="MixerBusFader" id="{a965af4d-b7d4-4e36-9561-041284d68ec0}" />
 	<object class="MixerBusFader" id="{4f360b4f-424c-421f-a7af-ee9b924729ea}" />
+	<object class="PitchShifterEffect" id="{e111f3e6-f496-4d9f-807e-2b80beb46e8e}">
+		<property name="pitch">
+			<value>2</value>
+		</property>
+		<property name="fftSize">
+			<value>780</value>
+		</property>
+		<property name="overlap">
+			<value>1</value>
+		</property>
+	</object>
 	<object class="ThreeEQEffect" id="{46d0908b-53b9-49c7-a29d-6133dee9f3a6}">
+		<property name="lowGain">
+			<value>-3.5</value>
+		</property>
+		<property name="midGain">
+			<value>-10</value>
+		</property>
 		<property name="highGain">
-			<value>-6</value>
+			<value>-26.5</value>
 		</property>
 		<property name="crossoverSlope">
 			<value>2</value>

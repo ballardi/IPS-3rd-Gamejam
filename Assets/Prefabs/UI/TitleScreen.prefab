@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 3405707557032429557}
   - component: {fileID: 307777060720175661}
   - component: {fileID: 1534173041798684851}
-  - component: {fileID: 4791480649708445132}
-  - component: {fileID: 9159508129117223030}
+  - component: {fileID: 1995277482627498546}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -136,19 +135,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4791480649708445132}
-        m_TargetAssemblyTypeName: TriggerAudio, Assembly-CSharp
-        m_MethodName: PlayOneShot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 9159508129117223030}
+      - m_Target: {fileID: 1995277482627498546}
         m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
         m_MethodName: Play
         m_Mode: 1
@@ -160,21 +147,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4791480649708445132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1288651858042650456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e001482fe02984d3d87c2d51a202e7aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: event:/SFX Events/UI/UI_Scroll
-  PlayOnAwake: 0
---- !u!114 &9159508129117223030
+--- !u!114 &1995277482627498546
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,16 +162,16 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -789291487
-      Data2: 1151156005
-      Data3: -738065476
-      Data4: 743498261
-    Path: event:/Ambiance
+      Data1: 1301454462
+      Data2: 1312222715
+      Data3: 1038297498
+      Data4: 1792787925
+    Path: event:/SFX Events/UI/UI_Scroll
   Event: 
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
-  TriggerOnce: 1
+  TriggerOnce: 0
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
@@ -1261,8 +1234,7 @@ GameObject:
   - component: {fileID: 966852881394707432}
   - component: {fileID: 2929881530865464356}
   - component: {fileID: 8330028681257649667}
-  - component: {fileID: 1759444747248451219}
-  - component: {fileID: 5163671834768314762}
+  - component: {fileID: 7018943869526661277}
   m_Layer: 5
   m_Name: TitleScreenButton
   m_TagString: Untagged
@@ -1385,19 +1357,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1759444747248451219}
-        m_TargetAssemblyTypeName: TriggerAudio, Assembly-CSharp
-        m_MethodName: PlayOneShot
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 5163671834768314762}
+      - m_Target: {fileID: 7018943869526661277}
         m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
         m_MethodName: Play
         m_Mode: 1
@@ -1409,21 +1369,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1759444747248451219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7873304704782210880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e001482fe02984d3d87c2d51a202e7aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: event:/SFX Events/UI/UI_Scroll
-  PlayOnAwake: 0
---- !u!114 &5163671834768314762
+--- !u!114 &7018943869526661277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1438,16 +1384,16 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -789291487
-      Data2: 1151156005
-      Data3: -738065476
-      Data4: 743498261
-    Path: event:/Ambiance
+      Data1: 1301454462
+      Data2: 1312222715
+      Data3: 1038297498
+      Data4: 1792787925
+    Path: event:/SFX Events/UI/UI_Scroll
   Event: 
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
-  TriggerOnce: 1
+  TriggerOnce: 0
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
