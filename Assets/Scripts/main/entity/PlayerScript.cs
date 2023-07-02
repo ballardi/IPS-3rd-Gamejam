@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.Events;
 
 /// <author> Rohaid & Ben </author> 
 public class PlayerScript : LoggableMonoBehaviour {
@@ -31,6 +32,12 @@ public class PlayerScript : LoggableMonoBehaviour {
     private const string TRIGGER_START_RIGHT   = "StartRight";
     private const string TRIGGER_START_DOWN    = "StartDown";
     private const string TRIGGER_START_FAILURE = "StartFailure";
+
+    [Header("Events")]
+    public UnityEvent OnUpActionEvent;
+    public UnityEvent OnRightActionEvent;
+    public UnityEvent OnDownActionEvent;
+
 
     [Header("Debug Mode")]
     [SerializeField] private TextMeshProUGUI debugText;
@@ -118,6 +125,13 @@ public class PlayerScript : LoggableMonoBehaviour {
                     scrip.changeState(ObstacleAScript.STATE.PlayerResolvedSuccessfully);
                 }
             }
+        }
+
+        // invoke events (used to trigger fmod sounds)
+        switch (dir) {
+            case ActionEnum.RIGHT: OnRightActionEvent.Invoke(); break;
+            case ActionEnum.DOWN:  OnDownActionEvent.Invoke();  break;
+            case ActionEnum.UP:    OnUpActionEvent.Invoke();    break;
         }
 
         // start the animation for the corresponding action
