@@ -1,6 +1,8 @@
 using ObstacleManagement;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -23,6 +25,14 @@ public class GameStateManager : MonoBehaviour
     public float MaxSpeed;
     public float SpeedAdditionPerSecond;
     public float MultiplierFromTimeToScore;
+
+    public UnityEvent OnTitleScreenStartEvent;
+    public UnityEvent OnNewGameEvent;
+    public UnityEvent OnPauseEvent;
+    public UnityEvent OnUnpauseEvent;
+    public UnityEvent OnGameoverEvent;
+
+
 
     void Awake()
     {
@@ -65,6 +75,7 @@ public class GameStateManager : MonoBehaviour
     public void OnShowTitleScreen()
     {
         TitleScreenScript.instance.Show(true);
+        OnTitleScreenStartEvent.Invoke();
         CurrentState = STATE.TITLE_SCREEN;
     }
 
@@ -80,12 +91,14 @@ public class GameStateManager : MonoBehaviour
                 PlayerScript.instance.OnNewGame();
                 DestroyExistingObstacles();
                 ObstacleManager.Instance.OnGameStart();
+                OnNewGameEvent.Invoke(); 
                 // TODO: call the powerup spawner to initialize them for a new game
                 break;
             case STATE.PLAYING:
                 throw new System.Exception("should never happen");
             case STATE.PAUSED:
                 PauseButtonScript.instance.Show(true);
+                OnUnpauseEvent.Invoke();
                 break;
             case STATE.GAMEOVER:
                 throw new System.Exception("should never happen");
@@ -100,6 +113,7 @@ public class GameStateManager : MonoBehaviour
             case STATE.TITLE_SCREEN:
                 throw new System.Exception("should never happen");
             case STATE.PLAYING:
+                OnPauseEvent.Invoke();
                 PauseButtonScript.instance.Show(false);
                 PauseMenuScript.instance.Show(true);
                 break;
@@ -118,6 +132,7 @@ public class GameStateManager : MonoBehaviour
             case STATE.TITLE_SCREEN:
                 throw new System.Exception("should never happen");
             case STATE.PLAYING:
+                OnGameoverEvent.Invoke(); 
                 PauseButtonScript.instance.Show(false);
                 GameOverScreenScript.instance.Show(true);
                 ObstacleManager.Instance.OnGameEnd();
