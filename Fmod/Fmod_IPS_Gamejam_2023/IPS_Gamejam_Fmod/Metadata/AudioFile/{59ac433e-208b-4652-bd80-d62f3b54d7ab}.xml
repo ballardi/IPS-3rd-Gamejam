@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{1d7f7fe4-6920-41f5-81ee-c95ebdac0dc3}">
+	<object class="AudioFile" id="{59ac433e-208b-4652-bd80-d62f3b54d7ab}">
 		<property name="assetPath">
-			<value>SFX/Test/SFX_CropHarvest_001.wav</value>
+			<value>SFX/UI/Scroll/UI_Baby Laugh_Scroll-003.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>0.88496598639455781</value>
+			<value>1.0856462585034015</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{b12f7f1d-d60c-4b5e-9f1b-00e6833cbe8b}</destination>
