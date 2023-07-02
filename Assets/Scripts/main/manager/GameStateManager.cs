@@ -69,7 +69,8 @@ public class GameStateManager : MonoBehaviour {
                 _CurrentScoreFloat = 0;
                 CurrentScore = 0;
                 PauseButtonScript.instance.Show(true);
-                // TODO: clear out any obstacles from previous playthrough
+                DestroyExistingObstacles();
+                // TODO: call the obstacle and powerup spawners to initialize them for a new game
                 break;
             case STATE.PLAYING:  throw new System.Exception("should never happen");
             case STATE.PAUSED:
@@ -105,6 +106,14 @@ public class GameStateManager : MonoBehaviour {
         }
         CurrentState = STATE.GAMEOVER;
     }
+
+    private void DestroyExistingObstacles() {
+        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
+        foreach (GameObject obstacle in obstacles) {
+            GameObject.Destroy(obstacle);
+        }
+    }
+
 
 }
 
