@@ -1,13 +1,13 @@
 using UnityEngine;
 
-namespace PowerupManagement
+namespace ObstacleManagement
 {
     /// <summary>
     /// The ObstacleTimer class is a timer responsible for providing an obstacle generation interval.
     /// Its timer duration is decreased each time an obstacle is generated until
     /// the minimum duration has been reached.
     /// </summary>
-    public class PowerupTimer : Timer
+    public class ObstacleTimer : Timer
     {
         /// <summary>
         /// Determines the amount of seconds that the timer will wait initially.
@@ -33,7 +33,7 @@ namespace PowerupManagement
         /// and uses the specified obstacle manager script as the parent.
         /// </summary>
         /// <param name="parent">The non-null reference to the ObstacleManager script</param>
-        public PowerupTimer(PowerupManager parent)
+        public ObstacleTimer(ObstacleManager parent)
             : base(parent)
         {
             _duration = INITIAL_SPAWN_RATE;
@@ -57,7 +57,7 @@ namespace PowerupManagement
         /// </summary>
         protected override void Alert()
         {
-            (_parent as PowerupManager).NotifyOfObstacleTimerEnd();
+            (_parent as ObstacleManager).NotifyOfObstacleTimerEnd();
         }
     }
 }

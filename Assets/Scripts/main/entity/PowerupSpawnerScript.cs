@@ -10,9 +10,9 @@ namespace PowerupManagement
         /// </summary>
         public static PowerupSpawnerScript Instance { private set; get; }
 
-        public GameObject ObstacleAPrefab;
+        public GameObject PowerupAPrefab;
 
-        public GameObject ObstacleASpawnPoint;
+        public GameObject PowerupASpawnPoint;
 
         /// <summary>
         /// Sets up the spawner's singleton instance
@@ -24,18 +24,18 @@ namespace PowerupManagement
                 $"A singleton instance must be null. Is there another class in the scene? Type: {GetType()}"
             );
             Instance = this;
-            Log("Created the ObstacleManager singleton");
+            Log("Created the PowerupSpawner singleton");
 
-            Assert.IsNotNull(ObstacleAPrefab);
-            Assert.IsNotNull(ObstacleASpawnPoint);
+            Assert.IsNotNull(PowerupAPrefab);
+            Assert.IsNotNull(PowerupASpawnPoint);
         }
 
         public void SpawnObstacle()
         {
             // TODO: Pool game objects
             Instantiate(
-                ObstacleAPrefab,
-                ObstacleASpawnPoint.transform.position,
+                PowerupAPrefab,
+                PowerupASpawnPoint.transform.position,
                 Quaternion.identity,
                 transform
             );

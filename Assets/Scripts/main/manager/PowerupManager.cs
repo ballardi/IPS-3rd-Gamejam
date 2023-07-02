@@ -14,7 +14,7 @@ namespace PowerupManagement
         /// <summary>
         /// The timer used to wait a certain amount of time before generating obstacles
         /// </summary>
-        private PowerupTimer _obstacleTimer;
+        private PowerupTimer _powerupTimer;
 
         /// <summary>
         /// Sets up this manager's singleton and creates the obstacle timer
@@ -26,32 +26,32 @@ namespace PowerupManagement
                 $"A singleton instance must be null. Is there another class in the scene? Type: {GetType()}"
             );
             Instance = this;
-            Log("Created the ObstacleManager singleton");
+            Log("Created the PowerupManager singleton");
 
-            _obstacleTimer = new PowerupTimer(this);
-            Log("Created the ObstacleTimer");
+            _powerupTimer = new PowerupTimer(this);
+            Log("Created the PowerupTimer");
 
-            _obstacleTimer.Start();
-            Log("Started the ObstacleTimer");
+            _powerupTimer.Start();
+            Log("Started the PowerupTimer");
         }
 
         /// <summary>
-        /// The ObstacleTimer calls this method when it has ended.
-        /// When notified, an obstacle is spawned using the ObstacleSpawnerScript,
+        /// The PowerupTimer calls this method when it has ended.
+        /// When notified, an obstacle is spawned using the PowerupSpawnerScript,
         /// the spawn rate is increased (if possible), and the timer is restarted.
         /// </summary>
         public void NotifyOfObstacleTimerEnd()
         {
-            Log("The ObstacleTimer has notified the ObstacleManager that the timer has ended");
+            Log("The PowerupTimer has notified the PowerupManager that the timer has ended");
 
             PowerupSpawnerScript.Instance.SpawnObstacle();
-            Log("Told the ObstacleSpawnerScript to spawn an obstacle");
+            Log("Told the PowerupSpawnerScript to spawn an obstacle");
 
-            _obstacleTimer.IncreaseSpawnRate();
-            Log("Increased the obstacle spawn rate, if possible");
+            _powerupTimer.RandomizeSpawnRate();
+            Log("Increased the powerup spawn rate, if possible");
 
-            _obstacleTimer.Start();
-            Log("Restarted the ObstacleTimer");
+            _powerupTimer.Start();
+            Log("Restarted the PowerupTimer");
         }
     }
 }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 434395779803676400}
   - component: {fileID: 426704429968042313}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 6
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.9734893, g: 1, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.8583789, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -96,13 +96,13 @@ GameObject:
   - component: {fileID: 6160080431365531468}
   - component: {fileID: 3811716756239011205}
   - component: {fileID: 5754784824068700932}
-  m_Layer: 3
-  m_Name: ObstacleA
+  m_Layer: 6
+  m_Name: PowerupA
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4313886864457264098
 Transform:
   m_ObjectHideFlags: 0
