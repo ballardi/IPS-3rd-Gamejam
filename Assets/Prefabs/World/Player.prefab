@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 2300044860185228068}
   - component: {fileID: 5216141603381611596}
   - component: {fileID: 2833332538436173356}
+  - component: {fileID: 1873875137239389859}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -230,6 +231,27 @@ MonoBehaviour:
     maxNormalAngle: 0
   COOLDOWN_SECONDS: 0.5
   animator: {fileID: 2833332538436173356}
+  OnUpActionEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1873875137239389859}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnRightActionEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDownActionEvent:
+    m_PersistentCalls:
+      m_Calls: []
   debugText: {fileID: 0}
 --- !u!61 &3626889260053928133
 BoxCollider2D:
@@ -382,3 +404,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1873875137239389859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6090843308928482692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 243453807
+      Data2: 1080594814
+      Data3: -1058741831
+      Data4: 400576927
+    Path: event:/Broom Swing
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
