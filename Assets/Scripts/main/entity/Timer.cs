@@ -52,6 +52,19 @@ public abstract class Timer
     }
 
     /// <summary>
+    /// Stops the timer by stopping the coroutine in the parent.
+    /// Note that this simply does nothing if the clock is not running.
+    /// </summary>
+    public void Stop()
+    {
+        if (_clock != null)
+        {
+            _parent.StopCoroutine(_clock);
+            _clock = null;
+        }
+    }
+
+    /// <summary>
     /// Waits the specified duration and then alerts the extending class
     /// that the timer has ended.
     /// </summary>

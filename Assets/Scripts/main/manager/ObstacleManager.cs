@@ -30,9 +30,6 @@ namespace ObstacleManagement
 
             _obstacleTimer = new ObstacleTimer(this);
             Log("Created the ObstacleTimer");
-
-            _obstacleTimer.Start();
-            Log("Started the ObstacleTimer");
         }
 
         /// <summary>
@@ -52,6 +49,24 @@ namespace ObstacleManagement
 
             _obstacleTimer.Start();
             Log("Restarted the ObstacleTimer");
+        }
+
+        /// <summary>
+        /// When the game is started, the timer for the obstacles should be started
+        /// </summary>
+        public void OnGameStart()
+        {
+            _obstacleTimer.Start();
+            Log("Started the ObstacleTimer");
+        }
+
+        /// <summary>
+        /// When the game is ended, the timer should be stopped
+        /// </summary>
+        public void OnGameEnd()
+        {
+            _obstacleTimer.Stop();
+            Log("Stopped the ObstacleTimer");
         }
     }
 }
