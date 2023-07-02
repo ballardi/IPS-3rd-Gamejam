@@ -66,6 +66,7 @@ public class GameStateManager : MonoBehaviour
     {
         TitleScreenScript.instance.Show(true);
         CurrentState = STATE.TITLE_SCREEN;
+        ObstacleManager.Instance.OnGameEnd();
     }
 
     public void OnPlay()
