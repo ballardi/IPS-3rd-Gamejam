@@ -64,6 +64,8 @@ public class GameStateManager : MonoBehaviour
 
     public void OnShowTitleScreen()
     {
+        DestroyExistingObstacles();
+        PlayerScript.instance.OnStartTitleScreen();
         TitleScreenScript.instance.Show(true);
         CurrentState = STATE.TITLE_SCREEN;
     }
@@ -78,7 +80,6 @@ public class GameStateManager : MonoBehaviour
                 CurrentScore = 0;
                 PauseButtonScript.instance.Show(true);
                 PlayerScript.instance.OnNewGame();
-                DestroyExistingObstacles();
                 ObstacleManager.Instance.OnGameStart();
                 // TODO: call the powerup spawner to initialize them for a new game
                 break;

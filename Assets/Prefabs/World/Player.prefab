@@ -229,6 +229,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   COOLDOWN_SECONDS: 0.5
+  playerSpriteRenderer: {fileID: 8470930481085921332}
   animator: {fileID: 2833332538436173356}
   debugText: {fileID: 0}
 --- !u!61 &3626889260053928133

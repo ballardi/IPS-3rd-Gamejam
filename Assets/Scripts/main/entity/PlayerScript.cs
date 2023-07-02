@@ -25,6 +25,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     private bool isCoolDown = false;
 
     [Header("Animations")]
+    public SpriteRenderer playerSpriteRenderer;
     public Animator animator;
     private const string TRIGGER_START_RUNNING = "StartRunning";
     private const string TRIGGER_START_UP      = "StartUp";
@@ -38,6 +39,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     void Awake() {
         Assert.IsNull(instance); instance = this; // singleton set up
 
+        Assert.IsNotNull(playerSpriteRenderer);
         Assert.IsNotNull(SuccessCollider);
         Assert.IsNotNull(animator);
         Assert.IsFalse(COOLDOWN_SECONDS < 0f);
@@ -130,6 +132,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     }
 
     public void OnNewGame() {
+        playerSpriteRenderer.enabled = true;
         animator.SetTrigger(TRIGGER_START_RUNNING);
     }
 
@@ -143,6 +146,10 @@ public class PlayerScript : LoggableMonoBehaviour {
         animator.ResetTrigger(TRIGGER_START_RIGHT);
         animator.ResetTrigger(TRIGGER_START_DOWN);
         animator.ResetTrigger(TRIGGER_START_FAILURE);
+    }
+
+    public void OnStartTitleScreen() {
+        playerSpriteRenderer.enabled = false;
     }
 
 }
