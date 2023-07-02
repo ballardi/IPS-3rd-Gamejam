@@ -77,6 +77,7 @@ public class GameStateManager : MonoBehaviour
                 _CurrentScoreFloat = 0;
                 CurrentScore = 0;
                 PauseButtonScript.instance.Show(true);
+                PlayerScript.instance.OnNewGame();
                 DestroyExistingObstacles();
                 ObstacleManager.Instance.OnGameStart();
                 // TODO: call the powerup spawner to initialize them for a new game
