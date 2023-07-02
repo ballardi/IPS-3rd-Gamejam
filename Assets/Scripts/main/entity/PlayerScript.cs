@@ -9,6 +9,8 @@ using TMPro;
 /// <author> Rohaid & Ben </author> 
 public class PlayerScript : LoggableMonoBehaviour {
 
+    public static PlayerScript instance;
+
     [Header("Colliders")]
     public BoxCollider2D SuccessCollider;
     public ContactFilter2D contactFilter;
@@ -21,13 +23,23 @@ public class PlayerScript : LoggableMonoBehaviour {
     [Header("Cool down")]
     [SerializeField] private float COOLDOWN_SECONDS = 1.0f;
     private bool isCoolDown = false;
-    
+
+    [Header("Animations")]
+    public Animator animator;
+    private const string TRIGGER_START_RUNNING = "StartRunning";
+    private const string TRIGGER_START_UP      = "StartUp";
+    private const string TRIGGER_START_RIGHT   = "StartRight";
+    private const string TRIGGER_START_DOWN    = "StartDown";
+    private const string TRIGGER_START_FAILURE = "StartFailure";
 
     [Header("Debug Mode")]
     [SerializeField] private TextMeshProUGUI debugText;
 
     void Awake() {
+        Assert.IsNull(instance); instance = this; // singleton set up
+
         Assert.IsNotNull(SuccessCollider);
+        Assert.IsNotNull(animator);
         Assert.IsFalse(COOLDOWN_SECONDS < 0f);
 
         input = new PlayerInput();
@@ -85,6 +97,10 @@ public class PlayerScript : LoggableMonoBehaviour {
 
     ///<summary> Detects objects and if the current input was used </summary>
     public void Act(ActionEnum dir) {
+        if(GameStateManager.instance.CurrentState != GameStateManager.STATE.PLAYING) {
+            return;
+        }
+
         if(!isCoolDown){
             isCoolDown = true; 
             Invoke("OnCoolDown",COOLDOWN_SECONDS);
@@ -94,16 +110,40 @@ public class PlayerScript : LoggableMonoBehaviour {
 
         int countOfSuccessCollisions = SuccessCollider.OverlapCollider(contactFilter, successColliderContactResults);
         if (countOfSuccessCollisions > 0) {
-        for (int i = 0; i<countOfSuccessCollisions; i++) {
-            Log($"player success collision with: {successColliderContactResults[i].transform.name}");
-            // TODO: if the obstacle in the collision was the right one for the key pressed, trigger that obstacle to change states
-            ObstacleAScript scrip = successColliderContactResults[i].gameObject.GetComponentInChildren<ObstacleAScript>();
-            if(scrip.getActionType().dir == dir){
-                scrip.changeState(ObstacleAScript.STATE.PlayerResolvedSuccessfully);
-            }
+            for (int i = 0; i<countOfSuccessCollisions; i++) {
+                Log($"player success collision with: {successColliderContactResults[i].transform.name}");
+                // TODO: if the obstacle in the collision was the right one for the key pressed, trigger that obstacle to change states
+                ObstacleAScript scrip = successColliderContactResults[i].gameObject.GetComponentInChildren<ObstacleAScript>();
+                if(scrip.getActionType().dir == dir){
+                    scrip.changeState(ObstacleAScript.STATE.PlayerResolvedSuccessfully);
                 }
             }
-    } 
+        }
+
+        // start the animation for the corresponding action
+        ResetAllAnimationTriggers();
+        switch (dir) {
+            case ActionEnum.RIGHT: animator.SetTrigger(TRIGGER_START_RIGHT); break;
+            case ActionEnum.DOWN:  animator.SetTrigger(TRIGGER_START_DOWN);  break;
+            case ActionEnum.UP:    animator.SetTrigger(TRIGGER_START_UP);    break;
+        }
+    }
+
+    public void OnNewGame() {
+        animator.SetTrigger(TRIGGER_START_RUNNING);
+    }
+
+    public void OnFailure() {
+        animator.SetTrigger(TRIGGER_START_FAILURE);
+    }
+
+    private void ResetAllAnimationTriggers() {
+        animator.ResetTrigger(TRIGGER_START_RUNNING);
+        animator.ResetTrigger(TRIGGER_START_UP);
+        animator.ResetTrigger(TRIGGER_START_RIGHT);
+        animator.ResetTrigger(TRIGGER_START_DOWN);
+        animator.ResetTrigger(TRIGGER_START_FAILURE);
+    }
 
 }
 

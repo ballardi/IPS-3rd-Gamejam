@@ -10,7 +10,10 @@ public class FailureScript : MonoBehaviour
     private Collider2D[] failureColliderContactResults = new Collider2D[20];
     public ContactFilter2D contactFilter;
 
+    public PlayerScript playerScript;
+
     void Awake() {
+        Assert.IsNotNull(playerScript);
         Assert.IsNotNull(FailureCollider);
     }
 
@@ -26,8 +29,8 @@ public class FailureScript : MonoBehaviour
                 Collider2D firstCollisionInList = failureColliderContactResults[0];
                 Debug.Log($"player failure collision with: {firstCollisionInList.transform.name}");
                 // TODO: handle collision: lose the game, etc.
-                this.GetComponentInChildren<SpriteRenderer>().color = Color.red;
                 firstCollisionInList.gameObject.GetComponentInChildren<ObstacleAScript>().changeState(ObstacleAScript.STATE.PlayerFailed);
+                playerScript.OnFailure();
                 GameStateManager.instance.OnGameOver();
                 return; // return since it's already gameover and don't want to transition state to gameover multiple times
             }
