@@ -16,19 +16,13 @@ namespace ObstacleManagement
         public static ObstacleSpawner Instance { private set; get; }
 
         /// <summary>
-        /// A reference of all obstacle prefabs that need to be
-        /// edited in the Inspector
+        /// A reference to the spawn point for obstacles.
         /// </summary>
-        [SerializeField]
-        private GameObject[] _obstaclePrefabs;
+        [SerializeField] private Transform _obstacleASpointPoint;
+        [SerializeField] private Transform _obstacleBSpointPoint;
+        [SerializeField] private Transform _obstacleCSpointPoint;
 
-        /// <summary>
-        /// A reference to the spawn point for all obstacles.
-        /// Note that the height needs to be adjusted within the obstacle prefab,
-        /// if it should spawn higher or lower than the default spawn point.
-        /// </summary>
-        [SerializeField]
-        private Transform _obstacleSpointPoint;
+        public ObjectPool poolA, poolB, poolC;
 
         /// <summary>
         /// Sets up the spawner's singleton instance
@@ -42,8 +36,13 @@ namespace ObstacleManagement
             Instance = this;
             Log("Created the ObstacleManager singleton");
 
-            Assert.IsNotNull(_obstacleSpointPoint);
-            Assert.IsNotNull(_obstacleSpointPoint);
+            Assert.IsNotNull(poolA);
+            Assert.IsNotNull(poolB);
+            Assert.IsNotNull(poolC);
+
+            Assert.IsNotNull(_obstacleASpointPoint);
+            Assert.IsNotNull(_obstacleBSpointPoint);
+            Assert.IsNotNull(_obstacleCSpointPoint);
         }
 
         /// <summary>
@@ -51,15 +50,23 @@ namespace ObstacleManagement
         /// </summary>
         public void SpawnObstacle()
         {
-            var randomObstacle = _obstaclePrefabs[Random.Range(0, _obstaclePrefabs.Length)];
+            int randomObstacleType = Random.Range(0, 3);
 
-            // TODO: Pool game objects
-            Instantiate(
-                randomObstacle,
-                _obstacleSpointPoint.position,
-                Quaternion.identity,
-                transform
-            );
+            GameObject obstacleCreated = null;
+            switch (randomObstacleType) {
+                case 0: obstacleCreated = poolA.RetrieveAvailableObject(); break;
+                case 1: obstacleCreated = poolB.RetrieveAvailableObject(); break;
+                case 2: obstacleCreated = poolC.RetrieveAvailableObject(); break;
+                default: throw new System.Exception("should never happen");
+            }
+
+            switch (randomObstacleType) {
+                case 0: obstacleCreated.transform.position = _obstacleASpointPoint.position; break;
+                case 1: obstacleCreated.transform.position = _obstacleBSpointPoint.position; break;
+                case 2: obstacleCreated.transform.position = _obstacleCSpointPoint.position; break;
+                default: throw new System.Exception("should never happen");
+            }
+
         }
     }
 }

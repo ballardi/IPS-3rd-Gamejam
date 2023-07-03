@@ -15,7 +15,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     [Header("Colliders")]
     public BoxCollider2D SuccessCollider;
     public ContactFilter2D contactFilter;
-    private Collider2D[] successColliderContactResults = new Collider2D[20];
+    private Collider2D[] collisions = new Collider2D[20];
 
     [Header("Input System")]
     // Input Controller
@@ -60,6 +60,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     }
 
     void Update(){
+        /*
         if(DebugMode){
             Assert.IsNotNull(debugText);   
             if(isCoolDown){
@@ -70,6 +71,7 @@ public class PlayerScript : LoggableMonoBehaviour {
                 debugText.color = Color.green;
             }
         }
+        */
     }
 
     void onEnable() {
@@ -117,33 +119,43 @@ public class PlayerScript : LoggableMonoBehaviour {
             return;
         }
 
-        int countOfSuccessCollisions = SuccessCollider.OverlapCollider(contactFilter, successColliderContactResults);
-        if (countOfSuccessCollisions > 0) {
-            for (int i = 0; i<countOfSuccessCollisions; i++) {
-                Log($"player success collision with: {successColliderContactResults[i].transform.name}");
-                // TODO: if the obstacle in the collision was the right one for the key pressed, trigger that obstacle to change states
-                GameObject caughtObj = successColliderContactResults[i].gameObject;
-                Log($"{caughtObj.tag} has been caught!");
-                switch (caughtObj.tag){
-                    case "Obstacle" : 
-                         ObstacleAScript scrip = caughtObj.GetComponentInChildren<ObstacleAScript>();
-                         if(scrip.getActionType().dir == dir){
-                            scrip.changeState(ObstacleAScript.STATE.PlayerResolvedSuccessfully);
-                         }       
-                        break;
+        int collisionCount = SuccessCollider.OverlapCollider(contactFilter, collisions);
+        for (int i = 0; i<collisionCount; i++) {
+            GameObject collisionObj = collisions[i].gameObject;
+            Log($"player success collision {i} of {collisionCount}: {collisionObj.name} ({collisionObj.tag})");
 
-                    case "Powerup" :
-                        PowerupAScript script = caughtObj.GetComponentInChildren<PowerupAScript>();
-                         if(script.getActionType().dir == dir){
-                            script.changeState(PowerupAScript.STATE.PlayerResolvedSuccessfully);
-                         }
+            switch (collisionObj.tag) {
+                case "Obstacle":
+                    ObstacleAScript obstacleScript = collisionObj.GetComponentInChildren<ObstacleAScript>();
+                    // skip collisions unless the obstacle is in normal state
+                    if (obstacleScript.GetCurrentState() != ObstacleAScript.STATE.Normal) {
+                        Log($"player success collision skipped because obstacle in ignored state {obstacleScript.GetCurrentState()}, for: {obstacleScript.name}");
+                        continue;
+                    }
+                    // skip collisions if the player used the wrong key
+                    if (obstacleScript.getActionType().dir != dir) {
+                        Log($"player success collision skipped because action {obstacleScript.getActionType().dir} different from pressed {dir}, for: {obstacleScript.name}");
+                        continue;
+                    }
+                    Log($"player success collision with: {obstacleScript.name}");
+                    obstacleScript.HandlePlayerResolvedThisObstacleSuccessfully();
                     break;
 
-                    default: 
-                    break;
-                }
+				case "Powerup" :
+                    PowerupAScript powerupScript = collisionObj.GetComponentInChildren<PowerupAScript>();
+                    // skip collisions if the player used the wrong key
+                    if (powerupScript.getActionType().dir != dir) {
+                        Log($"player success collision skipped because action {powerupScript.getActionType().dir} different from pressed {dir}, for: {powerupScript.name}");
+                        continue;
+                    }
+					powerupScript.changeState(PowerupAScript.STATE.PlayerResolvedSuccessfully);
+				break;
+
+				default: 
+                    throw new System.Exception("should never happen");
                
             }
+			
         }
 
         // invoke events (used to trigger fmod sounds)

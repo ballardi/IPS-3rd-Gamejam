@@ -7,7 +7,7 @@ public class FailureScript : MonoBehaviour
 {
      // for detecting failure collisions
     public BoxCollider2D FailureCollider;
-    private Collider2D[] failureColliderContactResults = new Collider2D[20];
+    private Collider2D[] collisions = new Collider2D[20];
     public ContactFilter2D contactFilter;
 
     public PlayerScript playerScript;
@@ -24,16 +24,23 @@ public class FailureScript : MonoBehaviour
         if (GameStateManager.instance.CurrentState != GameStateManager.STATE.PLAYING)
             return;
 
-        int countOfFailureCollisions = FailureCollider.OverlapCollider(contactFilter, failureColliderContactResults);
-            if (countOfFailureCollisions > 0) {
-                Collider2D firstCollisionInList = failureColliderContactResults[0];
-                Debug.Log($"player failure collision with: {firstCollisionInList.transform.name}");
-                // TODO: handle collision: lose the game, etc.
-                firstCollisionInList.gameObject.GetComponentInChildren<ObstacleAScript>().changeState(ObstacleAScript.STATE.PlayerFailed);
-                playerScript.OnFailure();
-                GameStateManager.instance.OnGameOver();
-                return; // return since it's already gameover and don't want to transition state to gameover multiple times
-            }
+        int collisionCount = FailureCollider.OverlapCollider(contactFilter, collisions);
+        if (collisionCount == 0)
+            return;
+
+        for (int i = 0; i<collisionCount; i++) {
+            ObstacleAScript obstacle = collisions[i].GetComponentInChildren<ObstacleAScript>();
+
+            // skip collisions unless the obstacle is in normal state
+            if (obstacle.GetCurrentState() != ObstacleAScript.STATE.Normal)
+                continue;
+
+            Debug.Log($"player failure collision with: {obstacle.transform.name}");
+            obstacle.HandlePlayerFailedBecauseOfThisObstacle();
+            playerScript.OnFailure();
+            GameStateManager.instance.OnGameOver();
+            return; // return since it's already gameover and don't want to transition state to gameover multiple times
+        }
     }
         
 }

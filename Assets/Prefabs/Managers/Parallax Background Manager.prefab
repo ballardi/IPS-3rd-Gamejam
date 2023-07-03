@@ -295,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb751c124b1fbec40ba89c41011e24ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.5
+  parallaxFactor: 1
   startSeed: 2
 --- !u!1 &3082013178576808609
 GameObject:
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb751c124b1fbec40ba89c41011e24ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.5
+  parallaxFactor: 1
   startSeed: 0
 --- !u!1 &3373613257859797376
 GameObject:
@@ -1543,5 +1543,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb751c124b1fbec40ba89c41011e24ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parallaxFactor: 0.5
+  parallaxFactor: 1
   startSeed: 1
