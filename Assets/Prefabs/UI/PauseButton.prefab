@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 2003699263902606070}
   - component: {fileID: 1145448021117331970}
   - component: {fileID: 7609323418676605992}
-  - component: {fileID: 2937000990293260872}
+  - component: {fileID: 7571766988342140494}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -238,9 +238,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2937000990293260872}
-        m_TargetAssemblyTypeName: TriggerAudio, Assembly-CSharp
-        m_MethodName: PlayOneShot
+      - m_Target: {fileID: 7571766988342140494}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -250,7 +250,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2937000990293260872
+--- !u!114 &7571766988342140494
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -259,11 +259,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 2989012050485853089}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e001482fe02984d3d87c2d51a202e7aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: event:/SFX Events/UI/UI_Scroll
-  PlayOnAwake: 0
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 587829245
+      Data2: 1175258086
+      Data3: 2004204427
+      Data4: -608375942
+    Path: event:/SFX Events/UI/UI_Pop
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &4394992341467417906
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +447,7 @@ Transform:
   m_Children:
   - {fileID: 4031894326554194546}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3301812555777860261
 MonoBehaviour:

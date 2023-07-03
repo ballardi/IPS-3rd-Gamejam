@@ -30,7 +30,7 @@ public class ParallaxLayer : MonoBehaviour
     void LateUpdate()
     {
         Vector3 parentScale = transform.parent.localScale;
-        Vector3 deltaMovement = new Vector3(transform.parent.gameObject.GetComponent<ParallaxParent>().pseudoVelocity*-1.0f*parentScale.x,0.0f);
+        Vector3 deltaMovement = new Vector3(transform.parent.gameObject.GetComponent<ParallaxParent>().pseudoVelocity*-1.0f,0.0f);
         if (parallaxFactor != 0 || deltaMovement != Vector3.zero){
             Vector3 desiredPosition = transform.position + (deltaMovement * parallaxFactor);
             if (desiredPosition.x < transform.parent.position.x - textureUnitSize){

@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.Events;
 
 /// <author> Rohaid & Ben </author> 
 public class PlayerScript : LoggableMonoBehaviour {
@@ -14,7 +15,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     [Header("Colliders")]
     public BoxCollider2D SuccessCollider;
     public ContactFilter2D contactFilter;
-    private Collider2D[] successColliderContactResults = new Collider2D[20];
+    private Collider2D[] collisions = new Collider2D[20];
 
     [Header("Input System")]
     // Input Controller
@@ -25,6 +26,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     private bool isCoolDown = false;
 
     [Header("Animations")]
+    public SpriteRenderer playerSpriteRenderer;
     public Animator animator;
     private const string TRIGGER_START_RUNNING = "StartRunning";
     private const string TRIGGER_START_UP      = "StartUp";
@@ -32,12 +34,20 @@ public class PlayerScript : LoggableMonoBehaviour {
     private const string TRIGGER_START_DOWN    = "StartDown";
     private const string TRIGGER_START_FAILURE = "StartFailure";
 
+    [Header("Events")]
+    public UnityEvent OnUpActionEvent;
+    public UnityEvent OnRightActionEvent;
+    public UnityEvent OnDownActionEvent;
+    public UnityEvent OnFootstepEvent;
+
+
     [Header("Debug Mode")]
     [SerializeField] private TextMeshProUGUI debugText;
 
     void Awake() {
         Assert.IsNull(instance); instance = this; // singleton set up
 
+        Assert.IsNotNull(playerSpriteRenderer);
         Assert.IsNotNull(SuccessCollider);
         Assert.IsNotNull(animator);
         Assert.IsFalse(COOLDOWN_SECONDS < 0f);
@@ -51,6 +61,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     }
 
     void Update(){
+        /*
         if(DebugMode){
             Assert.IsNotNull(debugText);   
             if(isCoolDown){
@@ -61,6 +72,7 @@ public class PlayerScript : LoggableMonoBehaviour {
                 debugText.color = Color.green;
             }
         }
+        */
     }
 
     void onEnable() {
@@ -108,16 +120,50 @@ public class PlayerScript : LoggableMonoBehaviour {
             return;
         }
 
-        int countOfSuccessCollisions = SuccessCollider.OverlapCollider(contactFilter, successColliderContactResults);
-        if (countOfSuccessCollisions > 0) {
-            for (int i = 0; i<countOfSuccessCollisions; i++) {
-                Log($"player success collision with: {successColliderContactResults[i].transform.name}");
-                // TODO: if the obstacle in the collision was the right one for the key pressed, trigger that obstacle to change states
-                ObstacleAScript scrip = successColliderContactResults[i].gameObject.GetComponentInChildren<ObstacleAScript>();
-                if(scrip.getActionType().dir == dir){
-                    scrip.changeState(ObstacleAScript.STATE.PlayerResolvedSuccessfully);
-                }
+        int collisionCount = SuccessCollider.OverlapCollider(contactFilter, collisions);
+        for (int i = 0; i<collisionCount; i++) {
+            GameObject collisionObj = collisions[i].gameObject;
+            Log($"player success collision {i} of {collisionCount}: {collisionObj.name} ({collisionObj.tag})");
+
+            switch (collisionObj.tag) {
+                case "Obstacle":
+                    ObstacleAScript obstacleScript = collisionObj.GetComponentInChildren<ObstacleAScript>();
+                    // skip collisions unless the obstacle is in normal state
+                    if (obstacleScript.GetCurrentState() != ObstacleAScript.STATE.Normal) {
+                        Log($"player success collision skipped because obstacle in ignored state {obstacleScript.GetCurrentState()}, for: {obstacleScript.name}");
+                        continue;
+                    }
+                    // skip collisions if the player used the wrong key
+                    if (obstacleScript.getActionType().dir != dir) {
+                        Log($"player success collision skipped because action {obstacleScript.getActionType().dir} different from pressed {dir}, for: {obstacleScript.name}");
+                        continue;
+                    }
+                    Log($"player success collision with: {obstacleScript.name}");
+                    obstacleScript.HandlePlayerResolvedThisObstacleSuccessfully();
+                    break;
+
+				case "Powerup" :
+                    PowerupAScript powerupScript = collisionObj.GetComponentInChildren<PowerupAScript>();
+                    // skip collisions if the player used the wrong key
+                    if (powerupScript.getActionType().dir != dir) {
+                        Log($"player success collision skipped because action {powerupScript.getActionType().dir} different from pressed {dir}, for: {powerupScript.name}");
+                        continue;
+                    }
+					powerupScript.changeState(PowerupAScript.STATE.PlayerResolvedSuccessfully);
+				break;
+
+				default: 
+                    throw new System.Exception("should never happen");
+               
             }
+			
+        }
+
+        // invoke events (used to trigger fmod sounds)
+        switch (dir) {
+            case ActionEnum.RIGHT: OnRightActionEvent.Invoke(); break;
+            case ActionEnum.DOWN:  OnDownActionEvent.Invoke();  break;
+            case ActionEnum.UP:    OnUpActionEvent.Invoke();    break;
         }
 
         // start the animation for the corresponding action
@@ -130,6 +176,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     }
 
     public void OnNewGame() {
+        playerSpriteRenderer.enabled = true;
         animator.SetTrigger(TRIGGER_START_RUNNING);
     }
 
@@ -143,6 +190,14 @@ public class PlayerScript : LoggableMonoBehaviour {
         animator.ResetTrigger(TRIGGER_START_RIGHT);
         animator.ResetTrigger(TRIGGER_START_DOWN);
         animator.ResetTrigger(TRIGGER_START_FAILURE);
+    }
+
+    public void HandlePlayerFootstep()
+    {
+        OnFootstepEvent.Invoke();
+    }
+    public void OnStartTitleScreen() {
+        playerSpriteRenderer.enabled = false;
     }
 
 }
