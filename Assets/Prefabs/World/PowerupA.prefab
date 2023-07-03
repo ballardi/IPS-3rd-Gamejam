@@ -93,12 +93,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4313886864457264098}
-  - component: {fileID: 6160080431365531468}
   - component: {fileID: 3811716756239011205}
   - component: {fileID: 5754784824068700932}
+  - component: {fileID: -4711067853411103242}
   m_Layer: 6
   m_Name: PowerupA
-  m_TagString: Obstacle
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -119,20 +119,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6160080431365531468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7218871884808078095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 740c465c05ffcce4d94ea4af65c7f2ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startSpeed: 1
-  ActionType: {fileID: 11400000, guid: 79471fa5fbad7b643b6f481d3b895b9a, type: 2}
 --- !u!61 &3811716756239011205
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -205,3 +191,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-4711067853411103242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7218871884808078095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d09697e008d193b4088e37e82e6fa0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSpeed: 1
+  ActionType: {fileID: 11400000, guid: 79471fa5fbad7b643b6f481d3b895b9a, type: 2}
+  powerupLength_seconds: 3

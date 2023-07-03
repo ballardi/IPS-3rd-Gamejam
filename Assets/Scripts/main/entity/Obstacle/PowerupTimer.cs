@@ -12,12 +12,14 @@ namespace PowerupManagement
         /// <summary>
         /// Determines the maximum amount of seconds that the timer will run.
         /// </summary>
-        public const float MAXIMUM_SPAWN_RATE = 40.0f;
+        public const float MAXIMUM_SPAWN_RATE = 15.0f;
 
         /// <summary>
         /// Determines the minimium amount of seconds that the timer will run.
         /// </summary>
-        public const float MINIMUM_SPAWN_RATE = 35.0f;
+        public const float MINIMUM_SPAWN_RATE = 10.0f;
+
+        private bool isPowerup = false;
 
         /// <summary>
         /// Creates the PowerupTimer, sets its spawn rate duration to the default spawn rate,
@@ -40,11 +42,28 @@ namespace PowerupManagement
         }
 
         /// <summary>
-        /// When the timer has ended, it notifies the ObstacleManager.
+        /// Sets the duration of the powerup timer
+        /// </summary>
+
+        public void PauseSpawnRate(float PowerupLength)
+        {
+            isPowerup = true;
+            _duration = Mathf.Clamp(PowerupLength, 0.0f, PowerupLength);
+        }
+
+        /// <summary>
+        /// When the timer has ended, it notifies the PowerupManager.
         /// </summary>
         protected override void Alert()
         {
-            (_parent as PowerupManager).NotifyOfObstacleTimerEnd();
+            if(!isPowerup){
+                 (_parent as PowerupManager).NotifyOfPowerupTimerEnd();
+            } else {
+                isPowerup = false;
+                RandomizeSpawnRate();
+                Start();
+            }
+           
         }
     }
 }

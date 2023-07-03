@@ -120,10 +120,27 @@ public class PlayerScript : LoggableMonoBehaviour {
             for (int i = 0; i<countOfSuccessCollisions; i++) {
                 Log($"player success collision with: {successColliderContactResults[i].transform.name}");
                 // TODO: if the obstacle in the collision was the right one for the key pressed, trigger that obstacle to change states
-                ObstacleAScript scrip = successColliderContactResults[i].gameObject.GetComponentInChildren<ObstacleAScript>();
-                if(scrip.getActionType().dir == dir){
-                    scrip.changeState(ObstacleAScript.STATE.PlayerResolvedSuccessfully);
+                GameObject caughtObj = successColliderContactResults[i].gameObject;
+                Log($"{caughtObj.tag} has been caught!");
+                switch (caughtObj.tag){
+                    case "Obstacle" : 
+                         ObstacleAScript scrip = caughtObj.GetComponentInChildren<ObstacleAScript>();
+                         if(scrip.getActionType().dir == dir){
+                            scrip.changeState(ObstacleAScript.STATE.PlayerResolvedSuccessfully);
+                         }       
+                        break;
+
+                    case "Powerup" :
+                        PowerupAScript script = caughtObj.GetComponentInChildren<PowerupAScript>();
+                         if(script.getActionType().dir == dir){
+                            script.changeState(PowerupAScript.STATE.PlayerResolvedSuccessfully);
+                         }
+                    break;
+
+                    default: 
+                    break;
                 }
+               
             }
         }
 

@@ -76,6 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a601c896b5e6d447ab023c369ce01d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugMode: 1
-  PowerupAPrefab: {fileID: 4242471145821215463}
+  DebugMode: 0
+  PowerupAPrefab: {fileID: 7218871884808078095, guid: 9324f7dd80cc1c54bad2a227937b3a81, type: 3}
   PowerupASpawnPoint: {fileID: 160717224237765656}
