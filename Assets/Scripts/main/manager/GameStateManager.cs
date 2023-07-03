@@ -74,7 +74,6 @@ public class GameStateManager : MonoBehaviour
 
     public void OnShowTitleScreen()
     {
-        DestroyExistingObstacles();
         PlayerScript.instance.OnStartTitleScreen();
         TitleScreenScript.instance.Show(true);
         OnTitleScreenStartEvent.Invoke();
@@ -147,12 +146,4 @@ public class GameStateManager : MonoBehaviour
         CurrentState = STATE.GAMEOVER;
     }
 
-    private void DestroyExistingObstacles()
-    {
-        GameObject[] obstacles = GameObject.FindGameObjectsWithTag("Obstacle");
-        foreach (GameObject obstacle in obstacles)
-        {
-            Destroy(obstacle);
-        }
-    }
 }
