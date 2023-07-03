@@ -50,7 +50,7 @@ public class GameStateManager : MonoBehaviour
         OnShowTitleScreen();
     }
 
-    void Update()
+    void EarlyUpdate()
     {
         if (CurrentState == STATE.PLAYING)
         {
