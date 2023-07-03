@@ -33,11 +33,14 @@ public class ScoreboardView : MonoBehaviour
 
     public void DisplayScore()
     {
-        _currentScore = 0;
-        _currentTimer = 5;
-        _destinationScore = GameStateManager.instance.CurrentScore;
+        if (GameStateManager.instance != null)
+        {
+            _currentScore = 0;
+            _currentTimer = 5;
+            _destinationScore = GameStateManager.instance.CurrentScore;
 
-        _shouldDisplay = true;
+            _shouldDisplay = true;
+        }
     }
 
     private void OnFinish()
