@@ -86,7 +86,7 @@ namespace PowerupManagement
         public void OnGameEnd()
         {
             _powerupTimer.Stop();
-            Log("Stopped the ObstacleTimer");
+            Log("Stopped the PowerupTimer");
         }
     }
 }
