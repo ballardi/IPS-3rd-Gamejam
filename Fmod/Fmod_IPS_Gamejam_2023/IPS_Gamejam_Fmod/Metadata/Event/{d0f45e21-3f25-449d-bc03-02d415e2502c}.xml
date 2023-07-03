@@ -8,7 +8,7 @@
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{b260a043-b763-48a0-8fa2-03efc893b676}</destination>
+			<destination>{0b435585-b176-4339-a1a1-3445d386d52d}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{2a2121b5-2d2b-48a8-9182-f144fb624273}</destination>
@@ -53,7 +53,7 @@
 			<destination>{2c611778-8329-418b-9fe1-adaf6c750461}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{2f006166-bf59-4840-811b-6751d806d401}</destination>
+			<destination>{e7f78a8b-e62e-4324-8a46-07980c4eab10}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{8261345d-e78e-4067-a47e-aa6ad8c6622b}" />
@@ -103,6 +103,7 @@
 		</relationship>
 		<relationship name="sounds">
 			<destination>{b980e423-29b5-4e24-8aff-f451364f5066}</destination>
+			<destination>{68547437-ce49-4b34-a91a-60f85c567aad}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{908e44c2-34cc-4253-b8c8-0346de696e9c}">
@@ -153,6 +154,7 @@
 			<destination>{fd49fca7-2ecd-42df-a2a7-837407045d7d}</destination>
 		</relationship>
 	</object>
+	<object class="SilenceSound" id="{68547437-ce49-4b34-a91a-60f85c567aad}" />
 	<object class="MixerBusEffectChain" id="{a5378846-50c8-4d5e-955e-bc831010c5ad}">
 		<relationship name="effects">
 			<destination>{e78fdb41-636e-479f-b4f1-a3b03e2d7d43}</destination>

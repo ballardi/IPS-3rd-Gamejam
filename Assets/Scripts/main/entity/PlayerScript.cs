@@ -38,6 +38,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     public UnityEvent OnUpActionEvent;
     public UnityEvent OnRightActionEvent;
     public UnityEvent OnDownActionEvent;
+    public UnityEvent OnFootstepEvent;
 
 
     [Header("Debug Mode")]
@@ -191,6 +192,10 @@ public class PlayerScript : LoggableMonoBehaviour {
         animator.ResetTrigger(TRIGGER_START_FAILURE);
     }
 
+    public void HandlePlayerFootstep()
+    {
+        OnFootstepEvent.Invoke();
+    }
     public void OnStartTitleScreen() {
         playerSpriteRenderer.enabled = false;
     }
