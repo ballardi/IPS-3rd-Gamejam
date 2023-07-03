@@ -120,46 +120,42 @@ public class PlayerScript : LoggableMonoBehaviour {
         }
 
         int collisionCount = SuccessCollider.OverlapCollider(contactFilter, collisions);
-        Log($"player success collision with {collisionCount} objects");
         for (int i = 0; i<collisionCount; i++) {
-            ObstacleAScript obstacle = collisions[i].GetComponentInChildren<ObstacleAScript>();
+            GameObject collisionObj = collisions[i].gameObject;
+            Log($"player success collision {i} of {collisionCount}: {collisionObj.name} ({collisionObj.tag})");
 
-			Log($"player success collision with: {collisions[i].transform.name}");
-			// TODO: if the obstacle in the collision was the right one for the key pressed, trigger that obstacle to change states
-			GameObject caughtObj = successColliderContactResults[i].gameObject;
-			Log($"{caughtObj.tag} has been caught!");
-			switch (caughtObj.tag){
-				case "Obstacle" : 
-					 ObstacleAScript scrip = caughtObj.GetComponentInChildren<ObstacleAScript>();
-					 // skip collisions unless the obstacle is in normal state
-					 if (obstacle.GetCurrentState() != ObstacleAScript.STATE.Normal) {
-				 	 	 Log($"player success collision skipped because obstacle in ignored state {obstacle.GetCurrentState()}, for: {collisions[i].transform.name}");
-				 		 continue;
-					 if(scrip.getActionType().dir == dir){
-						scrip.changeState(ObstacleAScript.STATE.PlayerResolvedSuccessfully);
-					 }       
-					break;
+            switch (collisionObj.tag) {
+                case "Obstacle":
+                    ObstacleAScript obstacleScript = collisionObj.GetComponentInChildren<ObstacleAScript>();
+                    // skip collisions unless the obstacle is in normal state
+                    if (obstacleScript.GetCurrentState() != ObstacleAScript.STATE.Normal) {
+                        Log($"player success collision skipped because obstacle in ignored state {obstacleScript.GetCurrentState()}, for: {obstacleScript.name}");
+                        continue;
+                    }
+                    // skip collisions if the player used the wrong key
+                    if (obstacleScript.getActionType().dir != dir) {
+                        Log($"player success collision skipped because action {obstacleScript.getActionType().dir} different from pressed {dir}, for: {obstacleScript.name}");
+                        continue;
+                    }
+                    Log($"player success collision with: {obstacleScript.name}");
+                    obstacleScript.HandlePlayerResolvedThisObstacleSuccessfully();
+                    break;
 
 				case "Powerup" :
-					PowerupAScript script = caughtObj.GetComponentInChildren<PowerupAScript>();
-					 if(script.getActionType().dir == dir){
-						script.changeState(PowerupAScript.STATE.PlayerResolvedSuccessfully);
-					 }
+                    PowerupAScript powerupScript = collisionObj.GetComponentInChildren<PowerupAScript>();
+                    // skip collisions if the player used the wrong key
+                    if (powerupScript.getActionType().dir != dir) {
+                        Log($"player success collision skipped because action {powerupScript.getActionType().dir} different from pressed {dir}, for: {powerupScript.name}");
+                        continue;
+                    }
+					powerupScript.changeState(PowerupAScript.STATE.PlayerResolvedSuccessfully);
 				break;
 
 				default: 
-					break;
+                    throw new System.Exception("should never happen");
                
             }
-
-            // skip collisions if the player used the wrong key
-            if (obstacle.getActionType().dir != dir) {
-                Log($"player success collision skipped because action {obstacle.getActionType().dir} different from pressed {dir}, for: {collisions[i].transform.name}");
-                continue;
-            }
-
-            Log($"player success collision with: {collisions[i].transform.name}");
-            obstacle.HandlePlayerResolvedThisObstacleSuccessfully();
+			
         }
 
         // invoke events (used to trigger fmod sounds)
