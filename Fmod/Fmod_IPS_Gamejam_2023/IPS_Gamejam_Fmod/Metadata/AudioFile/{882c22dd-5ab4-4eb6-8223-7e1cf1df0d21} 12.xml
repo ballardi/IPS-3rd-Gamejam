@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{882c22dd-5ab4-4eb6-8223-7e1cf1df0d21}">
+		<property name="assetPath">
+			<value>SFX/Broom Swing/Broom Swing Whoosh_OS-008.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.3755102040816327</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b12f7f1d-d60c-4b5e-9f1b-00e6833cbe8b}</destination>
+		</relationship>
+	</object>
+</objects>

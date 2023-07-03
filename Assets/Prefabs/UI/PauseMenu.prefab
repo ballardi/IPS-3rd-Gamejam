@@ -162,11 +162,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 1301454462
-      Data2: 1312222715
-      Data3: 1038297498
-      Data4: 1792787925
-    Path: event:/SFX Events/UI/UI_Scroll
+      Data1: 587829245
+      Data2: 1175258086
+      Data3: 2004204427
+      Data4: -608375942
+    Path: event:/SFX Events/UI/UI_Pop
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 5829874308299805104}
   - component: {fileID: 7231983477097556673}
   - component: {fileID: 122207775251148981}
+  - component: {fileID: 647586740186052331}
   m_Layer: 5
   m_Name: TitleScreenButton
   m_TagString: Untagged
@@ -313,7 +314,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 122207775251148981}
+      - m_Target: {fileID: 647586740186052331}
         m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
         m_MethodName: Play
         m_Mode: 1
@@ -332,7 +333,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2508312921804191308}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
@@ -345,6 +346,37 @@ MonoBehaviour:
       Data3: 1038297498
       Data4: 1792787925
     Path: event:/SFX Events/UI/UI_Scroll
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &647586740186052331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2508312921804191308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1538010083
+      Data2: 1217347208
+      Data3: -2044123243
+      Data4: -558027813
+    Path: event:/SFX Events/Transition Whoosh
   Event: 
   PlayEvent: 0
   StopEvent: 0
@@ -736,7 +768,7 @@ Transform:
   m_Children:
   - {fileID: 3211885261787224637}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7091769701483069483
 MonoBehaviour:

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{86624b18-8317-4979-b370-8aad6991a9ba}">
+		<property name="assetPath">
+			<value>SFX/UI/Transition Whoosh/Transition Whoosh-001.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.536235827664399</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b12f7f1d-d60c-4b5e-9f1b-00e6833cbe8b}</destination>
+		</relationship>
+	</object>
+</objects>
