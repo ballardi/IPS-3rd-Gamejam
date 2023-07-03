@@ -7,11 +7,15 @@ public class GameOverScreenScript : MonoBehaviour
 {
     public GameObject objToShow;
 
+    [SerializeField]
+    private ScoreboardView _scoreboardView;
+
     public static GameOverScreenScript instance;
 
     private void Awake()
     {
-        Assert.IsNull(instance); instance = this; // singleton logic
+        Assert.IsNull(instance);
+        instance = this; // singleton logic
 
         Assert.IsNotNull(objToShow);
 
@@ -21,6 +25,7 @@ public class GameOverScreenScript : MonoBehaviour
     public void Show(bool show)
     {
         objToShow.SetActive(show);
+        _scoreboardView.DisplayScore();
     }
 
     public void OnExitToTitleScreenButtonClick()
@@ -28,5 +33,4 @@ public class GameOverScreenScript : MonoBehaviour
         Show(false);
         GameStateManager.instance.OnShowTitleScreen();
     }
-
 }
