@@ -75,6 +75,8 @@ public class GameStateManager : MonoBehaviour
 
     public void OnShowTitleScreen()
     {
+        DestroyExistingObstacles();
+        PlayerScript.instance.OnStartTitleScreen();
         TitleScreenScript.instance.Show(true);
         OnTitleScreenStartEvent.Invoke();
         CurrentState = STATE.TITLE_SCREEN;
@@ -92,7 +94,6 @@ public class GameStateManager : MonoBehaviour
                 CurrentScore = 0;
                 PauseButtonScript.instance.Show(true);
                 PlayerScript.instance.OnNewGame();
-                DestroyExistingObstacles();
                 ObstacleManager.Instance.OnGameStart();
                 PowerupManager.Instance.OnGameStart();
                 OnNewGameEvent.Invoke(); 
