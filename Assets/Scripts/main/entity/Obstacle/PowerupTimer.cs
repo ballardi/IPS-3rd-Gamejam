@@ -12,12 +12,12 @@ namespace PowerupManagement
         /// <summary>
         /// Determines the maximum amount of seconds that the timer will run.
         /// </summary>
-        public const float MAXIMUM_SPAWN_RATE = 15.0f;
+        public const float MAXIMUM_SPAWN_RATE = 45.0f;
 
         /// <summary>
         /// Determines the minimium amount of seconds that the timer will run.
         /// </summary>
-        public const float MINIMUM_SPAWN_RATE = 10.0f;
+        public const float MINIMUM_SPAWN_RATE = 30.0f;
 
         private bool isPowerup = false;
 
