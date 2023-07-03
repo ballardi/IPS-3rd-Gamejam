@@ -1,4 +1,5 @@
 using ObstacleManagement;
+using PowerupManagement;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
@@ -79,6 +80,7 @@ public class GameStateManager : MonoBehaviour
         TitleScreenScript.instance.Show(true);
         OnTitleScreenStartEvent.Invoke();
         CurrentState = STATE.TITLE_SCREEN;
+        PowerupManager.Instance.OnGameEnd();
         ObstacleManager.Instance.OnGameEnd();
     }
 
@@ -93,6 +95,7 @@ public class GameStateManager : MonoBehaviour
                 PauseButtonScript.instance.Show(true);
                 PlayerScript.instance.OnNewGame();
                 ObstacleManager.Instance.OnGameStart();
+                PowerupManager.Instance.OnGameStart();
                 OnNewGameEvent.Invoke(); 
                 // TODO: call the powerup spawner to initialize them for a new game
                 break;
@@ -138,6 +141,7 @@ public class GameStateManager : MonoBehaviour
                 PauseButtonScript.instance.Show(false);
                 GameOverScreenScript.instance.Show(true);
                 ObstacleManager.Instance.OnGameEnd();
+                PowerupManager.Instance.OnGameEnd();
                 break;
             case STATE.PAUSED:
                 throw new System.Exception("should never happen");
