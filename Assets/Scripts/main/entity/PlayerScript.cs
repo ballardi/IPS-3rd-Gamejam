@@ -15,7 +15,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     [Header("Colliders")]
     public BoxCollider2D SuccessCollider;
     public ContactFilter2D contactFilter;
-    private Collider2D[] successColliderContactResults = new Collider2D[20];
+    private Collider2D[] collisions = new Collider2D[20];
 
     [Header("Input System")]
     // Input Controller
@@ -60,6 +60,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     }
 
     void Update(){
+        /*
         if(DebugMode){
             Assert.IsNotNull(debugText);   
             if(isCoolDown){
@@ -70,6 +71,7 @@ public class PlayerScript : LoggableMonoBehaviour {
                 debugText.color = Color.green;
             }
         }
+        */
     }
 
     void onEnable() {
@@ -117,16 +119,25 @@ public class PlayerScript : LoggableMonoBehaviour {
             return;
         }
 
-        int countOfSuccessCollisions = SuccessCollider.OverlapCollider(contactFilter, successColliderContactResults);
-        if (countOfSuccessCollisions > 0) {
-            for (int i = 0; i<countOfSuccessCollisions; i++) {
-                Log($"player success collision with: {successColliderContactResults[i].transform.name}");
-                // TODO: if the obstacle in the collision was the right one for the key pressed, trigger that obstacle to change states
-                ObstacleAScript scrip = successColliderContactResults[i].gameObject.GetComponentInChildren<ObstacleAScript>();
-                if(scrip.getActionType().dir == dir){
-                    scrip.changeState(ObstacleAScript.STATE.PlayerResolvedSuccessfully);
-                }
+        int collisionCount = SuccessCollider.OverlapCollider(contactFilter, collisions);
+        Log($"player success collision with {collisionCount} objects");
+        for (int i = 0; i<collisionCount; i++) {
+            ObstacleAScript obstacle = collisions[i].GetComponentInChildren<ObstacleAScript>();
+
+            // skip collisions unless the obstacle is in normal state
+            if (obstacle.GetCurrentState() != ObstacleAScript.STATE.Normal) {
+                Log($"player success collision skipped because obstacle in ignored state {obstacle.GetCurrentState()}, for: {collisions[i].transform.name}");
+                continue;
             }
+
+            // skip collisions if the player used the wrong key
+            if (obstacle.getActionType().dir != dir) {
+                Log($"player success collision skipped because action {obstacle.getActionType().dir} different from pressed {dir}, for: {collisions[i].transform.name}");
+                continue;
+            }
+
+            Log($"player success collision with: {collisions[i].transform.name}");
+            obstacle.HandlePlayerResolvedThisObstacleSuccessfully();
         }
 
         // invoke events (used to trigger fmod sounds)
