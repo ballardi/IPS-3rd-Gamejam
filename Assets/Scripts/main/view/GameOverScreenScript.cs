@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 public class GameOverScreenScript : MonoBehaviour
 {
     public GameObject objToShow;
+
+    [SerializeField]
+    private GameObject _blur;
 
     [SerializeField]
     private ScoreboardView _scoreboardView;
@@ -26,6 +27,7 @@ public class GameOverScreenScript : MonoBehaviour
     {
         objToShow.SetActive(show);
         _scoreboardView.DisplayScore();
+        _blur.SetActive(show);
     }
 
     public void OnExitToTitleScreenButtonClick()
