@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{c946f164-f408-48ac-ac16-a0e1966e3872}">
+		<property name="assetPath">
+			<value>SFX/UI/Transition Whoosh/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b12f7f1d-d60c-4b5e-9f1b-00e6833cbe8b}</destination>
+		</relationship>
+	</object>
+</objects>

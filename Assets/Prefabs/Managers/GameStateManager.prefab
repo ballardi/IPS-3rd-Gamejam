@@ -158,7 +158,7 @@ MonoBehaviour:
       Data2: 1151156005
       Data3: -738065476
       Data4: 743498261
-    Path: event:/Ambiance
+    Path: event:/SFX Events/Ambiance
   Event: 
   PlayEvent: 1
   StopEvent: 0
