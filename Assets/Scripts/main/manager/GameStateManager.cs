@@ -3,7 +3,7 @@ using PowerupManagement;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
-using UnityEngine.UIElements;
+using UnityEngine.PlayerLoop;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -33,8 +33,6 @@ public class GameStateManager : MonoBehaviour
     public UnityEvent OnUnpauseEvent;
     public UnityEvent OnGameoverEvent;
 
-
-
     void Awake()
     {
         Assert.IsNull(instance);
@@ -51,14 +49,14 @@ public class GameStateManager : MonoBehaviour
         OnShowTitleScreen();
     }
 
-    void EarlyUpdate()
+    void Update()
     {
         if (CurrentState == STATE.PLAYING)
         {
             // figure out how much the speed and score should increase by
             float SpeedAddition = Time.deltaTime * SpeedAdditionPerSecond;
             // increase the score by that amount
-            _CurrentScoreFloat += (SpeedAddition * MultiplierFromTimeToScore);
+            _CurrentScoreFloat += SpeedAddition * MultiplierFromTimeToScore;
             CurrentScore = Mathf.FloorToInt(_CurrentScoreFloat);
             // increase the speed by that amount, but only up to the max speed
             _CurrentSpeed = Mathf.Clamp(_CurrentSpeed + SpeedAddition, InitialSpeed, MaxSpeed);
@@ -95,7 +93,7 @@ public class GameStateManager : MonoBehaviour
                 PlayerScript.instance.OnNewGame();
                 ObstacleManager.Instance.OnGameStart();
                 PowerupManager.Instance.OnGameStart();
-                OnNewGameEvent.Invoke(); 
+                OnNewGameEvent.Invoke();
                 // TODO: call the powerup spawner to initialize them for a new game
                 break;
             case STATE.PLAYING:
@@ -136,7 +134,7 @@ public class GameStateManager : MonoBehaviour
             case STATE.TITLE_SCREEN:
                 throw new System.Exception("should never happen");
             case STATE.PLAYING:
-                OnGameoverEvent.Invoke(); 
+                OnGameoverEvent.Invoke();
                 PauseButtonScript.instance.Show(false);
                 GameOverScreenScript.instance.Show(true);
                 ObstacleManager.Instance.OnGameEnd();
@@ -149,5 +147,4 @@ public class GameStateManager : MonoBehaviour
         }
         CurrentState = STATE.GAMEOVER;
     }
-
 }
