@@ -124,10 +124,32 @@ public class PlayerScript : LoggableMonoBehaviour {
         for (int i = 0; i<collisionCount; i++) {
             ObstacleAScript obstacle = collisions[i].GetComponentInChildren<ObstacleAScript>();
 
-            // skip collisions unless the obstacle is in normal state
-            if (obstacle.GetCurrentState() != ObstacleAScript.STATE.Normal) {
-                Log($"player success collision skipped because obstacle in ignored state {obstacle.GetCurrentState()}, for: {collisions[i].transform.name}");
-                continue;
+			Log($"player success collision with: {collisions[i].transform.name}");
+			// TODO: if the obstacle in the collision was the right one for the key pressed, trigger that obstacle to change states
+			GameObject caughtObj = successColliderContactResults[i].gameObject;
+			Log($"{caughtObj.tag} has been caught!");
+			switch (caughtObj.tag){
+				case "Obstacle" : 
+					 ObstacleAScript scrip = caughtObj.GetComponentInChildren<ObstacleAScript>();
+					 // skip collisions unless the obstacle is in normal state
+					 if (obstacle.GetCurrentState() != ObstacleAScript.STATE.Normal) {
+				 	 	 Log($"player success collision skipped because obstacle in ignored state {obstacle.GetCurrentState()}, for: {collisions[i].transform.name}");
+				 		 continue;
+					 if(scrip.getActionType().dir == dir){
+						scrip.changeState(ObstacleAScript.STATE.PlayerResolvedSuccessfully);
+					 }       
+					break;
+
+				case "Powerup" :
+					PowerupAScript script = caughtObj.GetComponentInChildren<PowerupAScript>();
+					 if(script.getActionType().dir == dir){
+						script.changeState(PowerupAScript.STATE.PlayerResolvedSuccessfully);
+					 }
+				break;
+
+				default: 
+					break;
+               
             }
 
             // skip collisions if the player used the wrong key
