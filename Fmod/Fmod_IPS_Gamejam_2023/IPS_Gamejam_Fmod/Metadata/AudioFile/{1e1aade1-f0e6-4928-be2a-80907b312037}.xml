@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{1e1aade1-f0e6-4928-be2a-80907b312037}">
+		<property name="assetPath">
+			<value>Music/Party_Pandemonium_-_draft_2.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>100.68000000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b12f7f1d-d60c-4b5e-9f1b-00e6833cbe8b}</destination>
+		</relationship>
+	</object>
+</objects>
