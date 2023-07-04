@@ -12,12 +12,12 @@ namespace PowerupManagement
         /// <summary>
         /// Determines the maximum amount of seconds that the timer will run.
         /// </summary>
-        public const float MAXIMUM_SPAWN_RATE = 45.0f;
+        public const float MAXIMUM_SPAWN_RATE = 2.0f;
 
         /// <summary>
         /// Determines the minimium amount of seconds that the timer will run.
         /// </summary>
-        public const float MINIMUM_SPAWN_RATE = 30.0f;
+        public const float MINIMUM_SPAWN_RATE = 1.0f;
 
         private bool isPowerup = false;
 
@@ -47,8 +47,13 @@ namespace PowerupManagement
 
         public void PauseSpawnRate(float PowerupLength)
         {
+            Debug.Log("In Pause Spawn Rate");
             isPowerup = true;
             _duration = Mathf.Clamp(PowerupLength, 0.0f, PowerupLength);
+        }
+
+        public bool powerupState(){
+            return isPowerup;
         }
 
         /// <summary>

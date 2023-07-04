@@ -71,6 +71,10 @@ namespace PowerupManagement
             Log("Restarted the PowerupTimer");
         }
 
+        public bool getPowerupState() {
+            return _powerupTimer.powerupState();
+        }
+
         /// <summary>
         /// When the game is started, the timer for the powerups should be started
         /// </summary>
