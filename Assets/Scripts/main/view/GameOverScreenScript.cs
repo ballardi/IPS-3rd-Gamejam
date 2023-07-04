@@ -35,4 +35,10 @@ public class GameOverScreenScript : MonoBehaviour
         Show(false);
         GameStateManager.instance.OnShowTitleScreen();
     }
+
+    public void OnRestartButtonClick()
+    {
+        Show(false);
+        GameStateManager.instance.OnRestart();
+    }
 }
