@@ -85,6 +85,7 @@ public class GameStateManager : MonoBehaviour
     {
         PowerupManager.Instance.OnGameEnd();
         ObstacleManager.Instance.OnGameEnd();
+        // TODO: Actually implement
     }
 
     public void OnPlay()
