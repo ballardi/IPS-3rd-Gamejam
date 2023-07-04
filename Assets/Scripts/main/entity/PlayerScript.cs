@@ -177,6 +177,8 @@ public class PlayerScript : LoggableMonoBehaviour {
 
     public void OnNewGame() {
         playerSpriteRenderer.enabled = true;
+        GetComponent<Animator>().enabled = true;
+        GetComponent<Animator>().speed = 1;
         animator.SetTrigger(TRIGGER_START_RUNNING);
     }
 
@@ -196,8 +198,19 @@ public class PlayerScript : LoggableMonoBehaviour {
     {
         OnFootstepEvent.Invoke();
     }
+
     public void OnStartTitleScreen() {
         playerSpriteRenderer.enabled = false;
+        GetComponent<Animator>().enabled = false;
+
+    }
+
+    public void OnPause() {
+        GetComponent<Animator>().speed = 0;
+    }
+
+    public void OnUnpause() {
+        GetComponent<Animator>().speed = 1;
     }
 
 }

@@ -100,6 +100,7 @@ public class GameStateManager : MonoBehaviour
                 throw new System.Exception("should never happen");
             case STATE.PAUSED:
                 PauseButtonScript.instance.Show(true);
+                PlayerScript.instance.OnUnpause();
                 OnUnpauseEvent.Invoke();
                 break;
             case STATE.GAMEOVER:
@@ -118,6 +119,7 @@ public class GameStateManager : MonoBehaviour
                 OnPauseEvent.Invoke();
                 PauseButtonScript.instance.Show(false);
                 PauseMenuScript.instance.Show(true);
+                PlayerScript.instance.OnPause();
                 break;
             case STATE.PAUSED:
                 throw new System.Exception("should never happen");
