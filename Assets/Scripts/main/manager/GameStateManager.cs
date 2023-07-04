@@ -81,11 +81,18 @@ public class GameStateManager : MonoBehaviour
         ObstacleManager.Instance.OnGameEnd();
     }
 
+    public void OnRestart()
+    {
+        PowerupManager.Instance.OnGameEnd();
+        ObstacleManager.Instance.OnGameEnd();
+    }
+
     public void OnPlay()
     {
         switch (CurrentState)
         {
-            case STATE.TITLE_SCREEN: // if titlescreen -> play
+            case STATE.GAMEOVER:
+            case STATE.TITLE_SCREEN:
                 _CurrentSpeed = InitialSpeed;
                 _CurrentScoreFloat = 0;
                 CurrentScore = 0;
@@ -94,7 +101,6 @@ public class GameStateManager : MonoBehaviour
                 ObstacleManager.Instance.OnGameStart();
                 PowerupManager.Instance.OnGameStart();
                 OnNewGameEvent.Invoke();
-                // TODO: call the powerup spawner to initialize them for a new game
                 break;
             case STATE.PLAYING:
                 throw new System.Exception("should never happen");
@@ -103,8 +109,6 @@ public class GameStateManager : MonoBehaviour
                 PlayerScript.instance.OnUnpause();
                 OnUnpauseEvent.Invoke();
                 break;
-            case STATE.GAMEOVER:
-                throw new System.Exception("should never happen");
         }
         CurrentState = STATE.PLAYING;
     }
