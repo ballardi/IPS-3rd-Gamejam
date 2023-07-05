@@ -1,3 +1,4 @@
+using UnityEngine;
 namespace ObstacleManagement
 {
     /// <summary>
@@ -14,7 +15,7 @@ namespace ObstacleManagement
         /// <summary>
         /// The timer used to wait a certain amount of time before generating obstacles
         /// </summary>
-        private ObstacleTimer _obstacleTimer;
+        [SerializeField]private ObstacleTimer _obstacleTimer;
 
         /// <summary>
         /// Sets up this manager's singleton and creates the obstacle timer
@@ -28,7 +29,7 @@ namespace ObstacleManagement
             Instance = this;
             Log("Created the ObstacleManager singleton");
 
-            _obstacleTimer = new ObstacleTimer(this);
+            // _obstacleTimer = new ObstacleTimer(this);
             Log("Created the ObstacleTimer");
         }
 
@@ -41,13 +42,15 @@ namespace ObstacleManagement
         {
             Log("The ObstacleTimer has notified the ObstacleManager that the timer has ended");
 
+            _obstacleTimer.Stop();
+
             ObstacleSpawner.Instance.SpawnObstacle();
             Log("Told the ObstacleSpawnerScript to spawn an obstacle");
 
             _obstacleTimer.IncreaseSpawnRate();
             Log("Increased the obstacle spawn rate, if possible");
 
-            _obstacleTimer.Start();
+            _obstacleTimer.StartTimer();
             Log("Restarted the ObstacleTimer");
         }
 
@@ -56,7 +59,7 @@ namespace ObstacleManagement
         /// </summary>
         public void OnGameStart()
         {
-            _obstacleTimer.Start();
+            _obstacleTimer.StartTimer();
             Log("Started the ObstacleTimer");
         }
 
@@ -67,6 +70,16 @@ namespace ObstacleManagement
         {
             _obstacleTimer.Stop();
             Log("Stopped the ObstacleTimer");
+        }
+
+        public void OnPause() {
+            _obstacleTimer.Pause();
+            Log("Timer is Paused");
+        }
+
+        public void UnPause() {
+            _obstacleTimer.StartTimer();
+            Log("Timer is unpaused");
         }
     }
 }

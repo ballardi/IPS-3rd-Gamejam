@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.Events;
+using PowerupManagement;
 
 /// <author> Rohaid & Ben </author> 
 public class PlayerScript : LoggableMonoBehaviour {
@@ -44,6 +45,9 @@ public class PlayerScript : LoggableMonoBehaviour {
     [Header("Debug Mode")]
     [SerializeField] private TextMeshProUGUI debugText;
 
+    [Header("Powerup State")]
+    [SerializeField] private bool isPoweredup;
+
     void Awake() {
         Assert.IsNull(instance); instance = this; // singleton set up
 
@@ -61,18 +65,10 @@ public class PlayerScript : LoggableMonoBehaviour {
     }
 
     void Update(){
-        /*
-        if(DebugMode){
-            Assert.IsNotNull(debugText);   
-            if(isCoolDown){
-                debugText.text = "Can't Move";
-                debugText.color = Color.red;
-            } else {
-                debugText.text = "Can Move";
-                debugText.color = Color.green;
-            }
+        // isPoweredup = PowerupManager.Instance.getPowerupState();
+        if(isPoweredup){
+            Act(ActionEnum.UP);
         }
-        */
     }
 
     void onEnable() {
@@ -124,7 +120,8 @@ public class PlayerScript : LoggableMonoBehaviour {
         for (int i = 0; i<collisionCount; i++) {
             GameObject collisionObj = collisions[i].gameObject;
             Log($"player success collision {i} of {collisionCount}: {collisionObj.name} ({collisionObj.tag})");
-
+           
+            Debug.Log($"Is the player powered up? {isPoweredup}");
             switch (collisionObj.tag) {
                 case "Obstacle":
                     ObstacleAScript obstacleScript = collisionObj.GetComponentInChildren<ObstacleAScript>();
@@ -134,7 +131,7 @@ public class PlayerScript : LoggableMonoBehaviour {
                         continue;
                     }
                     // skip collisions if the player used the wrong key
-                    if (obstacleScript.getActionType().dir != dir) {
+                    if (obstacleScript.getActionType().dir != dir && !isPoweredup) {
                         Log($"player success collision skipped because action {obstacleScript.getActionType().dir} different from pressed {dir}, for: {obstacleScript.name}");
                         continue;
                     }
@@ -149,6 +146,7 @@ public class PlayerScript : LoggableMonoBehaviour {
                         Log($"player success collision skipped because action {powerupScript.getActionType().dir} different from pressed {dir}, for: {powerupScript.name}");
                         continue;
                     }
+                    Debug.Log($"Got the powerup");
 					powerupScript.changeState(PowerupAScript.STATE.PlayerResolvedSuccessfully);
 				break;
 
