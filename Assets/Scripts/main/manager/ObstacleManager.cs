@@ -1,3 +1,4 @@
+using PowerupManagement;
 using UnityEngine;
 namespace ObstacleManagement
 {
@@ -9,14 +10,15 @@ namespace ObstacleManagement
         public static ObstacleManager Instance { private set; get; }
 
         /// Determines the amount of seconds that the timer will wait initially. This initial spawn rate duration will be decreased after each generated obstacle.
-        public const float INITIAL_SPAWN_RATE = 3.0f;
+        public const float INITIAL_SPAWN_RATE = 1.3f;
         /// Determines the amount of seconds that should be decreased from the timer duration after each generated obstacle.
         /// The spawn rate should not be decremented if the minimum spawn rate has been reached.
-        public const float SPAWN_RATE_DECREMENT = 0.03f;
+        public const float SPAWN_RATE_DECREMENT = 0.009f;
         /// Determines the minimium amount of seconds that the timer will run. After this rate has been reached, it cannot be decreased any more.
-        public const float MINIMUM_SPAWN_RATE = 0.3f;
+        public const float MINIMUM_SPAWN_RATE = 0.805f;
 
         private Timer2 _timer;
+        private bool shouldSpawnPowerupNextTime;
 
         private void Awake() {
             UnityEngine.Assertions.Assert.IsNull(Instance, $"A singleton instance must be null. Is there another class in the scene? Type: {GetType()}");
@@ -41,16 +43,16 @@ namespace ObstacleManagement
         /// </summary>
         public void NotifyOfObstacleTimerEnd()
         {
-            Log("The ObstacleTimer has notified the ObstacleManager that the timer has ended");
-
-            ObstacleSpawner.Instance.SpawnObstacle();
-            Log("Told the ObstacleSpawnerScript to spawn an obstacle");
-
+            if (shouldSpawnPowerupNextTime) {
+                PowerupSpawnerScript.Instance.SpawnObstacle();
+                shouldSpawnPowerupNextTime = false;
+            } else {
+                ObstacleSpawner.Instance.SpawnObstacle();
+            }
+                
             IncreaseSpawnRate();
-            Log("Increased the obstacle spawn rate, if possible");
-
             _timer.ResetRemainingTimeToFullAmount();
-            Log("Restarted the ObstacleTimer");
+            Log($"Obstacle spawned. Next timer duration: {_timer.GetTotalTimeBetweenAlerts()}");
         }
 
         /// <summary>
@@ -63,7 +65,8 @@ namespace ObstacleManagement
                 _timer.GetTotalTimeBetweenAlerts() - SPAWN_RATE_DECREMENT,
                 MINIMUM_SPAWN_RATE,
                 INITIAL_SPAWN_RATE
-            ) * 60.0f;
+            );
+            Log($"old timer duration: {_timer.GetTotalTimeBetweenAlerts()}. New timer duration: {_newDuration}");
             _timer.UpdateGameTimeBetweenAlerts(_newDuration);
         }
 
@@ -73,7 +76,12 @@ namespace ObstacleManagement
         public void OnGameStart() {
             _timer.UpdateGameTimeBetweenAlerts(INITIAL_SPAWN_RATE);
             _timer.ResetRemainingTimeToFullAmount();
+            shouldSpawnPowerupNextTime = false;
             Log("Started the ObstacleTimer");
+        }
+
+        public void SpawnAPowerUpInsteadOfObstacleNextTime() {
+            shouldSpawnPowerupNextTime = true;
         }
 
     }
