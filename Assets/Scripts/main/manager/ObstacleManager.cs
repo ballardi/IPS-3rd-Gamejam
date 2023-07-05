@@ -51,7 +51,6 @@ namespace ObstacleManagement
             }
                 
             IncreaseSpawnRate();
-            _timer.ResetRemainingTimeToFullAmount();
             Log($"Obstacle spawned. Next timer duration: {_timer.GetTotalTimeBetweenAlerts()}");
         }
 

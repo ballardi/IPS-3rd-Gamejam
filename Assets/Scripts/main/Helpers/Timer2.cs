@@ -7,12 +7,9 @@ public class Timer2 {
     private float _totalGameTimeBetweenAlerts;
     private float _remainingGameTimeUntillNextAlert;
 
-    private bool _isGameTimePaused;
-
     public Timer2(float gameTimeBetweenAlerts) {
         _totalGameTimeBetweenAlerts = gameTimeBetweenAlerts;
         _remainingGameTimeUntillNextAlert = _totalGameTimeBetweenAlerts;
-        _isGameTimePaused = false;
     }
 
     /// <summary>
@@ -22,12 +19,11 @@ public class Timer2 {
     /// <param name="deltaTimeSinceLastFrame">intended for you to pass the value of Time.delta</param>
     /// <returns></returns>
     public bool UpdateTimerProgress(float deltaTimeSinceLastFrame) {
-        if (_isGameTimePaused) {
-            return false;
-        }
-
         _remainingGameTimeUntillNextAlert -= deltaTimeSinceLastFrame;
         if (_remainingGameTimeUntillNextAlert < 0) {
+            // when alert should be triggered, don't just always set remaining time to be equal to total time, because
+            // this method might be getting called some time after the alert should have happened. so subtract that difference
+            // from the remaining time before the following alert.
             _remainingGameTimeUntillNextAlert = _totalGameTimeBetweenAlerts - Mathf.Abs(_remainingGameTimeUntillNextAlert);
             return true;
         } else {
@@ -36,8 +32,6 @@ public class Timer2 {
     }
 
     public void UpdateGameTimeBetweenAlerts(float gameTimeBetweenAlerts) => _totalGameTimeBetweenAlerts = gameTimeBetweenAlerts;
-
-    public void SetGameTimerIsPaused(bool isPaused) => _isGameTimePaused = isPaused;
 
     public void ResetRemainingTimeToFullAmount() => _remainingGameTimeUntillNextAlert = _totalGameTimeBetweenAlerts;
 
