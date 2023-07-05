@@ -35,7 +35,6 @@ public class FailureScript : MonoBehaviour
             if (obstacle.GetCurrentState() != ObstacleAScript.STATE.Normal)
                 continue;
 
-            Debug.Log($"player failure collision with: {obstacle.transform.name}");
             obstacle.HandlePlayerFailedBecauseOfThisObstacle();
             playerScript.OnFailure();
             GameStateManager.instance.OnGameOver();
