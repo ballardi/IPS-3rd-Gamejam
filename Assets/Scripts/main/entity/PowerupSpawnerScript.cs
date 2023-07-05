@@ -34,6 +34,8 @@ namespace PowerupManagement
             Assert.IsNotNull(RIGHTLocation);
         }
 
+        /// <update> Generates a powerup at a random location </update>
+
         public void SpawnPowerup()
         {
             int randomObstacleType = Random.Range(0, 3);

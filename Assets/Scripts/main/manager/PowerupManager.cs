@@ -32,7 +32,7 @@ namespace PowerupManagement
         private bool isPowerup = false;
 
         /// <summary>
-        /// Sets up this manager's singleton and creates the obstacle timer
+        /// Sets up this manager's singleton and creates the powerup timer
         /// </summary>
         private void Awake()
         {
@@ -55,26 +55,6 @@ namespace PowerupManagement
             } 
         }
 
-
-        /// <summary>
-        /// The PowerupAscript calls this method when a powerup has been successfully caught.
-        /// When notified, the spawner timer is stopped and a timer is started 
-        /// with the length of the powerup.
-        /// </summary>
-        // public void StartPowerupTimer(float timer) 
-        // {
-        //         Log("The PowerupTimer has notified the Powerup has started");
-                
-        //         _timer.Stop();
-        //         Log("Stop current powerup timer started");
-
-        //         _timer.PauseSpawnRate(timer);
-        //         Log("Start the Powerup timer");
-
-        //         _timer.StartTimer();
-
-        // }
-
         /// <summary>
         /// The PowerupTimer calls this method when it has ended.
         /// When notified, an obstacle is spawned using the PowerupSpawnerScript,
@@ -84,7 +64,6 @@ namespace PowerupManagement
         {
             Log("The PowerupTimer has notified the PowerupManager that the timer has ended");
 
-            // PowerupSpawnerScript.Instance.SpawnPowerup();
             ObstacleManager.Instance.SpawnAPowerUpInsteadOfObstacleNextTime();
             Log("Told the PowerupSpawnerScript to spawn an obstacle");
 
@@ -95,10 +74,6 @@ namespace PowerupManagement
             Log("Restarted the PowerupTimer");
         }
 
-        // public bool getPowerupState() {
-        //     return _timer.powerupState();
-        // }
-
         /// <summary>
         /// When the game is started, the timer for the powerups should be started
         /// </summary>
@@ -108,15 +83,6 @@ namespace PowerupManagement
             _timer.ResetRemainingTimeToFullAmount();
             Log("Started the PowerupTimer");
         }
-
-        /// <summary>
-        /// When the game is ended, the timer should be stopped
-        /// </summary>
-        // public void OnGameEnd()
-        // {
-        //     _timer.Stop();
-        //     Log("Stopped the PowerupTimer");
-        // }
 
         /// <summary>
         /// Randomizes the amount of seconds on the timer.

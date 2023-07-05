@@ -41,7 +41,7 @@ public class PowerupAScript : MonoBehaviour {
         if (currentState == STATE.PlayerResolvedSuccessfully) {
             if(!powerup_used){ // checks to make sure the specific object is caught
                 powerup_used = true; // MUST be before the powerupmanager function call.
-                HandleCollisionWithDespawnerZone();
+                DespawnPowerup();
                 // PowerupManager.Instance.StartPowerupTimer(powerupLength_seconds);
             }
         }
@@ -69,7 +69,7 @@ public class PowerupAScript : MonoBehaviour {
         return ActionType;
     }
 
-    public void HandleCollisionWithDespawnerZone () {
+    public void DespawnPowerup () {
         Destroy(this.transform.gameObject);
     }
 }
