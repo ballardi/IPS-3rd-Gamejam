@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace PowerupManagement
 {
     /// <summary>
@@ -14,7 +16,7 @@ namespace PowerupManagement
         /// <summary>
         /// The timer used to wait a certain amount of time before generating obstacles
         /// </summary>
-        private PowerupTimer _powerupTimer;
+        [SerializeField] private PowerupTimer _powerupTimer;
 
         /// <summary>
         /// Sets up this manager's singleton and creates the obstacle timer
@@ -27,8 +29,6 @@ namespace PowerupManagement
             );
             Instance = this;
             Log("Created the PowerupManager singleton");
-
-            _powerupTimer = new PowerupTimer(this);
             Log("Created the PowerupTimer");
         }
 
@@ -48,7 +48,7 @@ namespace PowerupManagement
                 _powerupTimer.PauseSpawnRate(timer);
                 Log("Start the Powerup timer");
 
-                _powerupTimer.Start();
+                _powerupTimer.StartTimer();
 
         }
 
@@ -67,7 +67,7 @@ namespace PowerupManagement
             _powerupTimer.RandomizeSpawnRate();
             Log("Increased the powerup spawn rate, if possible");
 
-            _powerupTimer.Start();
+            _powerupTimer.StartTimer();
             Log("Restarted the PowerupTimer");
         }
 
@@ -80,7 +80,8 @@ namespace PowerupManagement
         /// </summary>
         public void OnGameStart()
         {
-            _powerupTimer.Start();
+            _powerupTimer.RandomizeSpawnRate();
+            _powerupTimer.StartTimer();
             Log("Started the PowerupTimer");
         }
 

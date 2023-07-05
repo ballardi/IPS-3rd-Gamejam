@@ -12,12 +12,12 @@ namespace PowerupManagement
         /// <summary>
         /// Determines the maximum amount of seconds that the timer will run.
         /// </summary>
-        public const float MAXIMUM_SPAWN_RATE = 2.0f;
+        public const float MAXIMUM_SPAWN_RATE = 35.0f;
 
         /// <summary>
         /// Determines the minimium amount of seconds that the timer will run.
         /// </summary>
-        public const float MINIMUM_SPAWN_RATE = 1.0f;
+        public const float MINIMUM_SPAWN_RATE = 45.0f;
 
         private bool isPowerup = false;
 
@@ -29,7 +29,7 @@ namespace PowerupManagement
         public PowerupTimer(PowerupManager parent)
             : base(parent)
         {
-            _duration = MAXIMUM_SPAWN_RATE;
+            _duration = MAXIMUM_SPAWN_RATE * 60.0f;
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace PowerupManagement
         /// </summary>
         public void RandomizeSpawnRate()
         {
-            _duration = Random.Range(MINIMUM_SPAWN_RATE, MAXIMUM_SPAWN_RATE);
+            _duration = Random.Range(MINIMUM_SPAWN_RATE, MAXIMUM_SPAWN_RATE) * 60.0f;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace PowerupManagement
         {
             Debug.Log("In Pause Spawn Rate");
             isPowerup = true;
-            _duration = Mathf.Clamp(PowerupLength, 0.0f, PowerupLength);
+            _duration = Mathf.Clamp(PowerupLength, 0.0f, PowerupLength) * 60.0f; // 60 F is to account for frames
         }
 
         public bool powerupState(){
@@ -62,11 +62,11 @@ namespace PowerupManagement
         protected override void Alert()
         {
             if(!isPowerup){
-                 (_parent as PowerupManager).NotifyOfPowerupTimerEnd();
+                PowerupManager.Instance.NotifyOfPowerupTimerEnd();
             } else {
                 isPowerup = false;
                 RandomizeSpawnRate();
-                Start();
+                StartTimer();
             }
            
         }

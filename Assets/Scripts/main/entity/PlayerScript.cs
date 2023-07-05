@@ -65,7 +65,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     }
 
     void Update(){
-        isPoweredup = PowerupManager.Instance.getPowerupState();
+        // isPoweredup = PowerupManager.Instance.getPowerupState();
         if(isPoweredup){
             Act(ActionEnum.UP);
         }

@@ -51,7 +51,10 @@ namespace ObstacleManagement
         public void SpawnObstacle()
         {
             int randomObstacleType = Random.Range(0, 3);
-
+            
+             // O is Up
+            // 1 is Right
+            // 2 is down
             GameObject obstacleCreated = null;
             switch (randomObstacleType) {
                 case 0: obstacleCreated = poolA.RetrieveAvailableObject(); break;

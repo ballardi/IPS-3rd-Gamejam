@@ -77,13 +77,13 @@ public class GameStateManager : MonoBehaviour
         TitleScreenScript.instance.Show(true);
         OnTitleScreenStartEvent.Invoke();
         CurrentState = STATE.TITLE_SCREEN;
-        PowerupManager.Instance.OnGameEnd();
+        // PowerupManager.Instance.OnGameEnd();
         ObstacleManager.Instance.OnGameEnd();
     }
 
     public void OnRestart()
     {
-        PowerupManager.Instance.OnGameEnd();
+        // PowerupManager.Instance.OnGameEnd();
         ObstacleManager.Instance.OnGameEnd();
         // TODO: Actually implement
     }
@@ -100,7 +100,7 @@ public class GameStateManager : MonoBehaviour
                 PauseButtonScript.instance.Show(true);
                 PlayerScript.instance.OnNewGame();
                 ObstacleManager.Instance.OnGameStart();
-                PowerupManager.Instance.OnGameStart();
+                // PowerupManager.Instance.OnGameStart();
                 OnNewGameEvent.Invoke();
                 break;
             case STATE.PLAYING:
@@ -109,6 +109,7 @@ public class GameStateManager : MonoBehaviour
                 PauseButtonScript.instance.Show(true);
                 PlayerScript.instance.OnUnpause();
                 OnUnpauseEvent.Invoke();
+                ObstacleManager.Instance.UnPause();
                 break;
         }
         CurrentState = STATE.PLAYING;
@@ -125,6 +126,7 @@ public class GameStateManager : MonoBehaviour
                 PauseButtonScript.instance.Show(false);
                 PauseMenuScript.instance.Show(true);
                 PlayerScript.instance.OnPause();
+                ObstacleManager.Instance.OnPause();
                 break;
             case STATE.PAUSED:
                 throw new System.Exception("should never happen");
@@ -145,7 +147,7 @@ public class GameStateManager : MonoBehaviour
                 PauseButtonScript.instance.Show(false);
                 GameOverScreenScript.instance.Show(true);
                 ObstacleManager.Instance.OnGameEnd();
-                PowerupManager.Instance.OnGameEnd();
+                // PowerupManager.Instance.OnGameEnd();
                 break;
             case STATE.PAUSED:
                 throw new System.Exception("should never happen");
