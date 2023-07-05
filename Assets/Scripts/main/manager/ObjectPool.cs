@@ -27,12 +27,11 @@ public class ObjectPool : LoggableMonoBehaviour
         HideAll();
     }
 
-    private void Start() {
-        // register this pool to be notified when title screen starts
-        GameStateManager.instance.OnTitleScreenStartEvent.AddListener(OnShowTitleScreen);
+    public void OnShowTitleScreen() {
+        HideAll();
     }
 
-    public void OnShowTitleScreen() {
+    public void OnStartNewGame() {
         HideAll();
     }
 

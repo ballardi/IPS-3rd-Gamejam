@@ -39,6 +39,6 @@ public class GameOverScreenScript : MonoBehaviour
     public void OnRestartButtonClick()
     {
         Show(false);
-        GameStateManager.instance.OnRestart();
+        GameStateManager.instance.OnPlay();
     }
 }
