@@ -50,9 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d67b2fad6086c47b7c411c02afaecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialSpeed: 1
+  InitialSpeed: 0.8
   MaxSpeed: 3
-  SpeedAdditionPerSecond: 0.01
+  SpeedAdditionPerSecond: 0.008
   MultiplierFromTimeToScore: 40
   OnTitleScreenStartEvent:
     m_PersistentCalls:
