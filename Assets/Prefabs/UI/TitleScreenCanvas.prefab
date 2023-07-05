@@ -509,7 +509,6 @@ GameObject:
   - component: {fileID: 8564244319936336962}
   - component: {fileID: 6763491523784030618}
   - component: {fileID: 5535966756857344772}
-  - component: {fileID: 4767456457088520581}
   - component: {fileID: 6664904870967547638}
   m_Layer: 5
   m_Name: PlayButton
@@ -645,37 +644,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4767456457088520581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5223041037097315567}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1301454462
-      Data2: 1312222715
-      Data3: 1038297498
-      Data4: 1792787925
-    Path: event:/SFX Events/UI/UI_Scroll
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
 --- !u!114 &6664904870967547638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -829,7 +797,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4957811928618795751, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
         m_TargetAssemblyTypeName: TitleScreenScript, Main
         m_MethodName: OnMusicToggleClick
         m_Mode: 1
@@ -1314,7 +1282,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4957811928618795751, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
         m_TargetAssemblyTypeName: TitleScreenScript, Main
         m_MethodName: OnSoundToggleClick
         m_Mode: 1

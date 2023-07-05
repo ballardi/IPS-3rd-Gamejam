@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="Snapshot" id="{8f037e81-f2c9-4c98-99ed-d197a54b891f}">
+		<property name="name">
+			<value>Music Off</value>
+		</property>
+		<property name="behavior">
+			<value>1</value>
+		</property>
+		<relationship name="mixer">
+			<destination>{15e7a81d-a3ba-41c9-98ea-ab0f4cf724ff}</destination>
+		</relationship>
+		<relationship name="automatableProperties">
+			<destination>{ab542c60-d1c9-49cf-a845-2e36aa263416}</destination>
+		</relationship>
+		<relationship name="markerTracks">
+			<destination>{e1c218bb-ff2d-4cc9-897f-3b2afe7a9bae}</destination>
+		</relationship>
+		<relationship name="timeline">
+			<destination>{7ecb8ca1-1378-495c-9652-bde9295d1b7b}</destination>
+		</relationship>
+		<relationship name="snapshotMasterTrack">
+			<destination>{72f01d3f-420d-4e06-8d9d-aa5879c02238}</destination>
+		</relationship>
+		<relationship name="snapshotProperties">
+			<destination>{ce88c996-9d63-48b2-a883-82ce869890aa}</destination>
+		</relationship>
+		<relationship name="snapshotTracks">
+			<destination>{1763bcf1-80b7-4d3e-854e-27d8cee52c98}</destination>
+		</relationship>
+	</object>
+	<object class="EventAutomatableProperties" id="{ab542c60-d1c9-49cf-a845-2e36aa263416}" />
+	<object class="MarkerTrack" id="{e1c218bb-ff2d-4cc9-897f-3b2afe7a9bae}" />
+	<object class="Timeline" id="{7ecb8ca1-1378-495c-9652-bde9295d1b7b}" />
+	<object class="SnapshotMasterTrack" id="{72f01d3f-420d-4e06-8d9d-aa5879c02238}" />
+	<object class="SnapshotProperty" id="{ce88c996-9d63-48b2-a883-82ce869890aa}">
+		<property name="propertyName">
+			<value>volume</value>
+		</property>
+		<property name="value">
+			<value>-80</value>
+		</property>
+		<relationship name="automatableObject">
+			<destination>{d3d0b49a-580f-439a-a53b-972cd00c6907}</destination>
+		</relationship>
+	</object>
+	<object class="SnapshotTrack" id="{1763bcf1-80b7-4d3e-854e-27d8cee52c98}">
+		<relationship name="mixerStrip">
+			<destination>{d3d0b49a-580f-439a-a53b-972cd00c6907}</destination>
+		</relationship>
+	</object>
+</objects>
