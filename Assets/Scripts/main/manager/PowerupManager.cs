@@ -1,4 +1,5 @@
 using UnityEngine;
+using ObstacleManagement;
 
 namespace PowerupManagement
 {
@@ -83,7 +84,8 @@ namespace PowerupManagement
         {
             Log("The PowerupTimer has notified the PowerupManager that the timer has ended");
 
-            PowerupSpawnerScript.Instance.SpawnPowerup();
+            // PowerupSpawnerScript.Instance.SpawnPowerup();
+            ObstacleManager.Instance.SpawnAPowerUpInsteadOfObstacleNextTime();
             Log("Told the PowerupSpawnerScript to spawn an obstacle");
 
             RandomizeSpawnRate();
