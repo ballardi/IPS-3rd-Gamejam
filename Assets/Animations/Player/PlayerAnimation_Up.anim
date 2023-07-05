@@ -21,9 +21,23 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: fc874cabc76facb44bb797d599711a24, type: 3}
-    - time: 0.25
-      value: {fileID: 21300000, guid: 0c840ffcb8f1a194c83e6d6393106757, type: 3}
+      value: {fileID: 21300000, guid: 6d1bd86a3b067384087094986b72a2f8, type: 3}
+    - time: 0.05
+      value: {fileID: 21300000, guid: 699c27aa6fa8be745bbeb37ea797bcdc, type: 3}
+    - time: 0.1
+      value: {fileID: 21300000, guid: 1b2da721b723a6d459ea18cab70961aa, type: 3}
+    - time: 0.2
+      value: {fileID: 21300000, guid: 6c97b3ddffdfc854eb8b25063ed6a241, type: 3}
+    - time: 0.3
+      value: {fileID: 21300000, guid: cd0675a7c0071c643a0e8ac66a7391bd, type: 3}
+    - time: 0.4
+      value: {fileID: 21300000, guid: a0d84a66c7f30f94cbeb91eff5c0bcaf, type: 3}
+    - time: 0.45
+      value: {fileID: 21300000, guid: 0789d921f05ff58409b61cd1cafebef3, type: 3}
+    - time: 0.56666666
+      value: {fileID: 21300000, guid: a64af1f10ae5df7439b1929713bc39e9, type: 3}
+    - time: 0.65
+      value: {fileID: 21300000, guid: a64af1f10ae5df7439b1929713bc39e9, type: 3}
     attribute: m_Sprite
     path: Sprite
     classID: 212
@@ -46,14 +60,21 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: fc874cabc76facb44bb797d599711a24, type: 3}
-    - {fileID: 21300000, guid: 0c840ffcb8f1a194c83e6d6393106757, type: 3}
+    - {fileID: 21300000, guid: 6d1bd86a3b067384087094986b72a2f8, type: 3}
+    - {fileID: 21300000, guid: 699c27aa6fa8be745bbeb37ea797bcdc, type: 3}
+    - {fileID: 21300000, guid: 1b2da721b723a6d459ea18cab70961aa, type: 3}
+    - {fileID: 21300000, guid: 6c97b3ddffdfc854eb8b25063ed6a241, type: 3}
+    - {fileID: 21300000, guid: cd0675a7c0071c643a0e8ac66a7391bd, type: 3}
+    - {fileID: 21300000, guid: a0d84a66c7f30f94cbeb91eff5c0bcaf, type: 3}
+    - {fileID: 21300000, guid: 0789d921f05ff58409b61cd1cafebef3, type: 3}
+    - {fileID: 21300000, guid: a64af1f10ae5df7439b1929713bc39e9, type: 3}
+    - {fileID: 21300000, guid: a64af1f10ae5df7439b1929713bc39e9, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.26666668
+    m_StopTime: 0.6666666
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
