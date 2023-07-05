@@ -83,13 +83,10 @@ public class GameStateManager : MonoBehaviour
         TitleScreenScript.instance.Show(true);
         OnTitleScreenStartEvent.Invoke();
         CurrentState = STATE.TITLE_SCREEN;
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("ObjectPool")) {
+            obj.GetComponent<ObjectPool>().OnStartNewGame();
+        }
         // PowerupManager.Instance.OnGameEnd();
-    }
-
-    public void OnRestart()
-    {
-        // PowerupManager.Instance.OnGameEnd();
-        // TODO: Actually implement
     }
 
     public void OnPlay()
@@ -106,6 +103,9 @@ public class GameStateManager : MonoBehaviour
                 PlayerScript.instance.OnNewGame();
                 ObstacleManager.Instance.OnGameStart();
                 // PowerupManager.Instance.OnGameStart();
+                foreach (GameObject obj in GameObject.FindGameObjectsWithTag("ObjectPool")) {
+                    obj.GetComponent<ObjectPool>().OnStartNewGame();
+                }
                 OnNewGameEvent.Invoke();
                 break;
             case STATE.PLAYING:
