@@ -13,7 +13,7 @@ namespace ObstacleManagement
         /// Determines the amount of seconds that the timer will wait initially.
         /// This initial spawn rate duration will be decreased after each generated obstacle.
         /// </summary>
-        public const float INITIAL_SPAWN_RATE = 1.2f;
+        public const float INITIAL_SPAWN_RATE = 3.0f;
 
         /// <summary>
         /// Determines the amount of seconds that should be decreased from the timer duration
@@ -36,7 +36,10 @@ namespace ObstacleManagement
         public ObstacleTimer(ObstacleManager parent)
             : base(parent)
         {
-            _duration = INITIAL_SPAWN_RATE;
+        }
+
+        public void Start(){
+            IncreaseSpawnRate();
         }
 
         /// <summary>
@@ -49,7 +52,7 @@ namespace ObstacleManagement
                 _duration - SPAWN_RATE_DECREMENT,
                 MINIMUM_SPAWN_RATE,
                 INITIAL_SPAWN_RATE
-            );
+            ) * 60.0f;
         }
 
         /// <summary>
@@ -57,7 +60,7 @@ namespace ObstacleManagement
         /// </summary>
         protected override void Alert()
         {
-            (_parent as ObstacleManager).NotifyOfObstacleTimerEnd();
+            ObstacleManager.Instance.NotifyOfObstacleTimerEnd();
         }
     }
 }

@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 /// The Timer class is used to provide child classes with the ability to
 /// start a timer and be notified when it ends.
 /// </summary>
-public abstract class Timer
+public abstract class Timer : MonoBehaviour
 {
     /// <summary>
     /// The parent class of the timer is a MonoBehaviour, which manages the timer.
@@ -22,10 +22,14 @@ public abstract class Timer
     protected float _duration;
 
     /// <summary>
-    /// Used to track if this timer is running at the moment.
-    /// If it is, the system should not try to start it.
+    /// The amount of seconds that have passed since the timer started
     /// </summary>
-    private Coroutine _clock;
+    protected float _time_seconds;
+
+    /// <summary>
+    /// Used to track if this timer is running at the moment.
+    /// </summary>
+    private bool isOn;
 
     /// <summary>
     /// Creates the timer using a manager MonoBehaviour as its parent.
@@ -41,39 +45,57 @@ public abstract class Timer
     }
 
     /// <summary>
-    /// Starts the timer if it is not already running.
+    /// Sets up the timer.
     /// Uses the current spawn rate as the duration of the timer in seconds.
     /// If the timer is running, an Exception is thrown.
     /// </summary>
-    public void Start()
+    public void Awake()
     {
-        Assert.IsNull(_clock, "Should not start a timer if it is already running!");
-        _clock = _parent.StartCoroutine(Tick());
+        _time_seconds = 0f;
+        isOn = false;
+    }
+
+    public void Update()
+    {
+        if(isOn){
+            Tick();
+            Debug.Log($"{_parent} is at {_time_seconds}");
+        }
     }
 
     /// <summary>
     /// Stops the timer by stopping the coroutine in the parent.
-    /// Note that this simply does nothing if the clock is not running.
     /// </summary>
     public void Stop()
     {
-        if (_clock != null)
-        {
-            _parent.StopCoroutine(_clock);
-            _clock = null;
-        }
+        isOn = false; 
+        _time_seconds = 0f;
+    }
+
+    /// <summary>
+    /// Pauses the timer. 
+    /// </summary>
+    public void Pause()
+    {
+        isOn = false;
+    }
+
+    public void StartTimer()
+    {
+        isOn = true;
     }
 
     /// <summary>
     /// Waits the specified duration and then alerts the extending class
     /// that the timer has ended.
     /// </summary>
-    /// <returns>An IEnumerator in order to use the WaitForSeconds() method</returns>
-    protected IEnumerator Tick()
+    protected void Tick()
     {
-        yield return new WaitForSeconds(_duration);
-        _clock = null;
-        Alert();
+        _time_seconds++;
+        if(_time_seconds >= _duration){
+            Alert();
+        }
+        
     }
 
     /// <summary>
