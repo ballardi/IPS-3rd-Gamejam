@@ -51,9 +51,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InitialSpeed: 1
-  MaxSpeed: 30
-  SpeedAdditionPerSecond: 0.05
-  MultiplierFromTimeToScore: 30
+  MaxSpeed: 3
+  SpeedAdditionPerSecond: 0.01
+  MultiplierFromTimeToScore: 40
   OnTitleScreenStartEvent:
     m_PersistentCalls:
       m_Calls:

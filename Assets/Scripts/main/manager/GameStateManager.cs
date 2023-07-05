@@ -26,6 +26,7 @@ public class GameStateManager : MonoBehaviour
     public float MaxSpeed;
     public float SpeedAdditionPerSecond;
     public float MultiplierFromTimeToScore;
+    private float speedUpTimer;
 
     public UnityEvent OnTitleScreenStartEvent;
     public UnityEvent OnNewGameEvent;
@@ -54,12 +55,17 @@ public class GameStateManager : MonoBehaviour
         if (CurrentState == STATE.PLAYING)
         {
             // figure out how much the speed and score should increase by
-            float SpeedAddition = Time.deltaTime * SpeedAdditionPerSecond;
-            // increase the score by that amount
-            _CurrentScoreFloat += SpeedAddition * MultiplierFromTimeToScore;
-            CurrentScore = Mathf.FloorToInt(_CurrentScoreFloat);
+            float SpeedAddition = 0;
+            speedUpTimer += Time.deltaTime;
+            while (speedUpTimer >= 1.0f){
+                SpeedAddition += SpeedAdditionPerSecond;
+                speedUpTimer -= 1.0f;
+            }
             // increase the speed by that amount, but only up to the max speed
             _CurrentSpeed = Mathf.Clamp(_CurrentSpeed + SpeedAddition, InitialSpeed, MaxSpeed);
+            // increase the score by the distance traveled (calculated by speed before any update)
+            _CurrentScoreFloat += _CurrentSpeed * Time.deltaTime * MultiplierFromTimeToScore;
+            CurrentScore = Mathf.FloorToInt(_CurrentScoreFloat);
         }
     }
 
@@ -97,6 +103,7 @@ public class GameStateManager : MonoBehaviour
                 _CurrentSpeed = InitialSpeed;
                 _CurrentScoreFloat = 0;
                 CurrentScore = 0;
+                speedUpTimer = 0;
                 PauseButtonScript.instance.Show(true);
                 PlayerScript.instance.OnNewGame();
                 ObstacleManager.Instance.OnGameStart();
