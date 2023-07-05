@@ -121,7 +121,7 @@ public class PlayerScript : LoggableMonoBehaviour {
             GameObject collisionObj = collisions[i].gameObject;
             Log($"player success collision {i} of {collisionCount}: {collisionObj.name} ({collisionObj.tag})");
            
-            Debug.Log($"Is the player powered up? {isPoweredup}");
+            Log($"Is the player powered up? {isPoweredup}");
             switch (collisionObj.tag) {
                 case "Obstacle":
                     ObstacleAScript obstacleScript = collisionObj.GetComponentInChildren<ObstacleAScript>();
