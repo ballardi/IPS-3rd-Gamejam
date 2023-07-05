@@ -102,7 +102,7 @@ public class GameStateManager : MonoBehaviour
                 PauseButtonScript.instance.Show(true);
                 PlayerScript.instance.OnNewGame();
                 ObstacleManager.Instance.OnGameStart();
-                // PowerupManager.Instance.OnGameStart();
+                PowerupManager.Instance.OnGameStart();
                 foreach (GameObject obj in GameObject.FindGameObjectsWithTag("ObjectPool")) {
                     obj.GetComponent<ObjectPool>().OnStartNewGame();
                 }

@@ -44,7 +44,7 @@ namespace ObstacleManagement
         public void NotifyOfObstacleTimerEnd()
         {
             if (shouldSpawnPowerupNextTime) {
-                PowerupSpawnerScript.Instance.SpawnObstacle();
+                PowerupSpawnerScript.Instance.SpawnPowerup();
                 shouldSpawnPowerupNextTime = false;
             } else {
                 ObstacleSpawner.Instance.SpawnObstacle();

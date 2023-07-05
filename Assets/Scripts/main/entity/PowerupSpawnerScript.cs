@@ -30,7 +30,7 @@ namespace PowerupManagement
             Assert.IsNotNull(PowerupASpawnPoint);
         }
 
-        public void SpawnObstacle()
+        public void SpawnPowerup()
         {
             // TODO: Pool game objects
             Instantiate(

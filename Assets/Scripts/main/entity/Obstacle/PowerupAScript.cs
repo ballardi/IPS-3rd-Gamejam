@@ -41,7 +41,7 @@ public class PowerupAScript : MonoBehaviour {
         if (currentState == STATE.PlayerResolvedSuccessfully) {
             if(!powerup_used){ // checks to make sure the specific object is caught
                 powerup_used = true; // MUST be before the powerupmanager function call.
-                PowerupManager.Instance.StartPowerupTimer(powerupLength_seconds);
+                // PowerupManager.Instance.StartPowerupTimer(powerupLength_seconds);
             }
         }
     }
