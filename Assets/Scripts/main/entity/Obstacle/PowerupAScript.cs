@@ -41,7 +41,8 @@ public class PowerupAScript : MonoBehaviour {
         if (currentState == STATE.PlayerResolvedSuccessfully) {
             if(!powerup_used){ // checks to make sure the specific object is caught
                 powerup_used = true; // MUST be before the powerupmanager function call.
-                PowerupManager.Instance.StartPowerupTimer(powerupLength_seconds);
+                DespawnPowerup();
+                // PowerupManager.Instance.StartPowerupTimer(powerupLength_seconds);
             }
         }
     }
@@ -66,5 +67,9 @@ public class PowerupAScript : MonoBehaviour {
     public ActionType getActionType() {
         //returning the scriptable obj instead of just the Enum in case future data is added.
         return ActionType;
+    }
+
+    public void DespawnPowerup () {
+        Destroy(this.transform.gameObject);
     }
 }

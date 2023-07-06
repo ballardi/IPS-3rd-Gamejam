@@ -146,7 +146,6 @@ public class PlayerScript : LoggableMonoBehaviour {
                         Log($"player success collision skipped because action {powerupScript.getActionType().dir} different from pressed {dir}, for: {powerupScript.name}");
                         continue;
                     }
-                    Debug.Log($"Got the powerup");
 					powerupScript.changeState(PowerupAScript.STATE.PlayerResolvedSuccessfully);
 				break;
 
