@@ -1,4 +1,5 @@
 using UnityEngine;
+using ObstacleManagement;
 
 namespace PowerupManagement
 {
@@ -14,12 +15,24 @@ namespace PowerupManagement
         public static PowerupManager Instance { private set; get; }
 
         /// <summary>
-        /// The timer used to wait a certain amount of time before generating obstacles
+        /// Determines the maximum amount of seconds that the timer will run.
         /// </summary>
-        [SerializeField] private PowerupTimer _powerupTimer;
+        public const float MAXIMUM_SPAWN_RATE = 5.0f;
 
         /// <summary>
-        /// Sets up this manager's singleton and creates the obstacle timer
+        /// Determines the minimium amount of seconds that the timer will run.
+        /// </summary>
+        public const float MINIMUM_SPAWN_RATE = 3.0f;
+
+        /// <summary>
+        /// The timer used to wait a certain amount of time before generating obstacles
+        /// </summary>
+        [SerializeField] private Timer2 _timer;
+
+        private bool isPowerup = false;
+
+        /// <summary>
+        /// Sets up this manager's singleton and creates the powerup timer
         /// </summary>
         private void Awake()
         {
@@ -28,28 +41,18 @@ namespace PowerupManagement
                 $"A singleton instance must be null. Is there another class in the scene? Type: {GetType()}"
             );
             Instance = this;
-            Log("Created the PowerupManager singleton");
-            Log("Created the PowerupTimer");
+            _timer = new Timer2(MAXIMUM_SPAWN_RATE);
         }
 
-
-        /// <summary>
-        /// The PowerupAscript calls this method when a powerup has been successfully caught.
-        /// When notified, the spawner timer is stopped and a timer is started 
-        /// with the length of the powerup.
-        /// </summary>
-        public void StartPowerupTimer(float timer) 
+        private void Update()
         {
-                Log("The PowerupTimer has notified the Powerup has started");
-                
-                _powerupTimer.Stop();
-                Log("Stop current powerup timer started");
-
-                _powerupTimer.PauseSpawnRate(timer);
-                Log("Start the Powerup timer");
-
-                _powerupTimer.StartTimer();
-
+            if (GameStateManager.instance.CurrentState != GameStateManager.STATE.PLAYING)
+                return;
+            
+            bool timerAlerted = _timer.UpdateTimerProgress(Time.deltaTime);
+            if (timerAlerted) {
+                NotifyOfPowerupTimerEnd();
+            } 
         }
 
         /// <summary>
@@ -61,18 +64,14 @@ namespace PowerupManagement
         {
             Log("The PowerupTimer has notified the PowerupManager that the timer has ended");
 
-            PowerupSpawnerScript.Instance.SpawnObstacle();
+            ObstacleManager.Instance.SpawnAPowerUpInsteadOfObstacleNextTime();
             Log("Told the PowerupSpawnerScript to spawn an obstacle");
 
-            _powerupTimer.RandomizeSpawnRate();
+            RandomizeSpawnRate();
             Log("Increased the powerup spawn rate, if possible");
 
-            _powerupTimer.StartTimer();
+            _timer.ResetRemainingTimeToFullAmount();
             Log("Restarted the PowerupTimer");
-        }
-
-        public bool getPowerupState() {
-            return _powerupTimer.powerupState();
         }
 
         /// <summary>
@@ -80,18 +79,19 @@ namespace PowerupManagement
         /// </summary>
         public void OnGameStart()
         {
-            _powerupTimer.RandomizeSpawnRate();
-            _powerupTimer.StartTimer();
+            _timer.UpdateGameTimeBetweenAlerts(MAXIMUM_SPAWN_RATE);
+            _timer.ResetRemainingTimeToFullAmount();
             Log("Started the PowerupTimer");
         }
 
         /// <summary>
-        /// When the game is ended, the timer should be stopped
+        /// Randomizes the amount of seconds on the timer.
+        /// If this would be less than the minimum spawn rate, the spawn rate will be set to the minimum.
         /// </summary>
-        public void OnGameEnd()
+        public void RandomizeSpawnRate()
         {
-            _powerupTimer.Stop();
-            Log("Stopped the PowerupTimer");
+            float _newDuration = Random.Range(MINIMUM_SPAWN_RATE, MAXIMUM_SPAWN_RATE);
+            _timer.UpdateGameTimeBetweenAlerts(_newDuration);
         }
     }
 }

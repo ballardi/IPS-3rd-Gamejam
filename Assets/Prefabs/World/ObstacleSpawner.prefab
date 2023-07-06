@@ -288,6 +288,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8927307489535959863, guid: 80e72f83b4eaef941b6cb60e5bb0441b, type: 3}
+      propertyPath: DebugMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927307489535959863, guid: 80e72f83b4eaef941b6cb60e5bb0441b, type: 3}
+      propertyPath: contactFilter.useOutsideDepth
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

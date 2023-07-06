@@ -30,6 +30,12 @@ public class ObstacleDespawnerZone : MonoBehaviour
             if(obstacleAScript != null) {
                 obstacleAScript.HandleCollisionWithDespawnerZone();
             }
+
+            // if powerup hits the despawner zone, tell it to despawn itself
+            PowerupAScript powerupAScript = collision.gameObject.GetComponentInChildren<PowerupAScript>();
+            if (powerupAScript != null) {
+                powerupAScript.DespawnPowerup();
+            }
         }
 
     }
