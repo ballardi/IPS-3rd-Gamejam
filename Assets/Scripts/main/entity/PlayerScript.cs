@@ -65,9 +65,9 @@ public class PlayerScript : LoggableMonoBehaviour {
     }
 
     void Update(){
-        // isPoweredup = PowerupManager.Instance.getPowerupState();
+        isPoweredup = PowerupManager.Instance.getPowerupState();
         if(isPoweredup){
-            Act(ActionEnum.UP);
+            PowerupAct();
         }
     }
 
@@ -88,19 +88,58 @@ public class PlayerScript : LoggableMonoBehaviour {
     }
 
     void OnUP(){
-        Act(ActionEnum.UP);
+        if(!isPoweredup){
+            Act(ActionEnum.UP);
+        } 
     }
 
     void OnDOWN(){
-        Act(ActionEnum.DOWN);
+        if(!isPoweredup){
+            Act(ActionEnum.DOWN);
+         }
     }
 
     void OnRIGHT(){
-        Act(ActionEnum.RIGHT);
+        if(!isPoweredup){
+            Act(ActionEnum.RIGHT);
+        }
     }
 
     void OnCoolDown(){
         isCoolDown = false; 
+    }
+
+    void PowerupAct(){
+        if(GameStateManager.instance.CurrentState != GameStateManager.STATE.PLAYING) {
+            return;
+        }
+
+        int collisionCount = SuccessCollider.OverlapCollider(contactFilter, collisions);
+
+        
+
+        for (int i = 0; i<collisionCount; i++) {
+            GameObject collisionObj = collisions[i].gameObject;
+            ActionEnum dir = ActionEnum.UP;
+            switch (collisionObj.tag) {
+                case "Obstacle":
+                    ObstacleAScript obstacleScript = collisionObj.GetComponentInChildren<ObstacleAScript>();
+                    // skip collisions unless the obstacle is in normal state
+                    if (obstacleScript.GetCurrentState() != ObstacleAScript.STATE.Normal) {
+                        continue;
+                    }
+                    obstacleScript.HandlePlayerResolvedThisObstacleSuccessfully();
+                    dir = obstacleScript.getActionType().dir;
+                    PlaySFX(dir);
+                    ResetAllAnimationTriggers();
+                    PlayAnimation(dir);
+                    break;
+
+				default: 
+                    throw new System.Exception("should never happen");
+               
+            }
+        }
     }
 
     ///<summary> Detects objects and if the current input was used </summary>
@@ -146,8 +185,9 @@ public class PlayerScript : LoggableMonoBehaviour {
                         Log($"player success collision skipped because action {powerupScript.getActionType().dir} different from pressed {dir}, for: {powerupScript.name}");
                         continue;
                     }
+                    PowerupManager.Instance.startPowerup();
 					powerupScript.changeState(PowerupAScript.STATE.PlayerResolvedSuccessfully);
-				break;
+                break;
 
 				default: 
                     throw new System.Exception("should never happen");
@@ -157,19 +197,10 @@ public class PlayerScript : LoggableMonoBehaviour {
         }
 
         // invoke events (used to trigger fmod sounds)
-        switch (dir) {
-            case ActionEnum.RIGHT: OnRightActionEvent.Invoke(); break;
-            case ActionEnum.DOWN:  OnDownActionEvent.Invoke();  break;
-            case ActionEnum.UP:    OnUpActionEvent.Invoke();    break;
-        }
-
+        PlaySFX(dir);
         // start the animation for the corresponding action
         ResetAllAnimationTriggers();
-        switch (dir) {
-            case ActionEnum.RIGHT: animator.SetTrigger(TRIGGER_START_RIGHT); break;
-            case ActionEnum.DOWN:  animator.SetTrigger(TRIGGER_START_DOWN);  break;
-            case ActionEnum.UP:    animator.SetTrigger(TRIGGER_START_UP);    break;
-        }
+        PlayAnimation(dir);
     }
 
     public void OnNewGame() {
@@ -189,6 +220,22 @@ public class PlayerScript : LoggableMonoBehaviour {
         animator.ResetTrigger(TRIGGER_START_RIGHT);
         animator.ResetTrigger(TRIGGER_START_DOWN);
         animator.ResetTrigger(TRIGGER_START_FAILURE);
+    }
+
+    public void PlaySFX(ActionEnum dir){
+        switch (dir) {
+            case ActionEnum.RIGHT: OnRightActionEvent.Invoke(); break;
+            case ActionEnum.DOWN:  OnDownActionEvent.Invoke();  break;
+            case ActionEnum.UP:    OnUpActionEvent.Invoke();    break;
+        }
+    }
+
+    public void PlayAnimation(ActionEnum dir){
+        switch (dir) {
+            case ActionEnum.RIGHT: animator.SetTrigger(TRIGGER_START_RIGHT); break;
+            case ActionEnum.DOWN:  animator.SetTrigger(TRIGGER_START_DOWN);  break;
+            case ActionEnum.UP:    animator.SetTrigger(TRIGGER_START_UP);    break;
+        }
     }
 
     public void HandlePlayerFootstep()
