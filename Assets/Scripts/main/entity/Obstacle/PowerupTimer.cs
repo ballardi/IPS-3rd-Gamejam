@@ -47,7 +47,6 @@ namespace PowerupManagement
 
         public void PauseSpawnRate(float PowerupLength)
         {
-            Debug.Log("In Pause Spawn Rate");
             isPowerup = true;
             _duration = Mathf.Clamp(PowerupLength, 0.0f, PowerupLength) * 60.0f; // 60 F is to account for frames
         }
