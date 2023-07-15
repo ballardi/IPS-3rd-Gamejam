@@ -17,12 +17,14 @@ namespace PowerupManagement
         /// <summary>
         /// Determines the maximum amount of seconds that the timer will run.
         /// </summary>
-        public const float MAXIMUM_SPAWN_RATE = 5.0f;
+        public const float MAXIMUM_SPAWN_RATE = 45.0f;
 
         /// <summary>
         /// Determines the minimium amount of seconds that the timer will run.
         /// </summary>
-        public const float MINIMUM_SPAWN_RATE = 3.0f;
+        public const float MINIMUM_SPAWN_RATE = 30.0f;
+
+        public const float POWERUP_LENGTH = 7.0f;
 
         /// <summary>
         /// The timer used to wait a certain amount of time before generating obstacles
@@ -48,11 +50,21 @@ namespace PowerupManagement
         {
             if (GameStateManager.instance.CurrentState != GameStateManager.STATE.PLAYING)
                 return;
-            
+            // this ticks the timer
             bool timerAlerted = _timer.UpdateTimerProgress(Time.deltaTime);
             if (timerAlerted) {
                 NotifyOfPowerupTimerEnd();
             } 
+        }
+
+        public void startPowerup(){
+            isPowerup = true;
+            _timer.UpdateGameTimeBetweenAlerts(POWERUP_LENGTH);
+            _timer.ResetRemainingTimeToFullAmount();
+        }
+
+        public bool getPowerupState(){
+            return isPowerup;
         }
 
         /// <summary>
@@ -62,16 +74,23 @@ namespace PowerupManagement
         /// </summary>
         public void NotifyOfPowerupTimerEnd()
         {
-            Log("The PowerupTimer has notified the PowerupManager that the timer has ended");
+            if(isPowerup){
+                isPowerup = false;
+                RandomizeSpawnRate();
+                _timer.ResetRemainingTimeToFullAmount();
+            } else {
+                Log("The PowerupTimer has notified the PowerupManager that the timer has ended");
 
-            ObstacleManager.Instance.SpawnAPowerUpInsteadOfObstacleNextTime();
-            Log("Told the PowerupSpawnerScript to spawn an obstacle");
+                ObstacleManager.Instance.SpawnAPowerUpInsteadOfObstacleNextTime();
+                Log("Told the PowerupSpawnerScript to spawn an obstacle");
 
-            RandomizeSpawnRate();
-            Log("Increased the powerup spawn rate, if possible");
+                RandomizeSpawnRate();
+                Log("Increased the powerup spawn rate, if possible");
 
-            _timer.ResetRemainingTimeToFullAmount();
-            Log("Restarted the PowerupTimer");
+                _timer.ResetRemainingTimeToFullAmount();
+                Log("Restarted the PowerupTimer");
+            }
+            
         }
 
         /// <summary>
@@ -79,6 +98,7 @@ namespace PowerupManagement
         /// </summary>
         public void OnGameStart()
         {
+            isPowerup = false;
             _timer.UpdateGameTimeBetweenAlerts(MAXIMUM_SPAWN_RATE);
             _timer.ResetRemainingTimeToFullAmount();
             Log("Started the PowerupTimer");
