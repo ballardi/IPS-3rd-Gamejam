@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="Snapshot" id="{44c14bfc-556a-4b32-a7da-9fabab6baa2b}">
+		<property name="name">
+			<value>SFX On</value>
+		</property>
+		<property name="behavior">
+			<value>1</value>
+		</property>
+		<relationship name="mixer">
+			<destination>{15e7a81d-a3ba-41c9-98ea-ab0f4cf724ff}</destination>
+		</relationship>
+		<relationship name="automatableProperties">
+			<destination>{574c4cc6-56a7-4665-9c5f-8072524138d7}</destination>
+		</relationship>
+		<relationship name="markerTracks">
+			<destination>{1a852703-77d9-420f-8e4f-0f913578e179}</destination>
+		</relationship>
+		<relationship name="timeline">
+			<destination>{40dd8676-a993-44c9-9cae-65261f0d8bd9}</destination>
+		</relationship>
+		<relationship name="snapshotMasterTrack">
+			<destination>{b5136b5f-5483-44f3-8dc7-b68fa122276b}</destination>
+		</relationship>
+	</object>
+	<object class="EventAutomatableProperties" id="{574c4cc6-56a7-4665-9c5f-8072524138d7}" />
+	<object class="MarkerTrack" id="{1a852703-77d9-420f-8e4f-0f913578e179}" />
+	<object class="Timeline" id="{40dd8676-a993-44c9-9cae-65261f0d8bd9}" />
+	<object class="SnapshotMasterTrack" id="{b5136b5f-5483-44f3-8dc7-b68fa122276b}" />
+</objects>
