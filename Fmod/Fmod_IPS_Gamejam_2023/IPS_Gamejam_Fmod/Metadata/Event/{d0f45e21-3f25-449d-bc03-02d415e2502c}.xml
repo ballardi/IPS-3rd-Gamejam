@@ -103,6 +103,7 @@
 		</relationship>
 		<relationship name="sounds">
 			<destination>{b980e423-29b5-4e24-8aff-f451364f5066}</destination>
+			<destination>{68547437-ce49-4b34-a91a-60f85c567aad}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{908e44c2-34cc-4253-b8c8-0346de696e9c}">
@@ -153,6 +154,7 @@
 			<destination>{fd49fca7-2ecd-42df-a2a7-837407045d7d}</destination>
 		</relationship>
 	</object>
+	<object class="SilenceSound" id="{68547437-ce49-4b34-a91a-60f85c567aad}" />
 	<object class="MixerBusEffectChain" id="{a5378846-50c8-4d5e-955e-bc831010c5ad}">
 		<relationship name="effects">
 			<destination>{e78fdb41-636e-479f-b4f1-a3b03e2d7d43}</destination>
