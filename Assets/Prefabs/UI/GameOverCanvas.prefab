@@ -1997,7 +1997,7 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontSize: 130
-  m_fontSizeBase: 130
+  m_fontSizeBase: 119.1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2507,7 +2507,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8424818280187355036, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameOverScreenScript, Main
         m_MethodName: OnRestartButtonClick
         m_Mode: 1
@@ -2519,7 +2519,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 525242468906852112}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
         m_MethodName: Play
         m_Mode: 1
@@ -2531,9 +2531,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 884984221974968885}
-        m_TargetAssemblyTypeName: FMODUnity.StudioGlobalParameterTrigger, FMODUnity
-        m_MethodName: TriggerParameters
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: GameOverScreenScript, Main
+        m_MethodName: OnRestartButtonClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
