@@ -15,6 +15,6 @@ public class ParallaxParent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        pseudoVelocity = GameStateManager.instance.GetCurrentSpeed();
+        pseudoVelocity = GameStateManager.instance.GetDistanceToTravelThisFrame();
     }
 }

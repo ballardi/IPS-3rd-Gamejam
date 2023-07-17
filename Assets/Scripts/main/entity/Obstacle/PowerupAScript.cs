@@ -7,7 +7,7 @@ using PowerupManagement;
 public class PowerupAScript : MonoBehaviour {
 
     public float startSpeed = 1;
-    private float currentSpeed;
+    private float distanceToTravel;
     private STATE currentState;
 
     public enum STATE { Normal, PlayerResolvedSuccessfully, PlayerFailed };
@@ -26,16 +26,16 @@ public class PowerupAScript : MonoBehaviour {
     }
 
     public void InitializeNewGame() {
-        currentSpeed = GameStateManager.instance.GetCurrentSpeed();
+        distanceToTravel = GameStateManager.instance.GetDistanceToTravelThisFrame();
         currentState = STATE.Normal;
     }
 
     void Update() {
-        currentSpeed = GameStateManager.instance.GetCurrentSpeed();
+        distanceToTravel = GameStateManager.instance.GetDistanceToTravelThisFrame();
         //First one should handle position movement
         if (currentState == STATE.Normal || currentState == STATE.PlayerResolvedSuccessfully) {
             Vector3 currentPos = transform.localPosition;
-            transform.localPosition = new Vector3(currentPos.x - currentSpeed, currentPos.y, currentPos.z);
+            transform.localPosition = new Vector3(currentPos.x - distanceToTravel, currentPos.y, currentPos.z);
         }
         //This should handle the timer notification/dissappearance
         if (currentState == STATE.PlayerResolvedSuccessfully) {

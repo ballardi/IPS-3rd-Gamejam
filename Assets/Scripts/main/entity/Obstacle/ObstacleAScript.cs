@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
 
     public float startSpeed = 1;
-    private float currentSpeed;
+    private float distanceToTravel;
     private STATE currentState;
 
     public enum STATE { Normal, PlayerResolvedSuccessfully, PlayerFailed, Hidden };
@@ -21,9 +21,9 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
 
     void Update() {
         if (currentState == STATE.Normal || currentState == STATE.PlayerResolvedSuccessfully) {
-            currentSpeed = GameStateManager.instance.GetCurrentSpeed();
+            distanceToTravel = GameStateManager.instance.GetDistanceToTravelThisFrame();
             Vector3 currentPos = transform.localPosition;
-            transform.localPosition = new Vector3(currentPos.x - currentSpeed, currentPos.y, currentPos.z);
+            transform.localPosition = new Vector3(currentPos.x - distanceToTravel, currentPos.y, currentPos.z);
         }
     }
 
@@ -33,7 +33,7 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
 
         switch (newState) {
             case STATE.Normal: // basically what to do when initialized
-                currentSpeed = GameStateManager.instance.GetCurrentSpeed();
+                distanceToTravel = GameStateManager.instance.GetDistanceToTravelThisFrame();
                 gameObject.GetComponentInChildren<SpriteRenderer>().color = startingColor;
                 gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
@@ -46,7 +46,7 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
                 break;
             case STATE.Hidden:
-                currentSpeed = GameStateManager.instance.GetCurrentSpeed();
+                distanceToTravel = GameStateManager.instance.GetDistanceToTravelThisFrame();
                 gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 break;
