@@ -26,7 +26,13 @@ public class GameStateManager : MonoBehaviour
     public float MaxSpeed;
     public float SpeedAdditionPerSecond;
     public float MultiplierFromTimeToScore;
-    private float speedUpTimer;
+    private float timeSinceLastSpeedIncrease;
+
+    // fps we don't want unity to exceed
+    public int targetFrameRate;
+
+    // how much should one unit of speed convert to in distance of default units on the x axis
+    public float SpeedToDistanceConversionMultiplier;
 
     public UnityEvent OnTitleScreenStartEvent;
     public UnityEvent OnNewGameEvent;
@@ -39,6 +45,10 @@ public class GameStateManager : MonoBehaviour
         Assert.IsNull(instance);
         instance = this; // singleton setup
 
+        Assert.IsTrue(targetFrameRate > 0);
+        Application.targetFrameRate = targetFrameRate;
+
+        Assert.IsTrue(SpeedToDistanceConversionMultiplier > 0);
         Assert.IsTrue(InitialSpeed > 0);
         Assert.IsTrue(SpeedAdditionPerSecond >= 0);
         Assert.IsTrue(MultiplierFromTimeToScore > 0);
@@ -55,24 +65,27 @@ public class GameStateManager : MonoBehaviour
         if (CurrentState == STATE.PLAYING)
         {
             // figure out how much the speed and score should increase by
-            float SpeedAddition = 0;
-            speedUpTimer += Time.deltaTime;
-            while (speedUpTimer >= 1.0f){
-                SpeedAddition += SpeedAdditionPerSecond;
-                speedUpTimer -= 1.0f;
+            float speedIncreaseAmount = 0;
+            timeSinceLastSpeedIncrease += Time.deltaTime;
+            while (timeSinceLastSpeedIncrease >= 1.0f){
+                speedIncreaseAmount += SpeedAdditionPerSecond;
+                timeSinceLastSpeedIncrease -= 1.0f;
             }
+
+
             // increase the speed by that amount, but only up to the max speed
-            _CurrentSpeed = Mathf.Clamp(_CurrentSpeed + SpeedAddition, InitialSpeed, MaxSpeed);
+            _CurrentSpeed = Mathf.Clamp(_CurrentSpeed + speedIncreaseAmount, InitialSpeed, MaxSpeed);
+            
             // increase the score by the distance traveled (calculated by speed before any update)
             _CurrentScoreFloat += _CurrentSpeed * Time.deltaTime * MultiplierFromTimeToScore;
             CurrentScore = Mathf.FloorToInt(_CurrentScoreFloat);
         }
     }
 
-    public float GetCurrentSpeed()
+    public float GetDistanceToTravelThisFrame()
     {
         if (CurrentState == STATE.PLAYING)
-            return _CurrentSpeed;
+            return _CurrentSpeed * Time.deltaTime * SpeedToDistanceConversionMultiplier;
         else
             return 0;
     }
@@ -98,7 +111,7 @@ public class GameStateManager : MonoBehaviour
                 _CurrentSpeed = InitialSpeed;
                 _CurrentScoreFloat = 0;
                 CurrentScore = 0;
-                speedUpTimer = 0;
+                timeSinceLastSpeedIncrease = 0;
                 PauseButtonScript.instance.Show(true);
                 PlayerScript.instance.OnNewGame();
                 ObstacleManager.Instance.OnGameStart();
