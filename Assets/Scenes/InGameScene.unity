@@ -319,6 +319,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerupManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2518866839478763287, guid: 62c2ed6187cbe2b43a12f1993214afb6, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 4305292960843026373}
+    - target: {fileID: 2518866839478763287, guid: 62c2ed6187cbe2b43a12f1993214afb6, type: 3}
+      propertyPath: powerUpIndicator
+      value: 
+      objectReference: {fileID: 4305292960843026372}
     - target: {fileID: 7380993866572695555, guid: 62c2ed6187cbe2b43a12f1993214afb6, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -734,6 +742,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db48cac18f96594391fb580bca9eb10, type: 3}
+--- !u!1 &4305292960843026372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8718001980086106483, guid: 6db48cac18f96594391fb580bca9eb10, type: 3}
+  m_PrefabInstance: {fileID: 4305292960843026371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4305292960843026373 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1847429072608645536, guid: 6db48cac18f96594391fb580bca9eb10, type: 3}
+  m_PrefabInstance: {fileID: 4305292960843026371}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5696537455079389770
 PrefabInstance:
   m_ObjectHideFlags: 0

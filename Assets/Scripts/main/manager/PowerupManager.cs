@@ -27,14 +27,17 @@ namespace PowerupManagement
 
         public const float POWERUP_LENGTH = 7.0f;
 
+        public const float POWERUP_FLASHING_LENGTH = 3.0f;
+
         /// <summary>
         /// The timer used to wait a certain amount of time before generating obstacles
         /// </summary>
         [SerializeField] private Timer2 _timer;
 
         private bool isPowerup = false;
+        [SerializeField] private PowerupIndicator indicator;
 
-        [SerializeField] private GameObject powerUpIndicator; 
+       
 
         /// <summary>
         /// Sets up this manager's singleton and creates the powerup timer
@@ -47,9 +50,6 @@ namespace PowerupManagement
             );
             Instance = this;
             _timer = new Timer2(MAXIMUM_SPAWN_RATE);
-
-            Assert.IsNotNull(powerUpIndicator);
-            powerUpIndicator.SetActive(false);
         }
 
         private void Update()
@@ -65,7 +65,7 @@ namespace PowerupManagement
 
         public void startPowerup(){
             isPowerup = true;
-            powerUpIndicator.SetActive(true);
+            indicator.StartPowerupIndicator(POWERUP_FLASHING_LENGTH, POWERUP_LENGTH);
             _timer.UpdateGameTimeBetweenAlerts(POWERUP_LENGTH);
             _timer.ResetRemainingTimeToFullAmount();
         }
@@ -83,7 +83,7 @@ namespace PowerupManagement
         {
             if(isPowerup){
                 isPowerup = false;
-                powerUpIndicator.SetActive(false);
+                indicator.EndPowerupIndicator();
                 RandomizeSpawnRate();
                 _timer.ResetRemainingTimeToFullAmount();
             } else {
@@ -107,6 +107,7 @@ namespace PowerupManagement
         public void OnGameStart()
         {
             isPowerup = false;
+            indicator.EndPowerupIndicator();
             _timer.UpdateGameTimeBetweenAlerts(MAXIMUM_SPAWN_RATE);
             _timer.ResetRemainingTimeToFullAmount();
             Log("Started the PowerupTimer");
