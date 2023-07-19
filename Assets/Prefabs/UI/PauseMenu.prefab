@@ -192,7 +192,8 @@ GameObject:
   - component: {fileID: 7231983477097556673}
   - component: {fileID: 122207775251148981}
   - component: {fileID: 647586740186052331}
-  - component: {fileID: 247085315556439732}
+  - component: {fileID: 9140821841394665052}
+  - component: {fileID: 7682890048004513939}
   m_Layer: 5
   m_Name: TitleScreenButton
   m_TagString: Untagged
@@ -327,8 +328,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 247085315556439732}
-        m_TargetAssemblyTypeName: FMODUnity.StudioGlobalParameterTrigger, FMODUnity
+      - m_Target: {fileID: 7682890048004513939}
+        m_TargetAssemblyTypeName: FMODUnity.StudioParameterTrigger, FMODUnity
         m_MethodName: TriggerParameters
         m_Mode: 1
         m_Arguments:
@@ -401,7 +402,7 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!114 &247085315556439732
+--- !u!114 &9140821841394665052
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -410,13 +411,51 @@ MonoBehaviour:
   m_GameObject: {fileID: 2508312921804191308}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b0e04e2572f9a940a47465f6f3c2f00, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Parameter: Music Progress
+  EventReference:
+    Guid:
+      Data1: 1456991281
+      Data2: 1334609466
+      Data3: -1214329427
+      Data4: 818202736
+    Path: event:/Music Events/Music
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &7682890048004513939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2508312921804191308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Emitters:
+  - Target: {fileID: 9140821841394665052}
+    Params:
+    - Name: Music Progress
+      Value: 0.5
+  - Target: {fileID: 647586740186052331}
+    Params: []
+  - Target: {fileID: 122207775251148981}
+    Params: []
   TriggerEvent: 0
-  Value: 0.5
 --- !u!1 &3680407579864192946
 GameObject:
   m_ObjectHideFlags: 0

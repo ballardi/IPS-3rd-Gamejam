@@ -155,7 +155,8 @@ GameObject:
   - component: {fileID: 6189439614417026170}
   - component: {fileID: 1069180226779844189}
   - component: {fileID: 2027751715258945731}
-  - component: {fileID: 809689805918686334}
+  - component: {fileID: 8466143714113901674}
+  - component: {fileID: 4997332637172709314}
   m_Layer: 5
   m_Name: TitleScreenButton
   m_TagString: Untagged
@@ -179,9 +180,9 @@ RectTransform:
   m_Father: {fileID: 5040267537060722339}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 491.4589, y: -37.1411}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 167.0822, y: 74.2822}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8081351783368106934
@@ -290,8 +291,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 809689805918686334}
-        m_TargetAssemblyTypeName: FMODUnity.StudioGlobalParameterTrigger, FMODUnity
+      - m_Target: {fileID: 4997332637172709314}
+        m_TargetAssemblyTypeName: FMODUnity.StudioParameterTrigger, FMODUnity
         m_MethodName: TriggerParameters
         m_Mode: 1
         m_Arguments:
@@ -333,7 +334,7 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!114 &809689805918686334
+--- !u!114 &8466143714113901674
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -342,13 +343,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 1157374363386552094}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b0e04e2572f9a940a47465f6f3c2f00, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Parameter: Music Progress
+  EventReference:
+    Guid:
+      Data1: 1456991281
+      Data2: 1334609466
+      Data3: -1214329427
+      Data4: 818202736
+    Path: event:/Music Events/Music
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &4997332637172709314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157374363386552094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Emitters:
+  - Target: {fileID: 8466143714113901674}
+    Params:
+    - Name: Music Progress
+      Value: 0.5
+  - Target: {fileID: 2027751715258945731}
+    Params: []
   TriggerEvent: 0
-  Value: 0.5
 --- !u!1 &1317371051244263943
 GameObject:
   m_ObjectHideFlags: 0
@@ -812,7 +849,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6892931856483664456
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1202,9 +1239,9 @@ RectTransform:
   m_Father: {fileID: 5615645231944360729}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 183.795, y: -64.883545}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 186.5762, y: 69.7671}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9124175824796579978
@@ -1277,9 +1314,9 @@ RectTransform:
   m_Father: {fileID: 5615645231944360729}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 183.795, y: -273.2735}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 283.25, y: 115.9018}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3728996089683398322
@@ -2071,9 +2108,9 @@ RectTransform:
   m_Father: {fileID: 5615645231944360729}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 183.795, y: -157.54485}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 289.0791, y: 115.5555}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5173761636423891981
@@ -2396,7 +2433,8 @@ GameObject:
   - component: {fileID: 665458205422103880}
   - component: {fileID: 3487725353416608302}
   - component: {fileID: 525242468906852112}
-  - component: {fileID: 884984221974968885}
+  - component: {fileID: 8752534553290515748}
+  - component: {fileID: 8059139425875770205}
   m_Layer: 5
   m_Name: TitleScreenButton (1)
   m_TagString: Untagged
@@ -2420,9 +2458,9 @@ RectTransform:
   m_Father: {fileID: 5040267537060722339}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 708.5411, y: -37.1411}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 167.0822, y: 74.2822}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6009335758188211764
@@ -2519,7 +2557,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 525242468906852112}
         m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
         m_MethodName: Play
         m_Mode: 1
@@ -2531,9 +2569,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameOverScreenScript, Main
-        m_MethodName: OnRestartButtonClick
+      - m_Target: {fileID: 8059139425875770205}
+        m_TargetAssemblyTypeName: FMODUnity.StudioParameterTrigger, FMODUnity
+        m_MethodName: TriggerParameters
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2574,7 +2612,7 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!114 &884984221974968885
+--- !u!114 &8752534553290515748
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2583,13 +2621,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 6883486229291510147}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b0e04e2572f9a940a47465f6f3c2f00, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Parameter: Music Progress
+  EventReference:
+    Guid:
+      Data1: 1456991281
+      Data2: 1334609466
+      Data3: -1214329427
+      Data4: 818202736
+    Path: event:/Music Events/Music
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &8059139425875770205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6883486229291510147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  Emitters:
+  - Target: {fileID: 8752534553290515748}
+    Params:
+    - Name: Music Progress
+      Value: 1.5
+  - Target: {fileID: 525242468906852112}
+    Params: []
   TriggerEvent: 0
-  Value: 1.5
 --- !u!1 &7140704855609335969
 GameObject:
   m_ObjectHideFlags: 0
