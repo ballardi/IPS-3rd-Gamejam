@@ -158,23 +158,22 @@ public class PlayerScript : LoggableMonoBehaviour {
         int collisionCount = SuccessCollider.OverlapCollider(contactFilter, collisions);
         for (int i = 0; i<collisionCount; i++) {
             GameObject collisionObj = collisions[i].gameObject;
-            Log($"player success collision {i} of {collisionCount}: {collisionObj.name} ({collisionObj.tag})");
+            string logText = $"player ({(isPoweredup ? "powered up" : "not powered up")}) success collision {i+1} of {collisionCount}: {collisionObj.name} (instanceid: {collisionObj.GetInstanceID()}, tag:{collisionObj.tag}). ";
            
-            Log($"Is the player powered up? {isPoweredup}");
             switch (collisionObj.tag) {
                 case "Obstacle":
                     ObstacleAScript obstacleScript = collisionObj.GetComponentInChildren<ObstacleAScript>();
                     // skip collisions unless the obstacle is in normal state
                     if (obstacleScript.GetCurrentState() != ObstacleAScript.STATE.Normal) {
-                        Log($"player success collision skipped because obstacle in ignored state {obstacleScript.GetCurrentState()}, for: {obstacleScript.name}");
+                        Log(logText + $"skipped because obstacle in ignored state {obstacleScript.GetCurrentState()}.");
                         continue;
                     }
                     // skip collisions if the player used the wrong key
                     if (obstacleScript.getActionType().dir != dir && !isPoweredup) {
-                        Log($"player success collision skipped because action {obstacleScript.getActionType().dir} different from pressed {dir}, for: {obstacleScript.name}");
+                        Log(logText + $"skipped because action {obstacleScript.getActionType().dir} different from pressed {dir}.");
                         continue;
                     }
-                    Log($"player success collision with: {obstacleScript.name}");
+                    Log(logText + "obstacle collision resolved.");
                     obstacleScript.HandlePlayerResolvedThisObstacleSuccessfully();
                     break;
 
@@ -182,9 +181,10 @@ public class PlayerScript : LoggableMonoBehaviour {
                     PowerupAScript powerupScript = collisionObj.GetComponentInChildren<PowerupAScript>();
                     // skip collisions if the player used the wrong key
                     if (powerupScript.getActionType().dir != dir) {
-                        Log($"player success collision skipped because action {powerupScript.getActionType().dir} different from pressed {dir}, for: {powerupScript.name}");
+                        Log(logText + $"skipped because action {powerupScript.getActionType().dir} different from pressed {dir}.");
                         continue;
                     }
+                    Log(logText + "powerup collision resolved.");
                     PowerupManager.Instance.startPowerup();
 					powerupScript.changeState(PowerupAScript.STATE.PlayerResolvedSuccessfully);
                 break;

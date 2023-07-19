@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 1507360330557714030}
   - component: {fileID: 785001121900909914}
   - component: {fileID: 4416275718621243141}
-  - component: {fileID: 6408531972717635640}
-  - component: {fileID: 1641944799541811935}
-  - component: {fileID: 4082288633500379650}
+  - component: {fileID: 3167101623835057486}
+  - component: {fileID: 4078393452156190718}
+  - component: {fileID: 1872699509580243081}
   m_Layer: 0
   m_Name: GameStateManager
   m_TagString: Untagged
@@ -38,7 +38,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &798907196393136877
 MonoBehaviour:
@@ -73,6 +73,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 3167101623835057486}
+        m_TargetAssemblyTypeName: FMODUnity.StudioParameterTrigger, FMODUnity
+        m_MethodName: TriggerParameters
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnNewGameEvent:
     m_PersistentCalls:
       m_Calls:
@@ -88,8 +100,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1641944799541811935}
-        m_TargetAssemblyTypeName: FMODUnity.StudioGlobalParameterTrigger, FMODUnity
+      - m_Target: {fileID: 4078393452156190718}
+        m_TargetAssemblyTypeName: FMODUnity.StudioParameterTrigger, FMODUnity
         m_MethodName: TriggerParameters
         m_Mode: 1
         m_Arguments:
@@ -157,7 +169,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4082288633500379650}
+      - m_Target: {fileID: 1872699509580243081}
         m_TargetAssemblyTypeName: FMODUnity.StudioGlobalParameterTrigger, FMODUnity
         m_MethodName: TriggerParameters
         m_Mode: 1
@@ -328,7 +340,7 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!114 &6408531972717635640
+--- !u!114 &3167101623835057486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -337,14 +349,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 9066671052354037128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b0e04e2572f9a940a47465f6f3c2f00, type: 3}
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Parameter: Music Progress
+  Emitters:
+  - Target: {fileID: 4416275718621243141}
+    Params:
+    - Name: Music Progress
+      Value: 0.5
+  - Target: {fileID: 785001121900909914}
+    Params: []
+  - Target: {fileID: 1507360330557714030}
+    Params: []
+  - Target: {fileID: 4635468554548882957}
+    Params: []
+  - Target: {fileID: 6649753680322871826}
+    Params: []
   TriggerEvent: 0
-  Value: 0.5
---- !u!114 &1641944799541811935
+--- !u!114 &4078393452156190718
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -353,14 +376,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 9066671052354037128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b0e04e2572f9a940a47465f6f3c2f00, type: 3}
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Parameter: Music Progress
+  Emitters:
+  - Target: {fileID: 4416275718621243141}
+    Params:
+    - Name: Music Progress
+      Value: 1.5
+  - Target: {fileID: 785001121900909914}
+    Params: []
+  - Target: {fileID: 1507360330557714030}
+    Params: []
+  - Target: {fileID: 4635468554548882957}
+    Params: []
+  - Target: {fileID: 6649753680322871826}
+    Params: []
   TriggerEvent: 0
-  Value: 1.5
---- !u!114 &4082288633500379650
+--- !u!114 &1872699509580243081
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -369,10 +403,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 9066671052354037128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b0e04e2572f9a940a47465f6f3c2f00, type: 3}
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Parameter: Music Progress
+  Emitters:
+  - Target: {fileID: 4416275718621243141}
+    Params:
+    - Name: Music Progress
+      Value: 3.5
+  - Target: {fileID: 785001121900909914}
+    Params: []
+  - Target: {fileID: 1507360330557714030}
+    Params: []
+  - Target: {fileID: 4635468554548882957}
+    Params: []
+  - Target: {fileID: 6649753680322871826}
+    Params: []
   TriggerEvent: 0
-  Value: 3.5

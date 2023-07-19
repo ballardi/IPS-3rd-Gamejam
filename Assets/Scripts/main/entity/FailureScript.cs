@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class FailureScript : MonoBehaviour
+public class FailureScript : LoggableMonoBehaviour
 {
      // for detecting failure collisions
     public BoxCollider2D FailureCollider;
@@ -35,6 +35,7 @@ public class FailureScript : MonoBehaviour
             if (obstacle.GetCurrentState() != ObstacleAScript.STATE.Normal)
                 continue;
 
+            Log($"failure collision with {obstacle.name} (instanceid: {obstacle.GetInstanceID()}) (state: {obstacle.GetCurrentState()}) (collider enabled: {obstacle.GetComponent<BoxCollider2D>().enabled})");
             obstacle.HandlePlayerFailedBecauseOfThisObstacle();
             playerScript.OnFailure();
             GameStateManager.instance.OnGameOver();
