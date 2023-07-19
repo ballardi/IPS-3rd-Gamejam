@@ -57,7 +57,6 @@ public class ObjectPool : LoggableMonoBehaviour
         AvailableObjects.Remove(obj);
 
         obj.GetComponent<IPoolable>().InitializeOnUse();
-        obj.SetActive(true);
         return obj;
     }
 

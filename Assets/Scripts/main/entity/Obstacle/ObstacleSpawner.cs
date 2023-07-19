@@ -70,6 +70,7 @@ namespace ObstacleManagement
                 default: throw new System.Exception("should never happen");
             }
 
+            obstacleCreated.SetActive(true);
         }
     }
 }
