@@ -1,5 +1,6 @@
 using UnityEngine;
 using ObstacleManagement;
+using UnityEngine.Assertions;
 
 namespace PowerupManagement
 {
@@ -26,12 +27,17 @@ namespace PowerupManagement
 
         public const float POWERUP_LENGTH = 7.0f;
 
+        public const float POWERUP_FLASHING_LENGTH = 3.0f;
+
         /// <summary>
         /// The timer used to wait a certain amount of time before generating obstacles
         /// </summary>
         [SerializeField] private Timer2 _timer;
 
         private bool isPowerup = false;
+        [SerializeField] private PowerupIndicator indicator;
+
+       
 
         /// <summary>
         /// Sets up this manager's singleton and creates the powerup timer
@@ -59,6 +65,7 @@ namespace PowerupManagement
 
         public void startPowerup(){
             isPowerup = true;
+            indicator.StartPowerupIndicator(POWERUP_FLASHING_LENGTH, POWERUP_LENGTH);
             _timer.UpdateGameTimeBetweenAlerts(POWERUP_LENGTH);
             _timer.ResetRemainingTimeToFullAmount();
         }
@@ -76,6 +83,7 @@ namespace PowerupManagement
         {
             if(isPowerup){
                 isPowerup = false;
+                indicator.EndPowerupIndicator();
                 RandomizeSpawnRate();
                 _timer.ResetRemainingTimeToFullAmount();
             } else {
@@ -99,6 +107,7 @@ namespace PowerupManagement
         public void OnGameStart()
         {
             isPowerup = false;
+            indicator.EndPowerupIndicator();
             _timer.UpdateGameTimeBetweenAlerts(MAXIMUM_SPAWN_RATE);
             _timer.ResetRemainingTimeToFullAmount();
             Log("Started the PowerupTimer");
