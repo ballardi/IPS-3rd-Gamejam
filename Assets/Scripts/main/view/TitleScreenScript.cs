@@ -13,6 +13,10 @@ public class TitleScreenScript : MonoBehaviour
     public UnityEngine.UI.Button SoundToggleButton;
     public UnityEngine.UI.Button MusicToggleButton;
 
+    public UnityEngine.UI.Button PausePanelSoundToggleButton;
+    public UnityEngine.UI.Button PausePanelMusicToggleButton;
+
+
     public UnityEvent OnSoundOn;
     public UnityEvent OnSoundOff;
     public UnityEvent OnMusicOn;
@@ -31,6 +35,11 @@ public class TitleScreenScript : MonoBehaviour
         Assert.IsNotNull(objToShow);
         IsSoundOn = true;
         IsMusicOn = true;
+
+        Assert.IsNotNull(SoundToggleButton);
+        Assert.IsNotNull(MusicToggleButton);
+        Assert.IsNotNull(PausePanelSoundToggleButton);
+        Assert.IsNotNull(PausePanelMusicToggleButton);
     }
 
     public void Show(bool show)
@@ -64,9 +73,11 @@ public class TitleScreenScript : MonoBehaviour
         UpdateSoundAndMusicToggleText();
     }
 
-    private void UpdateSoundAndMusicToggleText() {
+    public void UpdateSoundAndMusicToggleText() {
         SoundToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsSoundOn ? "SFX Off" : "SFX On";
         MusicToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsMusicOn ? "Music Off" : "Music On";
+        PausePanelSoundToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsSoundOn ? "SFX Off" : "SFX On";
+        PausePanelMusicToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsMusicOn ? "Music Off" : "Music On";
     }
 
 }
