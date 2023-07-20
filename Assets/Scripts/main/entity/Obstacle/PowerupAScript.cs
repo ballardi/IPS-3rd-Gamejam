@@ -15,9 +15,6 @@ public class PowerupAScript : MonoBehaviour {
     [SerializeField]
     private ActionType ActionType;
 
-    [SerializeField]
-    private float powerupLength_seconds = 3.0f;
-
     private bool powerup_used = false;
 
     void Awake() {
