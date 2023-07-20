@@ -491,7 +491,7 @@ MonoBehaviour:
   m_Name: FMODStudioSettings
   m_EditorClassIdentifier: 
   switchSettingsMigration: 1
-  HasSourceProject: 1
+  HasSourceProject: 0
   HasPlatforms: 1
   sourceProjectPath: Fmod/Fmod_IPS_Gamejam_2023/IPS_Gamejam_Fmod/IPS_Gamejam_Fmod.fspro
   sourceBankPath: Fmod/Fmod_IPS_Gamejam_2023/IPS_Gamejam_Fmod/Build
