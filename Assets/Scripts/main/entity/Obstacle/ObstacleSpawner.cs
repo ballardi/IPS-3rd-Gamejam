@@ -21,7 +21,7 @@ namespace ObstacleManagement
         [SerializeField] private Transform _obstacleASpointPoint;
         [SerializeField] private Transform _obstacleBSpointPoint;
         [SerializeField] private Transform _obstacleCSpointPoint;
-        [SerializeField] private int[] previousObstacles = {-1,-1};
+        [SerializeField] private int[] previousObstacles;
 
         public ObjectPool poolA, poolB, poolC;
 
@@ -44,6 +44,11 @@ namespace ObstacleManagement
             Assert.IsNotNull(_obstacleASpointPoint);
             Assert.IsNotNull(_obstacleBSpointPoint);
             Assert.IsNotNull(_obstacleCSpointPoint);
+
+            previousObstacles =  new int[3];
+            previousObstacles[0] = -1;
+            previousObstacles[1] = -1;
+            previousObstacles[2] = -1;
         }
 
         /// <summary>
@@ -56,17 +61,19 @@ namespace ObstacleManagement
             // 1 is Right
             // 2 is down
             
-            bool thirdSameObstacle = true;
-            while (thirdSameObstacle){
-                if(randomObstacleType == previousObstacles[0] && 
-                randomObstacleType == previousObstacles[1] ){
+            bool fourthSameObstacle = true;
+            while (fourthSameObstacle){
+                if((randomObstacleType == previousObstacles[0] && 
+                randomObstacleType == previousObstacles[1] )&& 
+                randomObstacleType == previousObstacles[2] ){
                     randomObstacleType = Random.Range(0,3);
                 } else {
-                    thirdSameObstacle = false;
+                    fourthSameObstacle = false;
                 }
             }
             previousObstacles[0] = previousObstacles[1];
-            previousObstacles[1] = randomObstacleType;
+            previousObstacles[1] = previousObstacles[2];
+            previousObstacles[2] = randomObstacleType;
             
             
 
