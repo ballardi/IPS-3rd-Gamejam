@@ -40,7 +40,9 @@ public class PlayerScript : LoggableMonoBehaviour {
     public UnityEvent OnRightActionEvent;
     public UnityEvent OnDownActionEvent;
     public UnityEvent OnFootstepEvent;
-
+    public UnityEvent OnObstacleResolution;
+    public UnityEvent OnObstacleCollision;
+    public UnityEvent OnPowerupResolution;
 
     [Header("Debug Mode")]
     [SerializeField] private TextMeshProUGUI debugText;
@@ -174,6 +176,7 @@ public class PlayerScript : LoggableMonoBehaviour {
                         continue;
                     }
                     Log(logText + "obstacle collision resolved.");
+                    OnObstacleResolution.Invoke();
                     obstacleScript.HandlePlayerResolvedThisObstacleSuccessfully();
                     break;
 
@@ -186,7 +189,8 @@ public class PlayerScript : LoggableMonoBehaviour {
                     }
                     Log(logText + "powerup collision resolved.");
                     PowerupManager.Instance.startPowerup();
-					powerupScript.changeState(PowerupAScript.STATE.PlayerResolvedSuccessfully);
+                    OnPowerupResolution.Invoke();
+                    powerupScript.changeState(PowerupAScript.STATE.PlayerResolvedSuccessfully);
                 break;
 
 				default: 
@@ -211,6 +215,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     }
 
     public void OnFailure() {
+        OnObstacleCollision.Invoke();
         animator.SetTrigger(TRIGGER_START_FAILURE);
     }
 
