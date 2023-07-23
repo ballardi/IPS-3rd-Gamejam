@@ -23,11 +23,11 @@ public class FMODManager : MonoBehaviour
 
    IEnumerator CheckBanksLoaded()
    {
-    while (!FMODUnity.RuntimeManager.HaveAllBanksLoaded){
+    while (!FMODUnity.RuntimeManager.HasBankLoaded("Master.strings")){
         yield return null;
     }
 
-     if(FMODUnity.RuntimeManager.HaveAllBanksLoaded){
+     if(FMODUnity.RuntimeManager.HasBankLoaded("Master.strings")){
        SceneManager.LoadScene(1);
     }
 
