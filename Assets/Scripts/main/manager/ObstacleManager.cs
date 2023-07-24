@@ -10,12 +10,12 @@ namespace ObstacleManagement
         public static ObstacleManager Instance { private set; get; }
 
         /// Determines the amount of seconds that the timer will wait initially. This initial spawn rate duration will be decreased after each generated obstacle.
-        public const float INITIAL_SPAWN_RATE = 1.3f;
+        public const float INITIAL_SPAWN_RATE = 1.5f;
         /// Determines the amount of seconds that should be decreased from the timer duration after each generated obstacle.
         /// The spawn rate should not be decremented if the minimum spawn rate has been reached.
-        public const float SPAWN_RATE_DECREMENT = 0.015f;
+        public const float SPAWN_RATE_DECREMENT = 0.02f;
         /// Determines the minimium amount of seconds that the timer will run. After this rate has been reached, it cannot be decreased any more.
-        public const float MINIMUM_SPAWN_RATE = 0.805f;
+        public const float MINIMUM_SPAWN_RATE = 0.8f;
 
         private Timer2 _timer;
         private bool shouldSpawnPowerupNextTime;

@@ -38,7 +38,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &798907196393136877
 MonoBehaviour:
@@ -52,10 +52,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d67b2fad6086c47b7c411c02afaecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialSpeed: 0.8
+  InitialSpeed: 0.85
   MaxSpeed: 3
   SpeedAdditionPerSecond: 0.008
-  MultiplierFromTimeToScore: 40
+  MultiplierFromTimeToScore: 47
   targetFrameRate: 60
   SpeedToDistanceConversionMultiplier: 200
   OnTitleScreenStartEvent:
