@@ -111,6 +111,9 @@ public class GameStateManager : MonoBehaviour
                 foreach (GameObject obj in GameObject.FindGameObjectsWithTag("ObjectPool")) {
                     obj.GetComponent<ObjectPool>().OnStartNewGame();
                 }
+                foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Powerup")) {
+                    obj.GetComponent<PowerupAScript>().DespawnPowerup();
+                }
                 _CurrentSpeed = InitialSpeed;
                 _CurrentScoreFloat = 0;
                 CurrentScore = 0;
