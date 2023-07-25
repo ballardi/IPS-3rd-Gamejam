@@ -118,8 +118,6 @@ public class PlayerScript : LoggableMonoBehaviour {
 
         int collisionCount = SuccessCollider.OverlapCollider(contactFilter, collisions);
 
-        
-
         for (int i = 0; i<collisionCount; i++) {
             GameObject collisionObj = collisions[i].gameObject;
             ActionEnum dir = ActionEnum.UP;
@@ -130,6 +128,7 @@ public class PlayerScript : LoggableMonoBehaviour {
                     if (obstacleScript.GetCurrentState() != ObstacleAScript.STATE.Normal) {
                         continue;
                     }
+                    OnObstacleResolution.Invoke();
                     obstacleScript.HandlePlayerResolvedThisObstacleSuccessfully();
                     dir = obstacleScript.getActionType().dir;
                     PlaySFX(dir);
