@@ -19,7 +19,7 @@ public class PauseMenuScript : MonoBehaviour {
 
     public void Show(bool show) {
         if(show)
-            TitleScreenScript.instance.UpdateSoundAndMusicToggleText();
+            TitleScreenScript.instance.UpdateOptionsToggleText();
         objToShow.SetActive(show);
     }
 

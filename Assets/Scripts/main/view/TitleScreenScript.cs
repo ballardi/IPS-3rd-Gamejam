@@ -12,18 +12,22 @@ public class TitleScreenScript : MonoBehaviour
 
     public UnityEngine.UI.Button SoundToggleButton;
     public UnityEngine.UI.Button MusicToggleButton;
+    public UnityEngine.UI.Button CameraShakeToggleButton;
 
     public UnityEngine.UI.Button PausePanelSoundToggleButton;
     public UnityEngine.UI.Button PausePanelMusicToggleButton;
-
+    public UnityEngine.UI.Button PausePanelCameraShakeToggleButton;
 
     public UnityEvent OnSoundOn;
     public UnityEvent OnSoundOff;
     public UnityEvent OnMusicOn;
     public UnityEvent OnMusicOff;
+    public UnityEvent OnCameraShakeEnable;
+    public UnityEvent OnCameraShakeDisable;
 
     private bool IsSoundOn;
     private bool IsMusicOn;
+    private bool IsCameraShakeOn;
 
     public static TitleScreenScript instance;
 
@@ -35,16 +39,19 @@ public class TitleScreenScript : MonoBehaviour
         Assert.IsNotNull(objToShow);
         IsSoundOn = true;
         IsMusicOn = true;
+        IsCameraShakeOn = true;
 
         Assert.IsNotNull(SoundToggleButton);
         Assert.IsNotNull(MusicToggleButton);
+        Assert.IsNotNull(CameraShakeToggleButton);
         Assert.IsNotNull(PausePanelSoundToggleButton);
         Assert.IsNotNull(PausePanelMusicToggleButton);
+        Assert.IsNotNull(PausePanelCameraShakeToggleButton);
     }
 
     public void Show(bool show)
     {
-        UpdateSoundAndMusicToggleText();
+        UpdateOptionsToggleText();
         objToShow.SetActive(show);
         _blur.SetActive(show);
     }
@@ -61,7 +68,7 @@ public class TitleScreenScript : MonoBehaviour
             OnSoundOn.Invoke();
         else 
             OnSoundOff.Invoke();
-        UpdateSoundAndMusicToggleText();
+        UpdateOptionsToggleText();
     }
 
     public void OnMusicToggleClick() {
@@ -70,14 +77,25 @@ public class TitleScreenScript : MonoBehaviour
             OnMusicOn.Invoke();
         else
             OnMusicOff.Invoke();
-        UpdateSoundAndMusicToggleText();
+        UpdateOptionsToggleText();
     }
 
-    public void UpdateSoundAndMusicToggleText() {
-        SoundToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsSoundOn ? "SFX Off" : "SFX On";
-        MusicToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsMusicOn ? "Music Off" : "Music On";
-        PausePanelSoundToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsSoundOn ? "SFX Off" : "SFX On";
-        PausePanelMusicToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsMusicOn ? "Music Off" : "Music On";
+    public void OnCameraShakeToggleClick() {
+        IsCameraShakeOn = !IsCameraShakeOn;
+        if (IsCameraShakeOn)
+            OnCameraShakeEnable.Invoke();
+        else
+            OnCameraShakeDisable.Invoke();
+        UpdateOptionsToggleText();
+    }
+
+    public void UpdateOptionsToggleText() {
+        SoundToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsSoundOn ? "Turn SFX Off" : "Turn SFX On";
+        MusicToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsMusicOn ? "Turn Turn Music Off" : "Turn Music On";
+        CameraShakeToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsCameraShakeOn ? "Turn Camera Shake Off" : "Turn Camera Shake On";
+        PausePanelSoundToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsSoundOn ? "Turn SFX Off" : "Turn SFX On";
+        PausePanelMusicToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsMusicOn ? "Turn Music Off" : "Turn Music On";
+        PausePanelCameraShakeToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsCameraShakeOn ? "Turn Camera Shake Off" : "Turn Camera Shake On";
     }
 
 }
