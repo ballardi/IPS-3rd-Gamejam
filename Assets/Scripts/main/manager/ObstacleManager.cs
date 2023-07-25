@@ -76,7 +76,11 @@ namespace ObstacleManagement
             _timer.UpdateGameTimeBetweenAlerts(INITIAL_SPAWN_RATE);
             _timer.ResetRemainingTimeToFullAmount();
             shouldSpawnPowerupNextTime = false;
-            Log("Started the ObstacleTimer");
+
+            // spawn first obstacle immediately
+            ObstacleSpawner.Instance.SpawnObstacle();
+
+            Log("Started the ObstacleTimer and spawned a first obstacle");
         }
 
         public void SpawnAPowerUpInsteadOfObstacleNextTime() {

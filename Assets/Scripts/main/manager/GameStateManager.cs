@@ -108,6 +108,9 @@ public class GameStateManager : MonoBehaviour
         {
             case STATE.GAMEOVER:
             case STATE.TITLE_SCREEN:
+                foreach (GameObject obj in GameObject.FindGameObjectsWithTag("ObjectPool")) {
+                    obj.GetComponent<ObjectPool>().OnStartNewGame();
+                }
                 _CurrentSpeed = InitialSpeed;
                 _CurrentScoreFloat = 0;
                 CurrentScore = 0;
@@ -116,9 +119,6 @@ public class GameStateManager : MonoBehaviour
                 PlayerScript.instance.OnNewGame();
                 ObstacleManager.Instance.OnGameStart();
                 PowerupManager.Instance.OnGameStart();
-                foreach (GameObject obj in GameObject.FindGameObjectsWithTag("ObjectPool")) {
-                    obj.GetComponent<ObjectPool>().OnStartNewGame();
-                }
                 OnNewGameEvent.Invoke();
                 break;
             case STATE.PLAYING:
@@ -162,7 +162,6 @@ public class GameStateManager : MonoBehaviour
                 OnGameoverEvent.Invoke();
                 PauseButtonScript.instance.Show(false);
                 GameOverScreenScript.instance.Show(true);
-                // PowerupManager.Instance.OnGameEnd();
                 break;
             case STATE.PAUSED:
                 throw new System.Exception("should never happen");
