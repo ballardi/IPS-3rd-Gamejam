@@ -203,7 +203,7 @@ Transform:
   - {fileID: 3323834528907850581}
   - {fileID: 8168727184937179338}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5579249371263902085
 MonoBehaviour:
@@ -296,6 +296,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnObstacleResolution:
+    m_PersistentCalls:
+      m_Calls: []
+  OnObstacleCollision:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPowerupResolution:
+    m_PersistentCalls:
+      m_Calls: []
   debugText: {fileID: 0}
   isPoweredup: 0
 --- !u!61 &3626889260053928133
@@ -412,6 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e14b2c9dbfebe1d4fb044fc4e3ac42ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugMode: 0
   FailureCollider: {fileID: 3626889260053928133}
   contactFilter:
     useTriggers: 0
