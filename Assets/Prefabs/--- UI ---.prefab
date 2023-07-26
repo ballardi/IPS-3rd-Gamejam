@@ -34,7 +34,7 @@ Transform:
   - {fileID: 5755035242058806076}
   - {fileID: 7776088986340036793}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &129245733475977104
 PrefabInstance:
@@ -229,6 +229,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4526197653505920362, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4526197653505920362, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4957811928618795751, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
       propertyPath: _blur
       value: 
@@ -245,6 +253,18 @@ PrefabInstance:
       propertyPath: PausePanelCameraShakeToggleButton
       value: 
       objectReference: {fileID: 8939716281718523108}
+    - target: {fileID: 7347669910778866884, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7347669910778866884, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7698130269395271473, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8424818280187355036, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
       propertyPath: _blur
       value: 

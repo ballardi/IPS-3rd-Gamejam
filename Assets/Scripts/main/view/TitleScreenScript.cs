@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class TitleScreenScript : MonoBehaviour
 {
@@ -10,13 +11,13 @@ public class TitleScreenScript : MonoBehaviour
     [SerializeField]
     private GameObject _blur;
 
-    public UnityEngine.UI.Button SoundToggleButton;
-    public UnityEngine.UI.Button MusicToggleButton;
-    public UnityEngine.UI.Button CameraShakeToggleButton;
+    public ToggleButtonScript SoundToggleButton;
+    public ToggleButtonScript MusicToggleButton;
+    public ToggleButtonScript CameraShakeToggleButton;
 
-    public UnityEngine.UI.Button PausePanelSoundToggleButton;
-    public UnityEngine.UI.Button PausePanelMusicToggleButton;
-    public UnityEngine.UI.Button PausePanelCameraShakeToggleButton;
+    public Button PausePanelSoundToggleButton;
+    public Button PausePanelMusicToggleButton;
+    public Button PausePanelCameraShakeToggleButton;
 
     public UnityEvent OnSoundOn;
     public UnityEvent OnSoundOff;
@@ -64,11 +65,11 @@ public class TitleScreenScript : MonoBehaviour
 
     public void OnSoundToggleClick() {
         IsSoundOn = !IsSoundOn;
+
         if(IsSoundOn)
             OnSoundOn.Invoke();
         else 
             OnSoundOff.Invoke();
-        UpdateOptionsToggleText();
     }
 
     public void OnMusicToggleClick() {
@@ -90,12 +91,14 @@ public class TitleScreenScript : MonoBehaviour
     }
 
     public void UpdateOptionsToggleText() {
-        SoundToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsSoundOn ? "Turn SFX Off" : "Turn SFX On";
-        MusicToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsMusicOn ? "Turn Turn Music Off" : "Turn Music On";
-        CameraShakeToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsCameraShakeOn ? "Turn Camera Shake Off" : "Turn Camera Shake On";
+        SoundToggleButton.SetState(IsSoundOn);
+        MusicToggleButton.SetState(IsMusicOn);
+        CameraShakeToggleButton.SetState(IsCameraShakeOn);
+        /*
         PausePanelSoundToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsSoundOn ? "Turn SFX Off" : "Turn SFX On";
         PausePanelMusicToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsMusicOn ? "Turn Music Off" : "Turn Music On";
         PausePanelCameraShakeToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsCameraShakeOn ? "Turn Camera Shake Off" : "Turn Camera Shake On";
+        */
     }
 
 }
