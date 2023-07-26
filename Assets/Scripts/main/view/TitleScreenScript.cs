@@ -19,6 +19,8 @@ public class TitleScreenScript : MonoBehaviour
     public Button PausePanelMusicToggleButton;
     public Button PausePanelCameraShakeToggleButton;
 
+    public TextMeshProUGUI HighscoreText;
+
     public UnityEvent OnSoundOn;
     public UnityEvent OnSoundOff;
     public UnityEvent OnMusicOn;
@@ -48,11 +50,13 @@ public class TitleScreenScript : MonoBehaviour
         Assert.IsNotNull(PausePanelSoundToggleButton);
         Assert.IsNotNull(PausePanelMusicToggleButton);
         Assert.IsNotNull(PausePanelCameraShakeToggleButton);
+        Assert.IsNotNull(HighscoreText);
     }
 
     public void Show(bool show)
     {
         UpdateOptionsToggleText();
+        HighscoreText.text = ""+GameStateManager.instance.HighScore;
         objToShow.SetActive(show);
         _blur.SetActive(show);
     }

@@ -59,6 +59,7 @@ MonoBehaviour:
   PausePanelSoundToggleButton: {fileID: 0}
   PausePanelMusicToggleButton: {fileID: 0}
   PausePanelCameraShakeToggleButton: {fileID: 0}
+  HighscoreText: {fileID: 366183996078614444}
   OnSoundOn:
     m_PersistentCalls:
       m_Calls:
@@ -401,6 +402,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c27a5b8c046d79c409edd9f73b33a993, type: 3}
+--- !u!114 &366183996078614444 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6669052905054319643, guid: c27a5b8c046d79c409edd9f73b33a993, type: 3}
+  m_PrefabInstance: {fileID: 6456418246143660983}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &582157107095337741 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5876620141287745722, guid: c27a5b8c046d79c409edd9f73b33a993, type: 3}
