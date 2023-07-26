@@ -22,6 +22,8 @@ public class GameStateManager : MonoBehaviour
     public int CurrentScore { get; private set; }
     private float _CurrentScoreFloat;
 
+    public int HighScore { get; private set; }
+
     public float InitialSpeed;
     public float MaxSpeed;
     public float SpeedAdditionPerSecond;
@@ -92,14 +94,17 @@ public class GameStateManager : MonoBehaviour
 
     public void OnShowTitleScreen()
     {
+        if (CurrentScore > HighScore)
+            HighScore = CurrentScore;
+
         PlayerScript.instance.OnStartTitleScreen();
         TitleScreenScript.instance.Show(true);
+        ScoreScript.instance.Show(false);
         OnTitleScreenStartEvent.Invoke();
         CurrentState = STATE.TITLE_SCREEN;
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("ObjectPool")) {
             obj.GetComponent<ObjectPool>().OnStartNewGame();
         }
-        // PowerupManager.Instance.OnGameEnd();
     }
 
     public void OnPlay()
@@ -119,6 +124,7 @@ public class GameStateManager : MonoBehaviour
                 CurrentScore = 0;
                 timeSinceLastSpeedIncrease = 0;
                 PauseButtonScript.instance.Show(true);
+                ScoreScript.instance.Show(true);
                 PlayerScript.instance.OnNewGame();
                 ObstacleManager.Instance.OnGameStart();
                 PowerupManager.Instance.OnGameStart();
@@ -165,6 +171,10 @@ public class GameStateManager : MonoBehaviour
                 OnGameoverEvent.Invoke();
                 PauseButtonScript.instance.Show(false);
                 GameOverScreenScript.instance.Show(true);
+
+                if(CurrentScore > HighScore)
+                    HighScore = CurrentScore;
+
                 break;
             case STATE.PAUSED:
                 throw new System.Exception("should never happen");
