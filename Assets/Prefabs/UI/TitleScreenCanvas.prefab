@@ -417,6 +417,7 @@ GameObject:
   - component: {fileID: 5264525372434864426}
   - component: {fileID: 5337705136108830366}
   - component: {fileID: 4715088987194236034}
+  - component: {fileID: 2216936459786513593}
   m_Layer: 5
   m_Name: CreditsButton
   m_TagString: Untagged
@@ -527,6 +528,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2216936459786513593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299920363558516855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35ef74f7a96b534286a275ecce546fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textToChange: {fileID: 3146767302252136721}
+  normalColor: {r: 0.7254902, g: 0.57254905, b: 0.36078432, a: 1}
+  hoverColor: {r: 0.9607844, g: 0.854902, b: 0.5764706, a: 1}
 --- !u!1 &3475850603351388173
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,6 +989,7 @@ GameObject:
   - component: {fileID: 1126087980728969928}
   - component: {fileID: 8564244319936336962}
   - component: {fileID: 6763491523784030618}
+  - component: {fileID: 208947484404921208}
   - component: {fileID: 5535966756857344772}
   - component: {fileID: 6664904870967547638}
   m_Layer: 5
@@ -1041,6 +1058,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &208947484404921208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5223041037097315567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35ef74f7a96b534286a275ecce546fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textToChange: {fileID: 2018541742845699150}
+  normalColor: {r: 0.7254902, g: 0.57254905, b: 0.36078432, a: 1}
+  hoverColor: {r: 0.9607844, g: 0.854902, b: 0.5764706, a: 1}
 --- !u!114 &5535966756857344772
 MonoBehaviour:
   m_ObjectHideFlags: 0
