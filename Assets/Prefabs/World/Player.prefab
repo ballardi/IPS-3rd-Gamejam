@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3323834528907850581}
   - component: {fileID: 8632470011260860351}
+  - component: {fileID: 8732729475040605950}
   m_Layer: 0
   m_Name: SuccessCollider
   m_TagString: Untagged
@@ -77,6 +78,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 90, y: 500}
   m_EdgeRadius: 0
+--- !u!114 &8732729475040605950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380026985806121593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2821030b9705804448624ab3907cd4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  successCollider: {fileID: 8632470011260860351}
+  perfectDisplay: {fileID: 0}
+  lateDisplay: {fileID: 0}
+  earlyDisplay: {fileID: 0}
+  lateRatio: 0.4
+  earlyRatio: 0.4
+  timerLength_seconds: 1
 --- !u!1 &5207338797201287827
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +353,7 @@ MonoBehaviour:
         m_CallState: 2
   debugText: {fileID: 0}
   isPoweredup: 0
+  timing: {fileID: 8732729475040605950}
 --- !u!61 &3626889260053928133
 BoxCollider2D:
   m_ObjectHideFlags: 0
