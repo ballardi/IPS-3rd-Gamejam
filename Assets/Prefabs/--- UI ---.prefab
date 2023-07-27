@@ -329,11 +329,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1821677001032961372, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -25
+      value: -158.00005
       objectReference: {fileID: 0}
     - target: {fileID: 1821677001032961372, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -170.9
+      value: -288.90002
       objectReference: {fileID: 0}
     - target: {fileID: 2334302267985793381, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_SizeDelta.x
@@ -341,11 +341,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2334302267985793381, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -256.5
+      value: -410
       objectReference: {fileID: 0}
     - target: {fileID: 2334302267985793381, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -167
+      value: -285
       objectReference: {fileID: 0}
     - target: {fileID: 4643487915905028070, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_IsActive
@@ -361,11 +361,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5709878890823928110, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -149
+      value: -282
       objectReference: {fileID: 0}
     - target: {fileID: 5709878890823928110, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -166
+      value: -284
       objectReference: {fileID: 0}
     - target: {fileID: 5958900797646599904, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_IsActive
@@ -374,6 +374,14 @@ PrefabInstance:
     - target: {fileID: 6625148675780271671, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_Name
       value: TimingResult
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237035950790147527, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
+      propertyPath: m_text
+      value: Perfect!
+      objectReference: {fileID: 0}
+    - target: {fileID: 7237035950790147527, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7237035950790147527, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_fontColor.b
@@ -404,6 +412,10 @@ PrefabInstance:
       value: Early...
       objectReference: {fileID: 0}
     - target: {fileID: 7240416472473807314, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7240416472473807314, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_fontColor.b
       value: 0.35416517
       objectReference: {fileID: 0}
@@ -428,20 +440,24 @@ PrefabInstance:
       value: Late...
       objectReference: {fileID: 0}
     - target: {fileID: 7439842752633057964, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439842752633057964, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_fontColor.b
-      value: 0.26016372
+      value: 0.1915984
       objectReference: {fileID: 0}
     - target: {fileID: 7439842752633057964, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_fontColor.g
-      value: 0.26016372
+      value: 0.1915984
       objectReference: {fileID: 0}
     - target: {fileID: 7439842752633057964, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_fontColor.r
-      value: 0.5943396
+      value: 0.8679245
       objectReference: {fileID: 0}
     - target: {fileID: 7439842752633057964, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_fontColor32.rgba
-      value: 4282532504
+      value: 4281414109
       objectReference: {fileID: 0}
     - target: {fileID: 7439842752633057964, guid: 0ebf3a4e6cc79ec449b5850c84225f02, type: 3}
       propertyPath: m_VerticalAlignment

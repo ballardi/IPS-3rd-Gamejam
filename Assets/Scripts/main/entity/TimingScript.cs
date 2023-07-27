@@ -15,21 +15,38 @@ public class TimingScript : MonoBehaviour
     [SerializeField][Range(0.1f,1.0f)] private float perfectRatio = 0.2f;
     private float perfect_left;
     private float perfect_right;
+    private Timer2 visibleTimer;
+    [SerializeField] private float timerLength_seconds;
+    private bool isOn = false;
 
-
-    void Awake()
+    private void Awake()
     {
         Assert.IsNotNull(successCollider);
         Assert.IsNotNull(perfectDisplay);
         Assert.IsNotNull(lateDisplay);
         Assert.IsNotNull(earlyDisplay);
-        perfectDisplay.SetActive(false);
-        lateDisplay.SetActive(false);
-        earlyDisplay.SetActive(false);
+        if (timerLength_seconds <= 0.0f) timerLength_seconds = 0.1f;
         if (perfectRatio > 1.0f) perfectRatio = 1.0f;
         if (perfectRatio <= 0.0f) perfectRatio = .01f;
-        CalculateBoundaries();
 
+        CloseDisplays();
+
+        visibleTimer = new Timer2(timerLength_seconds);
+        CalculateBoundaries();
+    }
+
+    private void Update()
+    {
+        if(GameStateManager.instance.CurrentState != GameStateManager.STATE.PLAYING){
+            CloseDisplays();
+        }
+        if(GameStateManager.instance.CurrentState == GameStateManager.STATE.PLAYING && isOn){
+           bool isDone = visibleTimer.UpdateTimerProgress(Time.deltaTime);
+           if(isDone){
+            isOn = false;
+            CloseDisplays();
+           }
+        }
     }
 
     private void CalculateBoundaries(){
@@ -44,20 +61,21 @@ public class TimingScript : MonoBehaviour
 
     public void CheckTiming(float leftEdge){
         if(leftEdge < perfect_left){
-            perfectDisplay.SetActive(false);
             lateDisplay.SetActive(true);
-            earlyDisplay.SetActive(false);
         }
         if(leftEdge > perfect_right){
-            perfectDisplay.SetActive(false);
-            lateDisplay.SetActive(false);
             earlyDisplay.SetActive(true);
         }
         if(leftEdge <= perfect_right && leftEdge >= perfect_left){
             perfectDisplay.SetActive(true);
-            lateDisplay.SetActive(false);
-            earlyDisplay.SetActive(false);
         }
+        isOn = true;
+    }
+
+    private void CloseDisplays(){
+        perfectDisplay.SetActive(false);
+        lateDisplay.SetActive(false);
+        earlyDisplay.SetActive(false);
     }
 
     // REMOVE COMMENTS FOR DEBUGGING

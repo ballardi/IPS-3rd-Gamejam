@@ -95,6 +95,7 @@ MonoBehaviour:
   lateDisplay: {fileID: 0}
   earlyDisplay: {fileID: 0}
   perfectRatio: 0.2
+  timerLength_seconds: 1
 --- !u!1 &5207338797201287827
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +224,7 @@ Transform:
   - {fileID: 3323834528907850581}
   - {fileID: 8168727184937179338}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5579249371263902085
 MonoBehaviour:
