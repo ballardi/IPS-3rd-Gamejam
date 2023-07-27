@@ -11,13 +11,20 @@ public class TimingScript : MonoBehaviour
     [SerializeField] private GameObject perfectDisplay;
     [SerializeField] private GameObject lateDisplay;
     [SerializeField] private GameObject earlyDisplay;
-    [Header("Perfect Range")]
-    [SerializeField][Range(0.1f,1.0f)] private float perfectRatio = 0.2f;
+    [Header("Timing Section Ratio")]
+    [SerializeField][Range(0.01f,0.5f)] private float lateRatio = 0.2f;
+    [SerializeField][Range(0.01f,0.5f)] private float earlyRatio = 0.2f;
     private float perfect_left;
     private float perfect_right;
-    private Timer2 visibleTimer;
+
+    private Timer2 perfectTimer;
+    private Timer2 lateTimer;
+    private Timer2 earlyTimer;
     [SerializeField] private float timerLength_seconds;
-    private bool isOn = false;
+
+    private bool isPerfectOn = false;
+    private bool isLateOn = false;
+    private bool isEarlyOn = false;
 
     private void Awake()
     {
@@ -26,12 +33,16 @@ public class TimingScript : MonoBehaviour
         Assert.IsNotNull(lateDisplay);
         Assert.IsNotNull(earlyDisplay);
         if (timerLength_seconds <= 0.0f) timerLength_seconds = 0.1f;
-        if (perfectRatio > 1.0f) perfectRatio = 1.0f;
-        if (perfectRatio <= 0.0f) perfectRatio = .01f;
+        if (earlyRatio > 0.5f) earlyRatio = 0.5f;
+        if (lateRatio > 0.5f) lateRatio = 0.5f;
+        if (earlyRatio <= 0.0f) earlyRatio = 0.1f;
+        if (lateRatio <= 0.0f)  lateRatio = 0.1f;
 
         CloseDisplays();
 
-        visibleTimer = new Timer2(timerLength_seconds);
+        perfectTimer = new Timer2(timerLength_seconds);
+        lateTimer = new Timer2(timerLength_seconds);
+        earlyTimer = new Timer2(timerLength_seconds);
         CalculateBoundaries();
     }
 
@@ -40,12 +51,29 @@ public class TimingScript : MonoBehaviour
         if(GameStateManager.instance.CurrentState != GameStateManager.STATE.PLAYING){
             CloseDisplays();
         }
-        if(GameStateManager.instance.CurrentState == GameStateManager.STATE.PLAYING && isOn){
-           bool isDone = visibleTimer.UpdateTimerProgress(Time.deltaTime);
-           if(isDone){
-            isOn = false;
-            CloseDisplays();
-           }
+        if(GameStateManager.instance.CurrentState == GameStateManager.STATE.PLAYING){
+            if(isEarlyOn){
+                bool isDone = earlyTimer.UpdateTimerProgress(Time.deltaTime);
+                if(isDone){
+                    isEarlyOn = false;
+                    earlyDisplay.SetActive(false);
+                }
+            }
+            if(isLateOn){
+                bool isDone = lateTimer.UpdateTimerProgress(Time.deltaTime);
+                if(isDone){
+                    isLateOn = false;
+                    lateDisplay.SetActive(false);
+                }
+            }
+            if(isPerfectOn){
+                bool isDone = perfectTimer.UpdateTimerProgress(Time.deltaTime);
+                if(isDone){
+                    isPerfectOn = false;
+                    perfectDisplay.SetActive(false);
+                }
+            }
+          
         }
     }
 
@@ -55,21 +83,31 @@ public class TimingScript : MonoBehaviour
         float far_right = collider.max.x; 
         float middle = (far_left+far_right)/(2.0f);
         float length = far_right - far_left; 
-        perfect_left = middle - (length * (perfectRatio/2.0f));
-        perfect_right = middle + (length * (perfectRatio/2.0f));
+        perfect_left = far_left + (length * lateRatio);
+        perfect_right = far_right - (length * earlyRatio);
     }
 
+     /// <summary>
+    /// Checks the timing of the player clearing an obstacle.
+    /// </summary>
+    /// <param name="leftEdge">The X coordinate of the left most collder edge of the obstacle.</param>
+    /// <returns></returns>
     public void CheckTiming(float leftEdge){
         if(leftEdge < perfect_left){
             lateDisplay.SetActive(true);
+            isLateOn = true;
+            lateTimer.ResetRemainingTimeToFullAmount();
         }
         if(leftEdge > perfect_right){
             earlyDisplay.SetActive(true);
+            isEarlyOn = true;
+            earlyTimer.ResetRemainingTimeToFullAmount();
         }
         if(leftEdge <= perfect_right && leftEdge >= perfect_left){
             perfectDisplay.SetActive(true);
+            isPerfectOn = true;
+            perfectTimer.ResetRemainingTimeToFullAmount();
         }
-        isOn = true;
     }
 
     private void CloseDisplays(){
@@ -87,15 +125,15 @@ public class TimingScript : MonoBehaviour
     //     float far_right = collider.max.x; 
     //     float middle = (far_left+far_right)/(2.0f);
     //     float length = far_right - far_left; 
-    //     float perfect_left = middle - (length * (perfectRatio/2.0f));
-    //     float perfect_right = middle + (length * (perfectRatio/2.0f));
+    //     float perfect_left = far_left + (length * lateRatio);
+    //     float perfect_right = far_right - (length * earlyRatio);
 
     //     if (!successCollider) return;
     //     float top = successCollider.bounds.max.y;
     //     float bottom = successCollider.bounds.min.y;
     
     //     Gizmos.color = Color.black;
-    //     Gizmos.DrawSphere(new Vector2(perfect_left, top), 10f);
+    //     Gizmos.DrawSphere(new Vector2(perfect_left, top), 5f);
     //     Gizmos.DrawLine(new Vector2(perfect_left, top), new Vector2(perfect_left, bottom));
     //     Gizmos.color = Color.yellow;
     //     Gizmos.DrawSphere(new Vector2(perfect_right, top), 5f);

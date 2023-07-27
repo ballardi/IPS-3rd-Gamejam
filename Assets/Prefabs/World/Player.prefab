@@ -94,7 +94,8 @@ MonoBehaviour:
   perfectDisplay: {fileID: 0}
   lateDisplay: {fileID: 0}
   earlyDisplay: {fileID: 0}
-  perfectRatio: 0.2
+  lateRatio: 0.4
+  earlyRatio: 0.4
   timerLength_seconds: 1
 --- !u!1 &5207338797201287827
 GameObject:
