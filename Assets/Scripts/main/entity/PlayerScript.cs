@@ -50,6 +50,9 @@ public class PlayerScript : LoggableMonoBehaviour {
     [Header("Powerup State")]
     [SerializeField] private bool isPoweredup;
 
+    [Header("Timing")]
+    [SerializeField] private TimingScript timing;
+
     void Awake() {
         Assert.IsNull(instance); instance = this; // singleton set up
 
@@ -57,6 +60,7 @@ public class PlayerScript : LoggableMonoBehaviour {
         Assert.IsNotNull(SuccessCollider);
         Assert.IsNotNull(animator);
         Assert.IsFalse(COOLDOWN_SECONDS < 0f);
+        Assert.IsNotNull(timing, "The Timing Script is missing. Please Add");
 
         input = new PlayerInput();
         input.Enable();
@@ -176,6 +180,7 @@ public class PlayerScript : LoggableMonoBehaviour {
                     }
                     Log(logText + "obstacle collision resolved.");
                     OnObstacleResolution.Invoke();
+                    timing.CheckTiming(collisions[i].bounds.min.x);
                     obstacleScript.HandlePlayerResolvedThisObstacleSuccessfully();
                     break;
 

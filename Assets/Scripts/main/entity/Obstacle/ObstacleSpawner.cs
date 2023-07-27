@@ -93,6 +93,7 @@ namespace ObstacleManagement
             }
 
             obstacleCreated.SetActive(true);
+            Log($"obstacle created {obstacleCreated.name} (instance id: {obstacleCreated.GetInstanceID()})");
         }
     }
 }

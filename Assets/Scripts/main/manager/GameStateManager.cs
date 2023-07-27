@@ -22,6 +22,8 @@ public class GameStateManager : MonoBehaviour
     public int CurrentScore { get; private set; }
     private float _CurrentScoreFloat;
 
+    public int HighScore { get; private set; }
+
     public float InitialSpeed;
     public float MaxSpeed;
     public float SpeedAdditionPerSecond;
@@ -92,14 +94,17 @@ public class GameStateManager : MonoBehaviour
 
     public void OnShowTitleScreen()
     {
+        if (CurrentScore > HighScore)
+            HighScore = CurrentScore;
+
         PlayerScript.instance.OnStartTitleScreen();
         TitleScreenScript.instance.Show(true);
+        ScoreScript.instance.Show(false);
         OnTitleScreenStartEvent.Invoke();
         CurrentState = STATE.TITLE_SCREEN;
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("ObjectPool")) {
             obj.GetComponent<ObjectPool>().OnStartNewGame();
         }
-        // PowerupManager.Instance.OnGameEnd();
     }
 
     public void OnPlay()
@@ -108,17 +113,21 @@ public class GameStateManager : MonoBehaviour
         {
             case STATE.GAMEOVER:
             case STATE.TITLE_SCREEN:
+                foreach (GameObject obj in GameObject.FindGameObjectsWithTag("ObjectPool")) {
+                    obj.GetComponent<ObjectPool>().OnStartNewGame();
+                }
+                foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Powerup")) {
+                    obj.GetComponent<PowerupAScript>().DespawnPowerup();
+                }
                 _CurrentSpeed = InitialSpeed;
                 _CurrentScoreFloat = 0;
                 CurrentScore = 0;
                 timeSinceLastSpeedIncrease = 0;
                 PauseButtonScript.instance.Show(true);
+                ScoreScript.instance.Show(true);
                 PlayerScript.instance.OnNewGame();
                 ObstacleManager.Instance.OnGameStart();
                 PowerupManager.Instance.OnGameStart();
-                foreach (GameObject obj in GameObject.FindGameObjectsWithTag("ObjectPool")) {
-                    obj.GetComponent<ObjectPool>().OnStartNewGame();
-                }
                 OnNewGameEvent.Invoke();
                 break;
             case STATE.PLAYING:
@@ -162,7 +171,10 @@ public class GameStateManager : MonoBehaviour
                 OnGameoverEvent.Invoke();
                 PauseButtonScript.instance.Show(false);
                 GameOverScreenScript.instance.Show(true);
-                // PowerupManager.Instance.OnGameEnd();
+
+                if(CurrentScore > HighScore)
+                    HighScore = CurrentScore;
+
                 break;
             case STATE.PAUSED:
                 throw new System.Exception("should never happen");
