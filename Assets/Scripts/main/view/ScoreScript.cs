@@ -21,7 +21,7 @@ public class ScoreScript : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (GameStateManager.instance.CurrentState == GameStateManager.STATE.PLAYING) {
-            ScoreText.text = "Score: " + GameStateManager.instance.CurrentScore;
+            ScoreText.text = "" + GameStateManager.instance.CurrentScore;
         }
     }
 
