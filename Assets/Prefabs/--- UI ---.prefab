@@ -69,6 +69,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Score
       objectReference: {fileID: 0}
+    - target: {fileID: 4610203969946785668, guid: 6ce04195689188d49817fba093647ef3, type: 3}
+      propertyPath: m_text
+      value: TODO
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
