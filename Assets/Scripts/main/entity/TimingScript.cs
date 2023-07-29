@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-
+using UnityEngine.Events;
 public class TimingScript : MonoBehaviour
 {
     [Header("Success Collider")]
@@ -25,6 +25,8 @@ public class TimingScript : MonoBehaviour
     private bool isPerfectOn = false;
     private bool isLateOn = false;
     private bool isEarlyOn = false;
+    [Header("Events")]
+    public UnityEvent OnPefectEvent;
 
     private void Awake()
     {
@@ -107,6 +109,7 @@ public class TimingScript : MonoBehaviour
             perfectDisplay.SetActive(true);
             isPerfectOn = true;
             perfectTimer.ResetRemainingTimeToFullAmount();
+            OnPefectEvent.Invoke();
         }
     }
 
