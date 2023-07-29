@@ -17,18 +17,11 @@ public class ScoreboardView : MonoBehaviour
     {
         if (_shouldDisplay)
         {
-            if (_currentTimer == 0)
-            {
-                _currentTimer = 5;
-                _scoreText.text = $"${_currentScore}";
-                _currentScore++;
-
-                if (_currentScore > _destinationScore)
+                _scoreText.text = $"${_destinationScore}";
+             
                     OnFinish();
             }
-            else
-                _currentTimer--;
-        }
+             
     }
 
     public void DisplayScore()

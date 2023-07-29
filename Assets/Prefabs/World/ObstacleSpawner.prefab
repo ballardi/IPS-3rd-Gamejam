@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 89655629890888558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 521, y: -82, z: 0}
+  m_LocalPosition: {x: 521, y: -61.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -99,7 +99,7 @@ Transform:
   - {fileID: 6987246689480620379}
   - {fileID: 6259467789576551615}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5006171863036226054
 MonoBehaviour:
@@ -117,6 +117,7 @@ MonoBehaviour:
   _obstacleASpointPoint: {fileID: 1863308342314372130}
   _obstacleBSpointPoint: {fileID: 6199726061769423240}
   _obstacleCSpointPoint: {fileID: 914415568194431108}
+  previousObstacles: 0000000000000000
   poolA: {fileID: 6007340097754105250}
   poolB: {fileID: 2033652558962429355}
   poolC: {fileID: 8936055735678224613}
