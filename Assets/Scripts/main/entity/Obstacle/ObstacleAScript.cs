@@ -39,7 +39,6 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
                 break;
             case STATE.PlayerResolvedSuccessfully: 
-                gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.green;
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
                 break;
             case STATE.PlayerFailed:
