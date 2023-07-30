@@ -28,6 +28,8 @@ public class TitleScreenScript : MonoBehaviour
     public UnityEvent OnCameraShakeEnable;
     public UnityEvent OnCameraShakeDisable;
 
+    public GameObject CreditsPanel;
+
     private bool IsSoundOn;
     private bool IsMusicOn;
     private bool IsCameraShakeOn;
@@ -51,6 +53,7 @@ public class TitleScreenScript : MonoBehaviour
         Assert.IsNotNull(PausePanelMusicToggleButton);
         Assert.IsNotNull(PausePanelCameraShakeToggleButton);
         Assert.IsNotNull(HighscoreText);
+        Assert.IsNotNull(CreditsPanel);
     }
 
     public void Show(bool show)
@@ -59,6 +62,7 @@ public class TitleScreenScript : MonoBehaviour
         HighscoreText.text = ""+GameStateManager.instance.HighScore;
         objToShow.SetActive(show);
         _blur.SetActive(show);
+        CreditsPanel.SetActive(false);
     }
 
     public void OnPlayButtonClick()
