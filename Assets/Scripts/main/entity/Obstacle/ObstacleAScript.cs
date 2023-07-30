@@ -35,7 +35,7 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
             Vector3 currentPos = transform.localPosition;
             transform.localPosition = new Vector3(currentPos.x - distanceToTravel, currentPos.y, currentPos.z);
         }
-        if(spriteOff){
+        if(spriteOff && GameStateManager.instance.CurrentState == GameStateManager.STATE.PLAYING){
             bool isCompleted = visibilityTimer.UpdateTimerProgress(Time.deltaTime);
             if(isCompleted){
                 spriteOff = false; 
@@ -64,6 +64,10 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
                     spriteOff = true;
                     transform.position = SuccessPositionUP.position;
                 }
+                if(ActionType.dir == ActionEnum.DOWN){
+                    //turning off hole when success.
+                    transform.GetChild(0).gameObject.SetActive(false);
+                }
                 tutorialObj.SetActive(false);
                 break;
             case STATE.PlayerFailed:
@@ -73,6 +77,9 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
                 distanceToTravel = GameStateManager.instance.GetDistanceToTravelThisFrame();
                 if(ActionType.dir == ActionEnum.UP){
                     spriteRenderer.sprite = ActionType.default_image;
+                }
+                if(ActionType.dir == ActionEnum.DOWN){
+                    transform.GetChild(0).gameObject.SetActive(true);
                 }
                 gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
