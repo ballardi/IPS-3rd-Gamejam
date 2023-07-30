@@ -122,7 +122,6 @@ public class PlayerScript : LoggableMonoBehaviour {
         }
 
         int collisionCount = SuccessCollider.OverlapCollider(contactFilter, collisions);
-
         for (int i = 0; i<collisionCount; i++) {
             GameObject collisionObj = collisions[i].gameObject;
             ActionEnum dir = ActionEnum.UP;
@@ -138,7 +137,7 @@ public class PlayerScript : LoggableMonoBehaviour {
                     dir = obstacleScript.getActionType().dir;
                     PlaySFX(dir);
                     ResetAllAnimationTriggers();
-                    PlayAnimation(dir);
+                    PlaySuccessAnimation(dir);
                     break;
 
 				default: 

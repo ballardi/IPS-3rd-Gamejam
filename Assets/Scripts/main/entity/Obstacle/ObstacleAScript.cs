@@ -55,6 +55,7 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
             case STATE.PlayerResolvedSuccessfully: 
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
                 if(ActionType.dir == ActionEnum.UP){
+                    visibilityTimer.ResetRemainingTimeToFullAmount();
                     spriteRenderer.enabled = false;
                     spriteOff = true;
                     transform.position = SuccessPositionUP.position;
