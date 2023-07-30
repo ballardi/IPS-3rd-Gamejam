@@ -97,6 +97,9 @@ MonoBehaviour:
   lateRatio: 0.4
   earlyRatio: 0.4
   timerLength_seconds: 1
+  OnPefectEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5207338797201287827
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +206,7 @@ GameObject:
   - component: {fileID: 8137829738993411732}
   - component: {fileID: 6472415387107337461}
   - component: {fileID: 7131194057752514425}
+  - component: {fileID: 8881756710287217418}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -505,6 +509,21 @@ MonoBehaviour:
   lateRatio: 0.4
   earlyRatio: 0.4
   timerLength_seconds: 1
+  OnPefectEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8881756710287217418}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &2833332538436173356
 Animator:
   serializedVersion: 5
@@ -701,6 +720,37 @@ MonoBehaviour:
       Data3: -1872340321
       Data4: 1383486921
     Path: event:/SFX Events/VO_PowerUp
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &8881756710287217418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6090843308928482692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -724704717
+      Data2: 1114008987
+      Data3: 438450073
+      Data4: 1029291547
+    Path: event:/SFX Events/VO_Perfect
   Event: 
   PlayEvent: 0
   StopEvent: 0

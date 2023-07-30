@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+
 public class PauseButtonScript : MonoBehaviour {
+    
 
     public GameObject objToShow;
 
@@ -24,6 +26,8 @@ public class PauseButtonScript : MonoBehaviour {
 
     public void OnPauseButtonClick() {
         GameStateManager.instance.OnPause();
+
+       
     }
 
 }

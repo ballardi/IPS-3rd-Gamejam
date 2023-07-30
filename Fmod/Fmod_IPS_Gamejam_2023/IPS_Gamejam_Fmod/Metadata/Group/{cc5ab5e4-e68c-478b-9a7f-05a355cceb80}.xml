@@ -17,16 +17,10 @@
 	<object class="MixerBusEffectChain" id="{d22f0bf2-8aa9-445d-9c4f-f72e9570020a}">
 		<relationship name="effects">
 			<destination>{6858e333-6fe1-44dd-9318-fed64176f262}</destination>
-			<destination>{3cdb07f2-8e02-46fb-9ef1-03f7308c4bcc}</destination>
-			<destination>{db53e8ce-f131-48d5-a13e-745e1c012b0c}</destination>
+			<destination>{fc227c21-37d3-462b-9f6a-fbef2dbb55ca}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{b864d6fc-11e9-415a-a5e6-d817cbe47fb5}" />
 	<object class="MixerBusFader" id="{6858e333-6fe1-44dd-9318-fed64176f262}" />
-	<object class="LimiterEffect" id="{3cdb07f2-8e02-46fb-9ef1-03f7308c4bcc}">
-		<property name="boost">
-			<value>6</value>
-		</property>
-	</object>
-	<object class="Sidechain" id="{db53e8ce-f131-48d5-a13e-745e1c012b0c}" />
+	<object class="Sidechain" id="{fc227c21-37d3-462b-9f6a-fbef2dbb55ca}" />
 </objects>
