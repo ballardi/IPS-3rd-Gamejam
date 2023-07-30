@@ -126,6 +126,7 @@ MonoBehaviour:
   OnCameraShakeDisable:
     m_PersistentCalls:
       m_Calls: []
+  CreditsPanel: {fileID: 1762481115256687077}
 --- !u!114 &8424818280187355036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,6 +425,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57cebac40bcd2454e87dd3a6385edcb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1762481115256687077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4750269647466256978, guid: c27a5b8c046d79c409edd9f73b33a993, type: 3}
+  m_PrefabInstance: {fileID: 6456418246143660983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4236826364741851150 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7157896625397746617, guid: c27a5b8c046d79c409edd9f73b33a993, type: 3}

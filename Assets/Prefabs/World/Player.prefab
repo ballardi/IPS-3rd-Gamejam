@@ -97,6 +97,9 @@ MonoBehaviour:
   lateRatio: 0.4
   earlyRatio: 0.4
   timerLength_seconds: 1
+  OnPefectEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5207338797201287827
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,6 +206,7 @@ GameObject:
   - component: {fileID: 8137829738993411732}
   - component: {fileID: 6472415387107337461}
   - component: {fileID: 7131194057752514425}
+  - component: {fileID: 7490232618899705381}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -505,6 +509,9 @@ MonoBehaviour:
   lateRatio: 0.4
   earlyRatio: 0.4
   timerLength_seconds: 1
+  OnPefectEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!95 &2833332538436173356
 Animator:
   serializedVersion: 5
@@ -712,6 +719,35 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &7490232618899705381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6090843308928482692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f94d70315e61ae34a8bbe8f5f3827825, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugMode: 0
+  Collider: {fileID: 8632470011260860351}
+  contactFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 8
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  playerScript: {fileID: 5579249371263902085}
 --- !u!1001 &8292460674584448318
 PrefabInstance:
   m_ObjectHideFlags: 0
