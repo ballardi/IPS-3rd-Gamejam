@@ -38,6 +38,7 @@
 		<relationship name="sidechains">
 			<destination>{db53e8ce-f131-48d5-a13e-745e1c012b0c}</destination>
 			<destination>{fc227c21-37d3-462b-9f6a-fbef2dbb55ca}</destination>
+			<destination>{95112588-19e3-4d69-90a4-f71f19f0364e}</destination>
 		</relationship>
 	</object>
 	<object class="CompressorEffect" id="{08ac1d61-3301-4ba0-8a7c-7d38140807d1}">
