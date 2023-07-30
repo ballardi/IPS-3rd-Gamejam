@@ -42,6 +42,10 @@ public class GameStateManager : MonoBehaviour
     public UnityEvent OnUnpauseEvent;
     public UnityEvent OnGameoverEvent;
 
+    public bool HasPlayerEverSeenTutorial_Up { get; private set; }
+    public bool HasPlayerEverSeenTutorial_Right { get; private set; }
+    public bool HasPlayerEverSeenTutorial_Down { get; private set; }
+
     void Awake()
     {
         Assert.IsNull(instance);
@@ -54,6 +58,10 @@ public class GameStateManager : MonoBehaviour
         Assert.IsTrue(InitialSpeed > 0);
         Assert.IsTrue(SpeedAdditionPerSecond >= 0);
         Assert.IsTrue(MultiplierFromTimeToScore > 0);
+
+        HasPlayerEverSeenTutorial_Up = false;
+        HasPlayerEverSeenTutorial_Right = false;
+        HasPlayerEverSeenTutorial_Down = false;
     }
 
     // executed after all objects have executed their Awake()
@@ -183,4 +191,27 @@ public class GameStateManager : MonoBehaviour
         }
         CurrentState = STATE.GAMEOVER;
     }
+    
+    public bool HasPlayerSeenAllActionTutorials() {
+        return HasPlayerEverSeenTutorial_Down && HasPlayerEverSeenTutorial_Right && HasPlayerEverSeenTutorial_Up;
+    }
+
+    public bool HasPlayerSeenActionTutorial(ActionEnum action) {
+        switch (action) {
+            case ActionEnum.RIGHT: return HasPlayerEverSeenTutorial_Right;
+            case ActionEnum.DOWN:  return HasPlayerEverSeenTutorial_Down;
+            case ActionEnum.UP:    return HasPlayerEverSeenTutorial_Up;
+            default: throw new System.Exception("should never happen");
+        }
+    }
+
+    public void RegisterATutorialWasShown(ActionEnum action) {
+        switch (action) {
+            case ActionEnum.RIGHT: HasPlayerEverSeenTutorial_Right = true; break;
+            case ActionEnum.DOWN:  HasPlayerEverSeenTutorial_Down  = true; break;
+            case ActionEnum.UP:    HasPlayerEverSeenTutorial_Up    = true; break;
+            default: throw new System.Exception("should never happen");
+        }
+    }
+
 }
