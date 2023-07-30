@@ -207,6 +207,7 @@ GameObject:
   - component: {fileID: 6472415387107337461}
   - component: {fileID: 7131194057752514425}
   - component: {fileID: 7490232618899705381}
+  - component: {fileID: 9006634676390248242}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -511,7 +512,19 @@ MonoBehaviour:
   timerLength_seconds: 1
   OnPefectEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 9006634676390248242}
+        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!95 &2833332538436173356
 Animator:
   serializedVersion: 5
@@ -748,6 +761,37 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   playerScript: {fileID: 5579249371263902085}
+--- !u!114 &9006634676390248242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6090843308928482692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -724704717
+      Data2: 1114008987
+      Data3: 438450073
+      Data4: 1029291547
+    Path: event:/SFX Events/VO_Perfect
+  Event: 
+  PlayEvent: 0
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1001 &8292460674584448318
 PrefabInstance:
   m_ObjectHideFlags: 0

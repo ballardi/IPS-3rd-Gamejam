@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using FMODUnity;
 
 public class PauseMenuScript : MonoBehaviour {
 
@@ -9,10 +10,14 @@ public class PauseMenuScript : MonoBehaviour {
 
     public static PauseMenuScript instance;
 
+    public StudioEventEmitter emitter;
+
     private void Awake() {
         Assert.IsNull(instance); instance = this; // singleton logic
 
         Assert.IsNotNull(objToShow);
+
+        Assert.IsNotNull(emitter);
 
         Show(false);
     }
@@ -26,6 +31,9 @@ public class PauseMenuScript : MonoBehaviour {
     public void OnResumeButtonClick() {
         Show(false);
         GameStateManager.instance.OnPlay();
+
+        var instance = emitter.EventInstance;
+        instance.setPaused(false);
     }
 
     public void OnExitToTitleScreenButtonClick() {

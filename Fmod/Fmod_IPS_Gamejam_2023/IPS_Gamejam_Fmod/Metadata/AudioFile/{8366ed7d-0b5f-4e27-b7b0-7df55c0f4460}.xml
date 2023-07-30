@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{8366ed7d-0b5f-4e27-b7b0-7df55c0f4460}">
 		<property name="assetPath">
-			<value>SFX/VO/VO_Power Up-001.wav</value>
+			<value>SFX/VO/Power Up/VO_Power Up-001.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

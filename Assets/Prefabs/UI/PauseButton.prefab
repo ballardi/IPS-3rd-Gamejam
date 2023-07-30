@@ -447,7 +447,7 @@ Transform:
   m_Children:
   - {fileID: 4031894326554194546}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3301812555777860261
 MonoBehaviour:
@@ -462,3 +462,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objToShow: {fileID: 1837983783229943084}
+  emitter: {fileID: 7571766988342140494}
