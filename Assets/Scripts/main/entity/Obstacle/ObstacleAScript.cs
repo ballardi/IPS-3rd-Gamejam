@@ -12,18 +12,33 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
 
     [SerializeField] private ActionType ActionType;
 
-    private Color startingColor;
+    private SpriteRenderer spriteRenderer;
+    private Timer2 visibilityTimer;
+    private const float SPRITE_OFF_SECONDS = .65f;
+    private bool spriteOff = false; 
+
+    [SerializeField] private Transform SuccessPositionUP, SuccessPositionDOWN, SuccessPositionLeft;
 
     void Awake() {
         Assert.IsNotNull(ActionType);
-        startingColor = gameObject.GetComponentInChildren<SpriteRenderer>().color;
+        Assert.IsNotNull(SuccessPositionUP);
+        spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+        visibilityTimer = new Timer2(SPRITE_OFF_SECONDS);
     }
 
     void Update() {
-        if (currentState == STATE.Normal || currentState == STATE.PlayerResolvedSuccessfully) {
+        if ((currentState == STATE.Normal || currentState == STATE.PlayerResolvedSuccessfully) && !spriteOff) {
             distanceToTravel = GameStateManager.instance.GetDistanceToTravelThisFrame();
             Vector3 currentPos = transform.localPosition;
             transform.localPosition = new Vector3(currentPos.x - distanceToTravel, currentPos.y, currentPos.z);
+        }
+        if(spriteOff){
+            bool isCompleted = visibilityTimer.UpdateTimerProgress(Time.deltaTime);
+            if(isCompleted){
+                spriteOff = false; 
+                spriteRenderer.enabled = true;
+                spriteRenderer.sprite = ActionType.success_image;
+            }
         }
     }
 
@@ -34,18 +49,25 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
         switch (newState) {
             case STATE.Normal: // basically what to do when initialized
                 distanceToTravel = GameStateManager.instance.GetDistanceToTravelThisFrame();
-                gameObject.GetComponentInChildren<SpriteRenderer>().color = startingColor;
                 gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
                 break;
             case STATE.PlayerResolvedSuccessfully: 
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
+                if(ActionType.dir == ActionEnum.UP){
+                    spriteRenderer.enabled = false;
+                    spriteOff = true;
+                    transform.position = SuccessPositionUP.position;
+                }
                 break;
             case STATE.PlayerFailed:
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
                 break;
             case STATE.Hidden:
                 distanceToTravel = GameStateManager.instance.GetDistanceToTravelThisFrame();
+                if(ActionType.dir == ActionEnum.UP){
+                    spriteRenderer.sprite = ActionType.default_image;
+                }
                 gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 break;

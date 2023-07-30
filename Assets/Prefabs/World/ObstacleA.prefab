@@ -134,6 +134,9 @@ MonoBehaviour:
   DebugMode: 0
   startSpeed: 1
   ActionType: {fileID: 11400000, guid: 79471fa5fbad7b643b6f481d3b895b9a, type: 2}
+  SuccessPositionUP: {fileID: 1772178832294396255, guid: 6580bc7e2def58d4f8fc209c2a10c5ba, type: 3}
+  SuccessPositionDOWN: {fileID: 0}
+  SuccessPositionLeft: {fileID: 0}
 --- !u!61 &3811716756239011205
 BoxCollider2D:
   m_ObjectHideFlags: 0
