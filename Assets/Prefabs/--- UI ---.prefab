@@ -35,7 +35,7 @@ Transform:
   - {fileID: 7776088986340036793}
   - {fileID: 2566593179291158214}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &129245733475977104
 PrefabInstance:
@@ -269,6 +269,38 @@ PrefabInstance:
     - target: {fileID: 4526197653505920362, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650134847593378470, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650134847593378470, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650134847593378470, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650134847593378470, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650134847593378470, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650134847593378470, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 366.22998
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650134847593378470, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 475.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650134847593378470, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.3699799
       objectReference: {fileID: 0}
     - target: {fileID: 4957811928618795751, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
       propertyPath: _blur
