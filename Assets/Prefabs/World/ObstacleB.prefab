@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: ActionType
       value: 
       objectReference: {fileID: 11400000, guid: 091779e32252fa14ead16feb26dcafc0, type: 2}
+    - target: {fileID: 6160080431365531468, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+      propertyPath: tutorialObj
+      value: 
+      objectReference: {fileID: 6962100881751642390}
     - target: {fileID: 7218871884808078095, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
       propertyPath: m_Name
       value: ObstacleB
@@ -105,3 +109,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+--- !u!1 &6962100881751642390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9062188079831744033, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+  m_PrefabInstance: {fileID: 2115853820660281143}
+  m_PrefabAsset: {fileID: 0}

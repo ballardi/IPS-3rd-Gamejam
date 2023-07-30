@@ -19,9 +19,12 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
 
     [SerializeField] private Transform SuccessPositionUP, SuccessPositionDOWN, SuccessPositionLeft;
 
+    public GameObject tutorialObj;
+
     void Awake() {
         Assert.IsNotNull(ActionType);
         Assert.IsNotNull(SuccessPositionUP);
+        Assert.IsNotNull(tutorialObj);
         spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
         visibilityTimer = new Timer2(SPRITE_OFF_SECONDS);
     }
@@ -51,6 +54,7 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
                 distanceToTravel = GameStateManager.instance.GetDistanceToTravelThisFrame();
                 gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
+                tutorialObj.SetActive(false);
                 break;
             case STATE.PlayerResolvedSuccessfully: 
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
@@ -60,6 +64,7 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
                     spriteOff = true;
                     transform.position = SuccessPositionUP.position;
                 }
+                tutorialObj.SetActive(false);
                 break;
             case STATE.PlayerFailed:
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
@@ -71,6 +76,7 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
                 }
                 gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                tutorialObj.SetActive(false);
                 break;
             default:
                 throw new System.Exception("should never happen");
@@ -100,7 +106,17 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
         //returning the scriptable obj instead of just the Enum in case future data is added.
         return ActionType;
     }
-    
+
+    public void HandleSuccessCollisionInProgress() {
+        Log($"obstacle {name} HandleSuccessCollisionInProgress");
+        // don't do anything if player's seen tutorial for this action already
+        if (GameStateManager.instance.HasPlayerSeenActionTutorial(ActionType.dir))
+            return;
+        // show tutorial 
+        tutorialObj.SetActive(true);
+        GameStateManager.instance.RegisterATutorialWasShown(ActionType.dir);
+    }
+
     void IPoolable.InitializeOnUse() {
         changeState(STATE.Normal);
     }
@@ -108,5 +124,5 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
     void IPoolable.DeInitializeOnPooling() {
         changeState(STATE.Hidden);
     }
-    
+
 }
