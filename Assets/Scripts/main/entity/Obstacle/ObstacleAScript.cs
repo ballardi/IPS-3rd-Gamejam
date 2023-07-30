@@ -12,18 +12,36 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
 
     [SerializeField] private ActionType ActionType;
 
-    private Color startingColor;
+    private SpriteRenderer spriteRenderer;
+    private Timer2 visibilityTimer;
+    private const float SPRITE_OFF_SECONDS = .65f;
+    private bool spriteOff = false; 
+
+    [SerializeField] private Transform SuccessPositionUP, SuccessPositionDOWN, SuccessPositionLeft;
+
+    public GameObject tutorialObj;
 
     void Awake() {
         Assert.IsNotNull(ActionType);
-        startingColor = gameObject.GetComponentInChildren<SpriteRenderer>().color;
+        Assert.IsNotNull(SuccessPositionUP);
+        Assert.IsNotNull(tutorialObj);
+        spriteRenderer = gameObject.GetComponentInChildren<SpriteRenderer>();
+        visibilityTimer = new Timer2(SPRITE_OFF_SECONDS);
     }
 
     void Update() {
-        if (currentState == STATE.Normal || currentState == STATE.PlayerResolvedSuccessfully) {
+        if ((currentState == STATE.Normal || currentState == STATE.PlayerResolvedSuccessfully) && !spriteOff) {
             distanceToTravel = GameStateManager.instance.GetDistanceToTravelThisFrame();
             Vector3 currentPos = transform.localPosition;
             transform.localPosition = new Vector3(currentPos.x - distanceToTravel, currentPos.y, currentPos.z);
+        }
+        if(spriteOff){
+            bool isCompleted = visibilityTimer.UpdateTimerProgress(Time.deltaTime);
+            if(isCompleted){
+                spriteOff = false; 
+                spriteRenderer.enabled = true;
+                spriteRenderer.sprite = ActionType.success_image;
+            }
         }
     }
 
@@ -34,21 +52,31 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
         switch (newState) {
             case STATE.Normal: // basically what to do when initialized
                 distanceToTravel = GameStateManager.instance.GetDistanceToTravelThisFrame();
-                gameObject.GetComponentInChildren<SpriteRenderer>().color = startingColor;
                 gameObject.GetComponentInChildren<SpriteRenderer>().enabled = true;
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
+                tutorialObj.SetActive(false);
                 break;
             case STATE.PlayerResolvedSuccessfully: 
-                gameObject.GetComponentInChildren<SpriteRenderer>().color = Color.green;
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
+                if(ActionType.dir == ActionEnum.UP){
+                    visibilityTimer.ResetRemainingTimeToFullAmount();
+                    spriteRenderer.enabled = false;
+                    spriteOff = true;
+                    transform.position = SuccessPositionUP.position;
+                }
+                tutorialObj.SetActive(false);
                 break;
             case STATE.PlayerFailed:
                 gameObject.GetComponent<BoxCollider2D>().enabled = true;
                 break;
             case STATE.Hidden:
                 distanceToTravel = GameStateManager.instance.GetDistanceToTravelThisFrame();
+                if(ActionType.dir == ActionEnum.UP){
+                    spriteRenderer.sprite = ActionType.default_image;
+                }
                 gameObject.GetComponentInChildren<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                tutorialObj.SetActive(false);
                 break;
             default:
                 throw new System.Exception("should never happen");
@@ -78,7 +106,17 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
         //returning the scriptable obj instead of just the Enum in case future data is added.
         return ActionType;
     }
-    
+
+    public void HandleSuccessCollisionInProgress() {
+        Log($"obstacle {name} HandleSuccessCollisionInProgress");
+        // don't do anything if player's seen tutorial for this action already
+        if (GameStateManager.instance.HasPlayerSeenActionTutorial(ActionType.dir))
+            return;
+        // show tutorial 
+        tutorialObj.SetActive(true);
+        GameStateManager.instance.RegisterATutorialWasShown(ActionType.dir);
+    }
+
     void IPoolable.InitializeOnUse() {
         changeState(STATE.Normal);
     }
@@ -86,5 +124,5 @@ public class ObstacleAScript : LoggableMonoBehaviour, IPoolable {
     void IPoolable.DeInitializeOnPooling() {
         changeState(STATE.Hidden);
     }
-    
+
 }

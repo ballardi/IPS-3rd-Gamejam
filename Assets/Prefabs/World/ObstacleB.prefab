@@ -9,12 +9,44 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 426704429968042313, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0557fdcc3cac52b49a64525e08b52844, type: 3}
+    - target: {fileID: 426704429968042313, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 426704429968042313, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
       propertyPath: m_Color.g
-      value: 0.28246838
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 426704429968042313, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
       propertyPath: m_Color.r
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 434395779803676400, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 434395779803676400, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3811716756239011205, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+      propertyPath: m_Size.x
+      value: 37.862457
+      objectReference: {fileID: 0}
+    - target: {fileID: 3811716756239011205, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+      propertyPath: m_Size.y
+      value: 81.80769
+      objectReference: {fileID: 0}
+    - target: {fileID: 3811716756239011205, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+      propertyPath: m_Offset.x
+      value: -2.4132233
+      objectReference: {fileID: 0}
+    - target: {fileID: 3811716756239011205, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+      propertyPath: m_Offset.y
+      value: -22.77416
       objectReference: {fileID: 0}
     - target: {fileID: 4313886864457264098, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
       propertyPath: m_RootOrder
@@ -64,12 +96,25 @@ PrefabInstance:
       propertyPath: ActionType
       value: 
       objectReference: {fileID: 11400000, guid: 091779e32252fa14ead16feb26dcafc0, type: 2}
+    - target: {fileID: 6160080431365531468, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+      propertyPath: tutorialObj
+      value: 
+      objectReference: {fileID: 6962100881751642390}
     - target: {fileID: 7218871884808078095, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
       propertyPath: m_Name
       value: ObstacleB
+      objectReference: {fileID: 0}
+    - target: {fileID: 9062188079831744033, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+--- !u!1 &6962100881751642390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9062188079831744033, guid: c83789c8be2679b4a96ec227fa6125f6, type: 3}
+  m_PrefabInstance: {fileID: 2115853820660281143}
+  m_PrefabAsset: {fileID: 0}

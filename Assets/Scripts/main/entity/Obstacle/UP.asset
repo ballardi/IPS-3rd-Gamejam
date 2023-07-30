@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: UP
   m_EditorClassIdentifier: 
   dir: 2
+  success_image: {fileID: 21300000, guid: bb8f5c801b7188d4aabed3de2e2112f3, type: 3}
+  default_image: {fileID: 21300000, guid: 7b247c3cf0bd3a7489cebde82bfc2533, type: 3}

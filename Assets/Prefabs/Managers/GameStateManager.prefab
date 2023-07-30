@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialSpeed: 1
   MaxSpeed: 3
-  SpeedAdditionPerSecond: 0.015
+  SpeedAdditionPerSecond: 0.02
   MultiplierFromTimeToScore: 33
   targetFrameRate: 60
   SpeedToDistanceConversionMultiplier: 200

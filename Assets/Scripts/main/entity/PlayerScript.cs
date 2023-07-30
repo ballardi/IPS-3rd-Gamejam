@@ -34,6 +34,7 @@ public class PlayerScript : LoggableMonoBehaviour {
     private const string TRIGGER_START_RIGHT   = "StartRight";
     private const string TRIGGER_START_DOWN    = "StartDown";
     private const string TRIGGER_START_FAILURE = "StartFailure";
+    private const string TRIGGER_START_UP_SUCCESS = "StartUpSuccess";
 
     [Header("Events")]
     public UnityEvent OnUpActionEvent;
@@ -121,7 +122,6 @@ public class PlayerScript : LoggableMonoBehaviour {
         }
 
         int collisionCount = SuccessCollider.OverlapCollider(contactFilter, collisions);
-
         for (int i = 0; i<collisionCount; i++) {
             GameObject collisionObj = collisions[i].gameObject;
             ActionEnum dir = ActionEnum.UP;
@@ -137,7 +137,7 @@ public class PlayerScript : LoggableMonoBehaviour {
                     dir = obstacleScript.getActionType().dir;
                     PlaySFX(dir);
                     ResetAllAnimationTriggers();
-                    PlayAnimation(dir);
+                    PlaySuccessAnimation(dir);
                     break;
 
 				default: 
@@ -159,6 +159,7 @@ public class PlayerScript : LoggableMonoBehaviour {
         } else {
             return;
         }
+        bool completeObstacle = false;
 
         int collisionCount = SuccessCollider.OverlapCollider(contactFilter, collisions);
         for (int i = 0; i<collisionCount; i++) {
@@ -182,6 +183,7 @@ public class PlayerScript : LoggableMonoBehaviour {
                     OnObstacleResolution.Invoke();
                     timing.CheckTiming(collisions[i].bounds.min.x);
                     obstacleScript.HandlePlayerResolvedThisObstacleSuccessfully();
+                    completeObstacle = true;
                     break;
 
 				case "Powerup" :
@@ -208,7 +210,11 @@ public class PlayerScript : LoggableMonoBehaviour {
         PlaySFX(dir);
         // start the animation for the corresponding action
         ResetAllAnimationTriggers();
-        PlayAnimation(dir);
+        if(completeObstacle){
+            PlaySuccessAnimation(dir);
+        } else {
+            PlayAnimation(dir);
+        }
     }
 
     public void OnNewGame() {
@@ -229,6 +235,7 @@ public class PlayerScript : LoggableMonoBehaviour {
         animator.ResetTrigger(TRIGGER_START_RIGHT);
         animator.ResetTrigger(TRIGGER_START_DOWN);
         animator.ResetTrigger(TRIGGER_START_FAILURE);
+        animator.ResetTrigger(TRIGGER_START_UP_SUCCESS);
     }
 
     public void PlaySFX(ActionEnum dir){
@@ -244,6 +251,14 @@ public class PlayerScript : LoggableMonoBehaviour {
             case ActionEnum.RIGHT: animator.SetTrigger(TRIGGER_START_RIGHT); break;
             case ActionEnum.DOWN:  animator.SetTrigger(TRIGGER_START_DOWN);  break;
             case ActionEnum.UP:    animator.SetTrigger(TRIGGER_START_UP);    break;
+        }
+    }
+
+    public void PlaySuccessAnimation(ActionEnum dir){
+        switch(dir){
+            case ActionEnum.RIGHT: animator.SetTrigger(TRIGGER_START_RIGHT); break;
+            case ActionEnum.DOWN:  animator.SetTrigger(TRIGGER_START_DOWN);  break;
+            case ActionEnum.UP:    animator.SetTrigger(TRIGGER_START_UP_SUCCESS); break;
         }
     }
 

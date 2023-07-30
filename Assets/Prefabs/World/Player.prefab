@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 8137829738993411732}
   - component: {fileID: 6472415387107337461}
   - component: {fileID: 7131194057752514425}
-  - component: {fileID: 8881756710287217418}
+  - component: {fileID: 7490232618899705381}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -511,19 +511,7 @@ MonoBehaviour:
   timerLength_seconds: 1
   OnPefectEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8881756710287217418}
-        m_TargetAssemblyTypeName: FMODUnity.StudioEventEmitter, FMODUnity
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!95 &2833332538436173356
 Animator:
   serializedVersion: 5
@@ -731,7 +719,7 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!114 &8881756710287217418
+--- !u!114 &7490232618899705381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -740,28 +728,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 6090843308928482692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: f94d70315e61ae34a8bbe8f5f3827825, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: -724704717
-      Data2: 1114008987
-      Data3: 438450073
-      Data4: 1029291547
-    Path: event:/SFX Events/VO_Perfect
-  Event: 
-  PlayEvent: 0
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  AllowNonRigidbodyDoppler: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  DebugMode: 0
+  Collider: {fileID: 8632470011260860351}
+  contactFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 8
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 0
+    maxNormalAngle: 0
+  playerScript: {fileID: 5579249371263902085}
 --- !u!1001 &8292460674584448318
 PrefabInstance:
   m_ObjectHideFlags: 0
