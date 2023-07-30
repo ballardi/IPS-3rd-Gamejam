@@ -6,4 +6,6 @@ using UnityEngine;
 public class ActionType : ScriptableObject
 {
     public ActionEnum dir;
+    public Sprite success_image;
+    public Sprite default_image;
 }
