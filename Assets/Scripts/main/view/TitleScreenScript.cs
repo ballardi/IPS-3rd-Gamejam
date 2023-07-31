@@ -15,9 +15,9 @@ public class TitleScreenScript : MonoBehaviour
     public ToggleButtonScript MusicToggleButton;
     public ToggleButtonScript CameraShakeToggleButton;
 
-    public Button PausePanelSoundToggleButton;
-    public Button PausePanelMusicToggleButton;
-    public Button PausePanelCameraShakeToggleButton;
+    public ToggleButtonScript PausePanelSoundToggleButton;
+    public ToggleButtonScript PausePanelMusicToggleButton;
+    public ToggleButtonScript PausePanelCameraShakeToggleButton;
 
     public TextMeshProUGUI HighscoreText;
 
@@ -102,11 +102,9 @@ public class TitleScreenScript : MonoBehaviour
         SoundToggleButton.SetState(IsSoundOn);
         MusicToggleButton.SetState(IsMusicOn);
         CameraShakeToggleButton.SetState(IsCameraShakeOn);
-        /*
-        PausePanelSoundToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsSoundOn ? "Turn SFX Off" : "Turn SFX On";
-        PausePanelMusicToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsMusicOn ? "Turn Music Off" : "Turn Music On";
-        PausePanelCameraShakeToggleButton.GetComponentInChildren<TextMeshProUGUI>().text = IsCameraShakeOn ? "Turn Camera Shake Off" : "Turn Camera Shake On";
-        */
+        PausePanelSoundToggleButton.SetState(IsSoundOn);
+        PausePanelMusicToggleButton.SetState(IsMusicOn);
+        PausePanelCameraShakeToggleButton.SetState(IsCameraShakeOn);
     }
 
 }
