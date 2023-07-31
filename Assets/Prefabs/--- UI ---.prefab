@@ -464,15 +464,15 @@ PrefabInstance:
     - target: {fileID: 4957811928618795751, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
       propertyPath: PausePanelMusicToggleButton
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 579243189526699575}
     - target: {fileID: 4957811928618795751, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
       propertyPath: PausePanelSoundToggleButton
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4510248133084010590}
     - target: {fileID: 4957811928618795751, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
       propertyPath: PausePanelCameraShakeToggleButton
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3802534624087971253}
     - target: {fileID: 7698130269395271473, guid: 58f591de0bcc05141a912380219c3cea, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1265,10 +1265,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 700
       objectReference: {fileID: 0}
-    - target: {fileID: 4775148911968851641, guid: ac8cd71a89f5781429b3ae733ce37fcd, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -632.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4992884070034927558, guid: ac8cd71a89f5781429b3ae733ce37fcd, type: 3}
       propertyPath: OnClickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1330,6 +1326,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ac8cd71a89f5781429b3ae733ce37fcd, type: 3}
+--- !u!114 &579243189526699575 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8346355111600695727, guid: ac8cd71a89f5781429b3ae733ce37fcd, type: 3}
+  m_PrefabInstance: {fileID: 8925526828441155480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cebac40bcd2454e87dd3a6385edcb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3802534624087971253 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5699452956673778221, guid: ac8cd71a89f5781429b3ae733ce37fcd, type: 3}
+  m_PrefabInstance: {fileID: 8925526828441155480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cebac40bcd2454e87dd3a6385edcb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4510248133084010590 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4992884070034927558, guid: ac8cd71a89f5781429b3ae733ce37fcd, type: 3}
+  m_PrefabInstance: {fileID: 8925526828441155480}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57cebac40bcd2454e87dd3a6385edcb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5755035242058806076 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3747040329697641636, guid: ac8cd71a89f5781429b3ae733ce37fcd, type: 3}
