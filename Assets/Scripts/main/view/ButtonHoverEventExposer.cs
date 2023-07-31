@@ -17,6 +17,7 @@ public class ButtonHoverEventExposer : MonoBehaviour, IPointerEnterHandler, IPoi
 
     private void Start() {
         GameStateManager.instance.OnTitleScreenStartEvent.AddListener(ResetToNormalColor);
+        GameStateManager.instance.OnNewGameEvent.AddListener(ResetToNormalColor);
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
