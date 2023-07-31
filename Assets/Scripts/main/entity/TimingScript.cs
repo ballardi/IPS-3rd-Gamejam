@@ -17,14 +17,9 @@ public class TimingScript : MonoBehaviour
     private float perfect_left;
     private float perfect_right;
 
-    private Timer2 perfectTimer;
-    private Timer2 lateTimer;
-    private Timer2 earlyTimer;
+    private Timer2 visibilityTimer;
     [SerializeField] private float timerLength_seconds;
-
-    private bool isPerfectOn = false;
-    private bool isLateOn = false;
-    private bool isEarlyOn = false;
+    private bool isOn = false;
     [Header("Events")]
     public UnityEvent OnPefectEvent;
 
@@ -42,9 +37,7 @@ public class TimingScript : MonoBehaviour
 
         CloseDisplays();
 
-        perfectTimer = new Timer2(timerLength_seconds);
-        lateTimer = new Timer2(timerLength_seconds);
-        earlyTimer = new Timer2(timerLength_seconds);
+        visibilityTimer = new Timer2(timerLength_seconds);
         CalculateBoundaries();
     }
 
@@ -54,28 +47,13 @@ public class TimingScript : MonoBehaviour
             CloseDisplays();
         }
         if(GameStateManager.instance.CurrentState == GameStateManager.STATE.PLAYING){
-            if(isEarlyOn){
-                bool isDone = earlyTimer.UpdateTimerProgress(Time.deltaTime);
+            if(isOn){
+                bool isDone = visibilityTimer.UpdateTimerProgress(Time.deltaTime);
                 if(isDone){
-                    isEarlyOn = false;
-                    earlyDisplay.SetActive(false);
+                    isOn = false;
+                    CloseDisplays();
                 }
             }
-            if(isLateOn){
-                bool isDone = lateTimer.UpdateTimerProgress(Time.deltaTime);
-                if(isDone){
-                    isLateOn = false;
-                    lateDisplay.SetActive(false);
-                }
-            }
-            if(isPerfectOn){
-                bool isDone = perfectTimer.UpdateTimerProgress(Time.deltaTime);
-                if(isDone){
-                    isPerfectOn = false;
-                    perfectDisplay.SetActive(false);
-                }
-            }
-          
         }
     }
 
@@ -96,19 +74,22 @@ public class TimingScript : MonoBehaviour
     /// <returns></returns>
     public void CheckTiming(float leftEdge){
         if(leftEdge < perfect_left){
+            CloseDisplays();
             lateDisplay.SetActive(true);
-            isLateOn = true;
-            lateTimer.ResetRemainingTimeToFullAmount();
+            isOn = true;
+            visibilityTimer.ResetRemainingTimeToFullAmount();
         }
         if(leftEdge > perfect_right){
+            CloseDisplays();
             earlyDisplay.SetActive(true);
-            isEarlyOn = true;
-            earlyTimer.ResetRemainingTimeToFullAmount();
+            isOn = true;
+            visibilityTimer.ResetRemainingTimeToFullAmount();
         }
         if(leftEdge <= perfect_right && leftEdge >= perfect_left){
+            CloseDisplays();
             perfectDisplay.SetActive(true);
-            isPerfectOn = true;
-            perfectTimer.ResetRemainingTimeToFullAmount();
+            isOn = true;
+            visibilityTimer.ResetRemainingTimeToFullAmount();
             OnPefectEvent.Invoke();
         }
     }
